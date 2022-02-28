@@ -1,5 +1,5 @@
 <?php
-require('../models/Bdd.php');
+require('Model.php');
 
 
 class UserModel extends Model

@@ -2,7 +2,7 @@
 require ('../models/UserModel.php');
 
 
-class UserController 
+class UserController
 
 {   
     public $prenom;

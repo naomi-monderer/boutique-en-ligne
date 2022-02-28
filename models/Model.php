@@ -1,5 +1,5 @@
 <?php
-require_once('./models/Bddconnexion.php');
+require_once('Bddconnexion.php');
 
 // etendre cette classe aux classes enfants
 abstract class Model extends Bddconnexion
