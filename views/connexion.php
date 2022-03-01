@@ -2,19 +2,15 @@
 require_once('include/header.php');
 require_once('../controllers/ConnexionController.php');
 
-
-
 if(isset($_POST['submit']))
 {
     $controller = new ConnexionController();
     $check = $controller->connexion($_POST['login'], $_POST['password']);
 }
-
-
 ?>
- 
-    
-    <main>
+<main>
+    <section>
+        <h1>Connexion</h1>
         <form action="" method="post">
             <div>
                 <label for="login">Votre login</label>
@@ -26,10 +22,9 @@ if(isset($_POST['submit']))
             </div>
 
             <input type="submit" name="submit" value="valider">
-
-
         </form>
-    </main>
+    </section>     
+</main>
 <?php
 if(isset($_POST['submit']))
 {
