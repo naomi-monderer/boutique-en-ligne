@@ -9,13 +9,13 @@ class CommentModel extends Model
 
     }
 
-    public function insertCommentaire($commentaire, $id_utilisateur, $produit_id)
+    public function insertCommentaire($commentaire, $id_utilisateur, $id_produit)
     {
-        $requete = $this->connect()->prepare('INSERT INTO commentaires(commentaire, id_utilisateur, id_article, date) VALUES(:commentaire, :id_utilisateur, :id_article, NOW())');
+        $requete = $this->connect()->prepare('INSERT INTO commentaires(commentaire, id_utilisateur, id_article, date) VALUES(:commentaire, :id_utilisateur, :id_produit, NOW())');
         $requete->execute(array(
             'commentaire' => $commentaire,
             'id_utilisateur' => $id_utilisateur,
-            'id_produit' => $produit_id,
+            'id_produit' => $id_produit,
         ));
     }
 
@@ -24,7 +24,7 @@ class CommentModel extends Model
         $requete = $this->connect()->prepare('SELECT * FROM `commentaires`
                                  INNER JOIN produits ON produits.id = commentaires.id_produit
                                  WHERE produits.id = :produit_id');
-        $requete->execute(array('produit_id' => $produit_id));
+        $requete->execute(array('produit_id' => $id_produit));
         $getCommentaires = $requete->fetchAll();
 
         return $commentaires;
