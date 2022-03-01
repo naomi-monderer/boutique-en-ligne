@@ -1,50 +1,31 @@
 <?php
 require("../models/UserModel.php");
-
-class  ConnexionController
-{   
-    public $login;
-    public $password;
-    protected $bdd;
- 
-
-    public function __construct()
+// $bdd = new BddConnexion("localhost","boutique","root","");
+// $pdo= $bdd->connexion();
+// $utilisateur = new Utilisateur($pdo);
+// $login = security($_POST["login"]);
+// $password = security($_POST["password"]);
+class User
+{
+    public function connexion()
     {
-        $this->model = new UserModel;
-    }
-
-    public function connexion($login,$password)
-    {   
-        $login = htmlspecialchars(trim($login));
-        $password = htmlspecialchars(trim($password));
-
-        if(!empty($login) && !empty($password))
+        if(!empty($login)&& !empty($password))
         {
-            $dataUser= $this->model->checkUser($login);
-            // $verifLogin = 
-            $verifLogin=$dataUser[0]['login'];
-            var_dump($verifLogin);
-          
-            if(count(array($verifLogin)) == 1)
-            {   
-                $passwordHash = $dataUser[0]['password'];
-
-                if(password_verify($password,$passwordHash))
-                {
-                    $_SESSION['user']= $dataUser;
-                      header('location: index.php');
-                }
-            }
-            else
+            $utilisateur = new UserModel;
+            // je verifie que le login existe en bdd
+            $cheklogin  = $utilisateur->checkLogin($login);
+            if($cheklogin == 1)
             {
-                return 'Ce login est inconnu.';
+            
+                
+
+           
             }
-        }
-        else
+        }else
         {
 
             echo  "tout les champs doivent etre remplis";
-          
+            header("location../connexion.php");
         }
 
 

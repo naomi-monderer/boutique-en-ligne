@@ -1,7 +1,8 @@
 <?php
 require ('../models/UserModel.php');
 
-class InscriptionController 
+
+class UserController 
 
 {   
     public $prenom;
@@ -10,12 +11,17 @@ class InscriptionController
     public $email;
     public $password;
     private $model;
-    protected $bdd;
+    private $bdd;
 
     public function __construct()
     {
         // instencie un objet et on appelle l'une de ses méthodes
-       $this->model =  new UserModel();
+       $model = $this->model =  new UserModel();
+        $this->bdd = $this->model->connect();
+    
+        // var_dump($this->connect);
+
+            
     }
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
@@ -29,57 +35,34 @@ class InscriptionController
         $password = htmlspecialchars(trim($password)); 
         $passwordConfirm = htmlspecialchars(trim($passwordConfirm)); 
 
-  
+  //      $login_len = strlen($login);
+
+//        if($login_len < 4 && $nom_len ...)
              
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
         {   
-            $login_len = strlen($login);
-            $password_len = strlen($password);
-     
-            if($login_len >= 4  && $password_len >= 6)
+            $loginResult = $this->model->checkLogin($login);
+            if(count($loginResult) == 0)
             {
-                $loginResult = $this->model->checkUser($login);
-                
-                if(count($loginResult) == 0)
-                {             
-                    $emailResult = $this->model->checkEmail($email);
-                    var_dump($emailResult);
-                    
-                    if(count($emailResult) == 0)
-                    {   
-                        if($password == $passwordConfirm)
-                        {
-                            $password = password_hash($password,PASSWORD_BCRYPT);
-                        
-                            $this->model->insertUser($prenom,$nom,$login,$email,$password);
-                            header('location: ../views/connexion.php');  
-                        }
-                        else
-                        {
-                            return 'Les mots de passe doivent être identiques.';
-                        }
-                    }
-                    else
-                    {
-                        return 'Cet email est déjà utilisé.';
-                    }
+                if($password == $passwordConfirm)
+                {
+                    $password = password_hash($password,PASSWORD_BCRYPT);
+                    // a
+                    $this->model->insertUser($prenom,$nom,$login,$email,$password);
                 }
                 else
                 {
-                    return 'Ce login est déjà utilisé.';
+                    return 'mot de passe pas égal';
                 }
-
             }
             else
             {
-                return 'Votre login ou password est trop court';
+                return 'Ce login est déjà utilisé';
             }
-            // methodes de UserModel- verification du login et l'email uniques.
-            
-        }     
+        }
         else
         {
-            return 'Tous les champs doivent être remplis.';
+            return 'Les champs sont vides';
         }        
     }
 
@@ -87,7 +70,3 @@ class InscriptionController
 
 
 
-// $login_len = strlen($login);
-//             $password_len = strlen($password);
-//             if($login_len < 4 && )
-//             {
