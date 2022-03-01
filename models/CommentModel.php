@@ -1,7 +1,7 @@
 <?php
 require('Model.php');
 
-class commentModel extends Model
+class CommentModel extends Model
 {
 
     public function __construct()
@@ -9,13 +9,13 @@ class commentModel extends Model
 
     }
 
-    public function insertCommentaire()
+    public function insertCommentaire($commentaire, $id_utilisateur, $produit_id)
     {
         $requete = $this->connect()->prepare('INSERT INTO commentaires(commentaire, id_utilisateur, id_article, date) VALUES(:commentaire, :id_utilisateur, :id_article, NOW())');
         $requete->execute(array(
             'commentaire' => $commentaire,
-            'id_utilisateur' => $_SESSION['id'],
-            'id_produit' => $article_id,
+            'id_utilisateur' => $id_utilisateur,
+            'id_produit' => $produit_id,
         ));
     }
 
