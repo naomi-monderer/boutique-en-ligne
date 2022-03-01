@@ -1,12 +1,21 @@
 <?php
-  require_once('include/header.php');
+require_once('include/header.php');
+require_once('../controllers/ConnexionController.php');
+
+
+
+if(isset($_POST['submit']))
+{
+    $controller = new ConnexionController();
+    $check = $controller->connexion($_POST['login'], $_POST['password']);
+}
+
+
 ?>
-    <?php  if(isset($_SESSION["erreur"])) :?>
-    <?php echo $_SESSION["erreur"];?>
-    <?php endif;?>
+ 
     
     <main>
-        <form action="traitement/traitement-connexion.php" method="POST">
+        <form action="" method="post">
             <div>
                 <label for="login">Votre login</label>
                 <input type="text" name="login" id="login">
@@ -16,12 +25,15 @@
                 <input type="password" name="password" id="password">
             </div>
 
-            <button class="buttonform" type="submit"> Connexion</button>
+            <input type="submit" name="submit" value="valider">
 
 
         </form>
     </main>
-    <?php unset($_SESSION["erreur"]);    ?>
 <?php
+if(isset($_POST['submit']))
+{
+    echo "<div> $check </div>";
+}   
 require_once("include/footer.php");
 ?>    
