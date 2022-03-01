@@ -1,6 +1,7 @@
 <?php
-$route =  str_replace('views/articles.php','',$_SERVER['SCRIPT_FILENAME']);
-require($route.'controllers/articlesController.php');
+// $route =  str_replace('views/articles.php','',$_SERVER['SCRIPT_FILENAME']);
+// require($route.'controllers/articlesController.php');
+require_once('../controllers/articlesController.php');
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ require($route.'controllers/articlesController.php');
 
     </header>
     <main>
-
+    coucoucoucou
     </main>
     <footer>
         
