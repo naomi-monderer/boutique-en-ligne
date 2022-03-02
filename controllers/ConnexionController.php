@@ -4,7 +4,7 @@ require("../models/UserModel.php");
 // $pdo= $bdd->connexion();
 // $utilisateur = new Utilisateur($pdo);
 // $login = security($_POST["login"]);
-// $password = security($_POST["password"]);
+
 class User
 {
     public function connexion()
