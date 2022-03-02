@@ -20,13 +20,14 @@ class UserModel extends Model
     public function insertUser($prenom,$nom,$login,$email,$password)
     {
        //Insert les utilisateurs en bdd
-        $requete = $this->connect()->prepare("INSERT INTO utilisateurs(nom,prenom,email,password,login) VALUES (:nom,:prenom,:email,:password,:login)");
+        $requete = $this->connect()->prepare("INSERT INTO utilisateurs(nom,prenom,email,password,login,id_droits) VALUES (:nom,:prenom,:email,:password,:login,:id_droits)");
         $requete->execute(array(
             ":nom"=> $nom,
             ":prenom" => $prenom,
             ":email" => $email,
             ":password" => $password,
             ":login" => $login,
+            ":id_droits"=>$id_droits,
         ));
     }
 

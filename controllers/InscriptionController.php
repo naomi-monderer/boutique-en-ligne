@@ -18,6 +18,9 @@ class InscriptionController
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
     {   
+        
+        $id_droits=2;// cet id_droit sera pour l'utilisateur.
+
         $login = htmlspecialchars(trim(strtolower($login))); 
         $nom = htmlspecialchars(trim(strtolower($nom))); 
         $prenom = htmlspecialchars(trim(strtolower($prenom))); 
