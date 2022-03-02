@@ -32,7 +32,8 @@
 
             <label for="passwordConfirm">Confirmez le mote de passe</label>
             <input type="text" name='passwordConfirm' placeholder="..........">
-
+            
+            <input type="hidden" name="id_droits">
 
             <input type="submit" name="submit" value="valider">
         </form>

@@ -17,7 +17,6 @@ class UserModel extends Model
         
     }
     
-    
     public function insertUser($prenom,$nom,$login,$email,$password)
     {
        //Insert les utilisateurs en bdd
@@ -31,33 +30,36 @@ class UserModel extends Model
         ));
     }
 
-    public function checkUser($login)
-    {   $this->login = $login;
+    public function getUserByLogin($login) 
+    {   
        
-        $requete = "SELECT * FROM utilisateurs WHERE login = :login";
+        $requete = "SELECT * FROM utilisateurs WHERE login = :login ";
         $result = $this->connect()->prepare($requete);
-        $result->bindValue(':login', $this->login);
+        $result->bindValue(':login', $login);
         $result->execute();
         $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
-        // var_dump($result);
+        
+        // var_dump($checkUser);
+        
         return $checkUser;
-        // $login = $this->login;  
-        // $checkUser = $this->model->checkUser($login);
-        
+     
     }
 
-    public function checkEmail($email)
-    {
-        $this->email = $email;
-        
-        $requete = "SELECT email FROM utilisateurs WHERE email = :email";
+    public function getUserByEmail($email)
+    {   
+       
+        $requete = "SELECT * FROM utilisateurs WHERE email = :email";
         $result = $this->connect()->prepare($requete);
-        $result->bindValue(':email', $this->email);
+        $result->bindValue(':email', $email);
         $result->execute();
-        $checkEmail = $result->fetchAll(PDO :: FETCH_ASSOC);
-
-        return $checkEmail;
+        $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
+        
+        var_dump($checkUser);
+        
+        return $checkUser;
+     
     }
+
     
     public function findUser($id) :array 
     {   $this->id = $id;

@@ -1,9 +1,6 @@
 <?php
-require_once('../models/UserModel.php');
-
-
-class UserController 
-
+require ('../models/UserModel.php');
+class InscriptionController 
 {   
     public $prenom;
     public $nom;
@@ -11,62 +8,73 @@ class UserController
     public $email;
     public $password;
     private $model;
-    private $bdd;
+    protected $bdd;
 
     public function __construct()
     {
         // instencie un objet et on appelle l'une de ses méthodes
-       $model = $this->model =  new UserModel();
-        $this->bdd = $this->model->connect();
-    
-        // var_dump($this->connect);
-
-            
+       $this->model =  new UserModel();
     }
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
     {   
-        
-       
-        $login = htmlspecialchars(trim($login)); 
-        $nom = htmlspecialchars(trim($nom)); 
-        $prenom = htmlspecialchars(trim($prenom)); 
-        $email = htmlspecialchars(trim($email)); 
-        $password = htmlspecialchars(trim($password)); 
-        $passwordConfirm = htmlspecialchars(trim($passwordConfirm)); 
+        $login = htmlspecialchars(trim(strtolower($login))); 
+        $nom = htmlspecialchars(trim(strtolower($nom))); 
+        $prenom = htmlspecialchars(trim(strtolower($prenom))); 
+        $email = htmlspecialchars(trim(strtolower($email))); 
+        $password = htmlspecialchars(trim(strtolower($password))); 
+        $passwordConfirm = htmlspecialchars(trim(strtolower($passwordConfirm))); 
 
-  //      $login_len = strlen($login);
 
-//        if($login_len < 4 && $nom_len ...)
-             
+
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
         {   
-            $loginResult = $this->model->checkLogin($login);
-            if(count($loginResult) == 0)
+            $login_len = strlen($login);
+            $password_len = strlen($password);
+
+            if($login_len >= 3  && $password_len >= 3)
             {
-                if($password == $passwordConfirm)
-                {
-                    $password = password_hash($password,PASSWORD_BCRYPT);
-                    // a
-                    $this->model->insertUser($prenom,$nom,$login,$email,$password);
+                $sameLoginUsers = $this->model->getUserByLogin($login); //users qui portent le meme login
+                $sameEmailUsers = $this->model->getUserByEmail($email); //users qui portent le meme email
+
+                if(empty($sameLoginUsers[0])) // "s'il n'existe aucun user portant le meme login"
+                {   
+                    if(empty($sameEmailUsers[0])) // "s'il n'existe aucun user portant le meme email"
+                        {
+                            if($password == $passwordConfirm)
+                        {
+                            $password = password_hash($password,PASSWORD_BCRYPT);
+
+                            $this->model->insertUser($prenom,$nom,$login,$email,$password);
+                            header('location: ../views/connexion.php');  
+                        }
+                        else
+                        {
+                            return 'Les mots de passe doivent être identiques.';
+                        }
+                        
+                    }
+                    else
+                    {
+                        return 'Ce email est déjà utilisé.';
+                    }
+                }else{
+                    return 'Ce login est déjà utilisé.';
                 }
-                else
-                {
-                    return 'mot de passe pas égal';
-                }
+
             }
             else
             {
-                return 'Ce login est déjà utilisé';
+                return 'Votre login ou password est trop court';
             }
-        }
+            // methodes de UserModel- verification du login et l'email uniques.
+
+        }     
         else
         {
-            return 'Les champs sont vides';
+            return 'Tous les champs doivent être remplis.';
         }        
     }
 
 }
-
-
 
