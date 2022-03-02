@@ -36,13 +36,13 @@ class  ConnexionController
             }
             else
             {
-                return 'Ce login n\'est pas connu.';
+                return ' login n\'est pas connu.';
             }
         }
         else
         {
 
-            echo  "tout les champs doivent etre remplis";
+            echo  " les champs doivent etre remplis";
 
         }
 
