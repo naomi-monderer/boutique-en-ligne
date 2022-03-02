@@ -5,7 +5,7 @@
     if(isset($_POST['submit']))
     {
         $controller = new InscriptionController();
-        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm']); 
+        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
        
     }   
 ?>
@@ -33,7 +33,7 @@
             <label for="passwordConfirm">Confirmez le mote de passe</label>
             <input type="text" name='passwordConfirm' placeholder="..........">
             
-            <input type="hidden" name="id_droits">
+           <input type="hidden" name="id_droits">
 
             <input type="submit" name="submit" value="valider">
         </form>

@@ -16,10 +16,10 @@ class InscriptionController
        $this->model =  new UserModel();
     }
 
-    public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
+    public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm,$id_droits)
     {   
-        
-        $id_droits=2;// cet id_droit sera pour l'utilisateur.
+        $id_droits = 2;
+
 
         $login = htmlspecialchars(trim(strtolower($login))); 
         $nom = htmlspecialchars(trim(strtolower($nom))); 
@@ -48,7 +48,7 @@ class InscriptionController
                         {
                             $password = password_hash($password,PASSWORD_BCRYPT);
 
-                            $this->model->insertUser($prenom,$nom,$login,$email,$password);
+                            $this->model->insertUser($prenom,$nom,$login,$email,$password,$id_droits);
                             header('location: ../views/connexion.php');  
                         }
                         else

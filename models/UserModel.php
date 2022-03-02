@@ -17,7 +17,7 @@ class UserModel extends Model
         
     }
     
-    public function insertUser($prenom,$nom,$login,$email,$password)
+    public function insertUser($prenom,$nom,$login,$email,$password,$id_droits)
     {
        //Insert les utilisateurs en bdd
         $requete = $this->connect()->prepare("INSERT INTO utilisateurs(nom,prenom,email,password,login,id_droits) VALUES (:nom,:prenom,:email,:password,:login,:id_droits)");
@@ -62,7 +62,7 @@ class UserModel extends Model
     }
 
     
-    public function findUser($id) :array 
+    public function findUserById($id) :array 
     {   $this->id = $id;
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
@@ -71,4 +71,13 @@ class UserModel extends Model
         return $dataUser;
     }
     
+    public function findAllUsers()
+    {
+     
+        $requete = "SELECT * FROM utilisateurs";
+        $result = $this->connect()->prepare($requete);
+        $result->execute();
+        $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
+        return $dataUser;
+    }
 }
