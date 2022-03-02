@@ -1,5 +1,6 @@
 <?php
 require("../models/UserModel.php");
+<<<<<<< HEAD
 
 class  ConnexionController
 {   
@@ -9,6 +10,16 @@ class  ConnexionController
 
 
     public function __construct()
+=======
+// $bdd = new BddConnexion("localhost","boutique","root","");
+// $pdo= $bdd->connexion();
+// $utilisateur = new Utilisateur($pdo);
+// $login = security($_POST["login"]);
+
+class User
+{
+    public function connexion()
+>>>>>>> 848cc49ec0b5460b34f36b2bb263baaa655fca61
     {
         $this->model = new UserModel;
     }
