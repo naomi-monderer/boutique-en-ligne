@@ -1,37 +1,38 @@
 <?php
-
-    require('../controllers/traitement-inscription.php');
+    require_once('include/header.php');
+    require_once('../controllers/InscriptionController.php');
+    
     if(isset($_POST['submit']))
     {
-        $controller = new UserController();
-        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm']);   
-    }
+        $controller = new InscriptionController();
+        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm']); 
+       
+    }   
     
     
  ?>
 
 <h1>Inscription</h1>
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt fugit consequuntur culpa quae rem totam, architecto perferendis sapiente sint consequatur asperiores pariatur velit? Fugiat asperiores excepturi, molestiae ducimus animi culpa.</p>
 
 <form action="inscription.php" method="post">
 
+    <label for="login">Identifiant</label>
+    <input type="text" name='login' placeholder="Rosy">
+
     <label for="prenom">Prénom</label>
-    <input type="text" name='prenom'>
+    <input type="text" name='prenom' placeholder="Rose ">
 
     <label for="nom">Nom</label>
-    <input type="text" name='nom'>
-
-    <label for="login">Identifiant</label>
-    <input type="text" name='login'>
+    <input type="text" name='nom'placeholder="McGowan">
 
     <label for="email">Email</label>
-    <input type="text" name='email'>
+    <input type="text" name='email' placeholder="mcgowan@protonmail.com" required>
 
     <label for="password">Mot de passe</label>
-    <input type="text" name='password'>
+    <input type="text" name='password' placeholder="...........">
 
     <label for="passwordConfirm">Confirmez le mote de passe</label>
-    <input type="text" name='passwordConfirm'>
+    <input type="text" name='passwordConfirm' placeholder="..........">
 
 
     <input type="submit" name="submit" value="valider">
