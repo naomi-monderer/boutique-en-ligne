@@ -6,7 +6,7 @@ class  ConnexionController
     public $login;
     public $password;
     protected $bdd;
- 
+
 
     public function __construct()
     {
@@ -15,42 +15,43 @@ class  ConnexionController
 
     public function connexion($login,$password)
     {   
-        $login = htmlspecialchars(trim($login));
-        $password = htmlspecialchars(trim($password));
+        $login = htmlspecialchars(trim(strtolower($login)));
+        $password = htmlspecialchars(trim(strtolower($password)));
 
         if(!empty($login) && !empty($password))
         {
-            $dataUser= $this->model->checkUser($login);
-            // $verifLogin = 
-            $verifLogin=$dataUser[0]['login'];
-            var_dump($verifLogin);
-          
-            if(count(array($verifLogin)) == 1)
-            {   
-                $passwordHash = $dataUser[0]['password'];
+            $sameLoginUsers = $this->model->getUserByLogin($login);
+
+            if(!empty($sameLoginUsers[0]))
+            {   $AllUserInfos = $this->model->getUserByLogin($login);
+                $passwordHash = $AllUserInfos[0]['password'];
+                // $var_dump($AllUserInfos);
 
                 if(password_verify($password,$passwordHash))
                 {
-                    $_SESSION['user']= $dataUser;
+                    $_SESSION['user']= $AllUserInfos;
+                    // var_dump($_SESSION['user']);
                       header('location: index.php');
                 }
             }
             else
             {
-                return 'Ce login est inconnu.';
+                return 'Ce login n\'est pas connu.';
             }
         }
         else
         {
 
             echo  "tout les champs doivent etre remplis";
-          
+
         }
 
+        
 
 
     }
 }
+
 
 
 ?>

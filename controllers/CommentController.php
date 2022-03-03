@@ -2,31 +2,28 @@
 
 session_start();
 
-require_once("../models/CommentModel.php");
-
-var_dump($_GET);
-
-// On détermine sur quelle page on se trouve
-if(isset($_GET['id']) && !empty($_GET['id'])) {
-
-    $pageCourante = (int)strip_tags($_GET['id']);
-
-}else{
-
-    $pageCourante = 1;
+if(!empty($_GET["id"])){
+    require_once("../models/CommentModel.php");
+  
+    $id = $_GET['id'];
+    $commentModel = new CommentModel();
+    $commentByIdProduit = $commentModel->getCommentaires($id);
 }
 
-// Vérififier si le formulaire à bien été envoyé 
-if(isset($_POST['commentaire']) && !empty($_POST['commentaire']))
-{
-        $id_utilisateur = 1;
-        //Vérifier si l'utilisateur est connecté 
-        if(isset($id_utilisateur))
-        {
+if(!empty($_GET['delete'])) {
 
-            $commentaire = trim(htmlspecialchars($_POST['commentaire']));
+    require_once("../models/CommentModel.php");
 
-            $commentaireModel = new CommentModel();
-            $commentaireModel->insertCommentaire($commentaire, $id_utilisateur, $id_produit);
-        }
+    // je recupère l'id du get
+    $id_delete = $_GET['delete'];
+
+    // j'apelle mon model
+    $deleteComment = new CommentModel();
+
+    // j'appelle ma methode delete dans le model
+    $commentByIdProduit = $deleteComment->deleteCommentaire($id_delete);
+
+    //redirection vers la page du produit
+    header("location: ../views/produit.php?id=" . $_GET['produit']);
+
 }

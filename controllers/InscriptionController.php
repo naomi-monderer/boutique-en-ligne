@@ -1,8 +1,6 @@
 <?php
 require ('../models/UserModel.php');
-
 class InscriptionController 
-
 {   
     public $prenom;
     public $nom;
@@ -20,37 +18,33 @@ class InscriptionController
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
     {   
-        
-       
-        $login = htmlspecialchars(trim($login)); 
-        $nom = htmlspecialchars(trim($nom)); 
-        $prenom = htmlspecialchars(trim($prenom)); 
-        $email = htmlspecialchars(trim($email)); 
-        $password = htmlspecialchars(trim($password)); 
-        $passwordConfirm = htmlspecialchars(trim($passwordConfirm)); 
+        $login = htmlspecialchars(trim(strtolower($login))); 
+        $nom = htmlspecialchars(trim(strtolower($nom))); 
+        $prenom = htmlspecialchars(trim(strtolower($prenom))); 
+        $email = htmlspecialchars(trim(strtolower($email))); 
+        $password = htmlspecialchars(trim(strtolower($password))); 
+        $passwordConfirm = htmlspecialchars(trim(strtolower($passwordConfirm))); 
 
-  
-             
+
+
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
         {   
             $login_len = strlen($login);
             $password_len = strlen($password);
-     
-            if($login_len >= 4  && $password_len >= 6)
+
+            if($login_len >= 3  && $password_len >= 3)
             {
-                $loginResult = $this->model->checkUser($login);
-                
-                if(count($loginResult) == 0)
-                {             
-                    $emailResult = $this->model->checkEmail($email);
-                    var_dump($emailResult);
-                    
-                    if(count($emailResult) == 0)
-                    {   
-                        if($password == $passwordConfirm)
+                $sameLoginUsers = $this->model->getUserByLogin($login); //users qui portent le meme login
+                $sameEmailUsers = $this->model->getUserByEmail($email); //users qui portent le meme email
+
+                if(empty($sameLoginUsers[0])) // "s'il n'existe aucun user portant le meme login"
+                {   
+                    if(empty($sameEmailUsers[0])) // "s'il n'existe aucun user portant le meme email"
+                        {
+                            if($password == $passwordConfirm)
                         {
                             $password = password_hash($password,PASSWORD_BCRYPT);
-                        
+
                             $this->model->insertUser($prenom,$nom,$login,$email,$password);
                             header('location: ../views/connexion.php');  
                         }
@@ -58,14 +52,13 @@ class InscriptionController
                         {
                             return 'Les mots de passe doivent être identiques.';
                         }
+                        
                     }
                     else
                     {
-                        return 'Cet email est déjà utilisé.';
+                        return 'Ce email est déjà utilisé.';
                     }
-                }
-                else
-                {
+                }else{
                     return 'Ce login est déjà utilisé.';
                 }
 
@@ -75,7 +68,7 @@ class InscriptionController
                 return 'Votre login ou password est trop court';
             }
             // methodes de UserModel- verification du login et l'email uniques.
-            
+
         }     
         else
         {
@@ -85,9 +78,3 @@ class InscriptionController
 
 }
 
-
-
-// $login_len = strlen($login);
-//             $password_len = strlen($password);
-//             if($login_len < 4 && )
-//             {
