@@ -17,7 +17,17 @@ require_once('../controllers/articlesController.php');
 
     </header>
     <main>
-    coucoucoucou
+        <section>
+        <?php foreach($productByCategory as $resultat) :?>
+            <?php  var_dump($resultat)    ?>
+            <div>
+                <p><?php echo $resultat["nom"];  ?></p>
+
+
+            </div>
+        <?php endforeach ;?>
+    </section>
+
     </main>
     <footer>
         
