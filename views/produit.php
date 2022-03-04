@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 //$route =  str_replace('views/produit.php','',$_SERVER['SCRIPT_FILENAME']);
 require_once('../controllers/ProduitsController.php');
@@ -11,7 +10,7 @@ require_once('include/header.php');
 if(isset($_POST['submit']))
 {
     require_once("../models/CommentModel.php");
-    $id_utilisateur = 1;
+    $id_utilisateur = $_SESSION['user'][0]['id'];
 
     //Vérifier si l'utilisateur est connecté 
     if(isset($id_utilisateur))
@@ -44,11 +43,12 @@ if(isset($_POST['submit']))
         <h1>Commentaire</h1>
            
         <?php foreach($commentByIdProduit as $commentaire) : ?>
+            <?php var_dump($_SESSION['user'][0]['login']) ?>
 
             <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
             <p><?= $commentaire['commentaire'] ?></p>
 
-            <?php if((!empty($_SESSION)) && ($_SESSION['id'] == $commentaire['id_utilisateur'])) : ?>
+            <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
                
                 <a href="../controllers/CommentController.php?delete=<?= $commentaire['id'] ?>&produit=<?= $commentaire['id_produit'] ?>">SUPPRIMER</a>
             <?php endif; ?>
