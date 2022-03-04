@@ -19,9 +19,12 @@ require_once('../controllers/articlesController.php');
     <main>
         <section>
         <?php foreach($productByCategory as $resultat) :?>
-            <?php  var_dump($resultat)    ?>
+           
             <div>
                 <p><?php echo $resultat["nom"];  ?></p>
+                <p><?php echo $resultat["description"];?></p>
+                <p><?php echo $resultat["stock"];?></p>
+                <p><?php echo $resultat["edition"];?></p>
 
 
             </div>
