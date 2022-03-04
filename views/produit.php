@@ -1,10 +1,10 @@
 <?php
+session_start();
+
 //$route =  str_replace('views/produit.php','',$_SERVER['SCRIPT_FILENAME']);
 require_once('../controllers/ProduitsController.php');
 require_once('../controllers/CommentController.php');
 require_once('include/header.php');
-
-session_destroy();
 
 
 // Vérififier si le formulaire à bien été envoyé 
@@ -44,11 +44,14 @@ if(isset($_POST['submit']))
         <h1>Commentaire</h1>
            
         <?php foreach($commentByIdProduit as $commentaire) : ?>
-            <?=  var_dump($commentaire) ?>
+
             <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
             <p><?= $commentaire['commentaire'] ?></p>
-            <a href="../controllers/CommentController.php?delete=<?= $commentaire['id'] ?>&produit=<?= $commentaire['id_produit'] ?>">SUPPRIMER</a>
-            
+
+            <?php if((!empty($_SESSION)) && ($_SESSION['id'] == $commentaire['id_utilisateur'])) : ?>
+               
+                <a href="../controllers/CommentController.php?delete=<?= $commentaire['id'] ?>&produit=<?= $commentaire['id_produit'] ?>">SUPPRIMER</a>
+            <?php endif; ?>
         <?php endforeach; ?>
 
         <form action="" method="post">

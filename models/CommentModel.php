@@ -21,7 +21,7 @@ class CommentModel extends Model
 
     public function getCommentaires($id_produit)
     {
-        $requete = $this->connect()->prepare('SELECT commentaires.id, commentaire, id_produit, date, utilisateurs.login
+        $requete = $this->connect()->prepare('SELECT commentaires.id, commentaire, id_utilisateur, id_produit, date, utilisateurs.login
                                               FROM commentaires
                                               INNER JOIN produits ON produits.id = commentaires.id_produit
                                               INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur

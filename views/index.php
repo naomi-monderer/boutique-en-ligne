@@ -2,13 +2,18 @@
 session_start();
 require_once('../controllers/ConnexionController.php');
 require_once('include/header.php');
-$controller = new UserModel;
+?>
 
-//var_dump($_SESSION['user']);
-// if(($_SESSION['user'])
-// {
-  
-// }
+<main>
+
+    <h1>Accueil</h1>
+
+    <p>Bonjour <?php $_SESSION['user']; ?>
+</main>
+
+<?php
+
+require_once("include/footer.php");
 
 ?>
 

@@ -9,9 +9,11 @@
 <body>
     <header>
             <nav>
+                <a href="index.php">ACCUEIL</a> </br>
                 <a href="connexion.php">CONNEXION</a> </br>
                 <a href="inscription.php">INSCRIPTION</a></br>
                 <a href="profil.php">PROFIL</a></br>
+                <a href="deconnexion.php">DECONNEXION</a></br>
                 <a href=""></a>
                 <a href=""></a>
                 <a href=""></a>
