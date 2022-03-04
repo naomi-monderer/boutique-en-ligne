@@ -1,6 +1,5 @@
 <?php
-session_start();
-require("../models/UserModel.php");
+require_once("../models/UserModel.php");
 
 class  ConnexionController
 {   

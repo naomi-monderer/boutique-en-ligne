@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<?php session_start();?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +11,7 @@
 <body>
     <header>
             <nav>
-
+                <?php // où appeler ma session pour recuperer des données ?>
                 <a href="connexion.php">CONNEXION</a> </br>
                 <a href="inscription.php">INSCRIPTION</a></br>
                 <a href="index.php">ACCUEIL</a></br>
@@ -22,7 +24,7 @@
 
                 <?php    }
 
-                        if(isset($_SESSION['user']) && $_SEESION['user'][0]['id_droits'] == 1)
+                        if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 3)
                         { ?>
                             <a href="admin.php">Espace Administrateur</a>
                             <a href="index.php">Accueil</a>

@@ -1,5 +1,6 @@
 <?php
-require_once('../controllers/AdminControllers');
+require_once('../controllers/AdminController.php');
+require_once('include/header.php');
 ?>
 <main>
     <section>
@@ -7,7 +8,9 @@ require_once('../controllers/AdminControllers');
             <article>
                     <div>
                         <h2>Gestion des utilisateurs</h2>
-                        <button type="button">Afficher les utilisateur</button>
+                        <form action="">
+                            <button type="button">Afficher les utilisateur</button>
+                        </form>
 
                     </div>
                     <div>
@@ -39,8 +42,7 @@ require_once('../controllers/AdminControllers');
                                     
                                 <label for="Editeur">
                                     <input type="text" name="" value="" placeholder="">
-
-                                //      
+     
                                 <label for="La catégorie par genre">
                                     <input type="text" name="" value="" placeholder="">
 

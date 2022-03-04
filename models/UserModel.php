@@ -61,13 +61,13 @@ class UserModel extends Model
      
     }
 
-    
     public function findUserById($id) :array 
-    {   $this->id = $id;
+    {   #$this->id = $id;
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
         $result->execute(array(':id' => $id));
         $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
+
         return $dataUser;
     }
     
@@ -80,4 +80,14 @@ class UserModel extends Model
         $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         return $dataUser;
     }
+    public function deleteUser($id)
+    {
+        $requete = "DELETE FROM utilisateurs where id=:id";
+        $result= $this->connect()->prepare($requete);
+        $result->execute(array(':id'=> $id));
+
+
+    }
 }
+?>
+    
