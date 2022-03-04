@@ -19,6 +19,7 @@ $controller = new ConnexionController();
         echo 'non connecte';
     }
 
+    var_dump($_SESSION['user'][0]);
     ?>
 
 </main>
@@ -28,4 +29,4 @@ $controller = new ConnexionController();
 require_once("include/footer.php");
 
 ?>
-
+<main>

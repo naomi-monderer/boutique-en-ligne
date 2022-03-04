@@ -1,6 +1,7 @@
-
+<?php session_start();?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,13 +12,29 @@
 <body>
     <header>
             <nav>
-                <a href="index.php">ACCUEIL</a> </br>
+                <?php // où appeler ma session pour recuperer des données ?>
                 <a href="connexion.php">CONNEXION</a> </br>
                 <a href="inscription.php">INSCRIPTION</a></br>
-                <a href="profil.php">PROFIL</a></br>
-                <a href="deconnexion.php">DECONNEXION</a></br>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
+                <a href="../index.php">ACCUEIL</a></br>
+                
+                <?php if(isset($_SESSION['user']))
+                        {?>
+                          <a href="profil.php">PROFIL</a></br>
+                          <a href="index.php">ACCUEIL</a></br>
+                          <a href="../">DECONNEXION</a></br>
+                          
+
+                <?php    }
+
+                        if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 1)
+                        { ?>
+                            <a href="admin.php">Espace Administrateur</a>
+                            <a href="index.php">Accueil</a>
+                        
+
+                <?php   } ?>
+
+              
+                
             </nav>
     </header>

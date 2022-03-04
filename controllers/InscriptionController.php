@@ -1,5 +1,5 @@
 <?php
-require ('../models/UserModel.php');
+require_once('../models/UserModel.php');
 class InscriptionController 
 {   
     public $prenom;
@@ -18,7 +18,7 @@ class InscriptionController
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm,$id_droits)
     {   
-        $id_droits = 2;
+        $id_droits = 3;
 
 
         $login = htmlspecialchars(trim(strtolower($login))); 
