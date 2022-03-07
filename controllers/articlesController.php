@@ -1,22 +1,32 @@
 <?php
-var_dump($_GET);
 // Verif categorie
-if(!empty($_GET["id"])){
-    require_once("../models/ArticleModel.php"); 
+require_once("../models/ArticleModel.php"); 
+require_once("../models/CategorieModel.php");
+$categorie = new CategorieModel();
+$titre = $categorie->recuperationNoncategorie($_GET["id"]);
 
-  
-    $articlesmodel = new ArticleModel();
+$articlesmodel = new ArticleModel();
+
+if(!empty($_GET["id"])){
+
+    $categories = $categorie->allcategorie();
     $productByCategory =$articlesmodel->getProductsByCategory($_GET["id"]);
+    if (empty($productByCategory)) {
+    $erreur = "aucun article dans cette categorie";
+
+    }
+    
+  
 
 
 }else{
-    
+
 }
-// if(!empty($_GET["id"])){
-//     $route =  str_replace('views/articles.php','',$_SERVER['SCRIPT_FILENAME']);
-//     require_once($route."models/Article.php");
-//     $productByCategory = $articlesmodel->getProductsByCategory($_GET["id"]);
-// }
+
+// If
+
+
+
 
 
 // verif sous categorie
