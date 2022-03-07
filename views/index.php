@@ -18,8 +18,6 @@ $controller = new ConnexionController();
 
         echo 'non connecte';
     }
-
-    var_dump($_SESSION['user'][0]);
     ?>
 
 </main>

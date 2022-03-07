@@ -38,7 +38,7 @@ class UserModel extends Model
         $result = $this->connect()->prepare($requete);
         $result->bindValue(':login', $login);
         $result->execute();
-        $checkUser = $result->fetch(PDO :: FETCH_ASSOC);
+        $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         
         // var_dump($checkUser);
         
@@ -53,7 +53,7 @@ class UserModel extends Model
         $result = $this->connect()->prepare($requete);
         $result->bindValue(':email', $email);
         $result->execute();
-        $checkUser = $result->fetch(PDO :: FETCH_ASSOC);
+        $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         
         //var_dump($checkUser);
         
@@ -66,7 +66,7 @@ class UserModel extends Model
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
         $result->execute(array(':id' => $id));
-        $dataUser = $result->fetch(PDO :: FETCH_ASSOC);
+        $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
 
         return $dataUser;
     }

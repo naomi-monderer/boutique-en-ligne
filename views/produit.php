@@ -43,25 +43,32 @@ if(isset($_POST['submit']))
         <h1>Commentaire</h1>
            
         <?php foreach($commentByIdProduit as $commentaire) : ?>
-            <?php var_dump($_SESSION['user'][0]['login']) ?>
+
+            <?php var_dump($commentaire['id_produit']); ?>
 
             <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
             <p><?= $commentaire['commentaire'] ?></p>
 
-            <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
-               
-                <a href="../controllers/CommentController.php?delete=<?= $commentaire['id'] ?>&produit=<?= $commentaire['id_produit'] ?>">SUPPRIMER</a>
-            <?php endif; ?>
-        <?php endforeach; ?>
+                <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
+                
+                    <form action="../views/produit.php?id=<?= $commentaire['id_produit'] ?>" method="get">
+                    
+                        <input type="submit" name="delete" value="supprimer">
+                        <input type="hidden" name="idHidden" value="<?=$commentaire['id'];?>">
+                    </form>
 
-        <form action="" method="post">
-            <div>
-                <label for="textarea">Ecrivez votre commentaire :</label>
-                <input type="textarea" name="comment" id="comment">
-            </div>
+                <?php endif; ?>
 
-            <input type="submit" name="submit" value="valider">
-        </form>
+            <?php endforeach; ?>
+
+            <form action="" method="post">
+                <div>
+                    <label for="textarea">Ecrivez votre commentaire :</label>
+                    <input type="textarea" name="comment" id="comment">
+                </div>
+
+                <input type="submit" name="submit" value="valider">
+            </form>
     </section>    
 </main>
 

@@ -33,7 +33,7 @@ $controller = new AdminController();
 // {
 //    header('location: admin_user.php');
 // }
-if(isset($_GET[$allUser['id']]))
+if(isset($_GET['delete']))
 { if(isset($_GET['idHidden']))
     {
         $id = $_GET['idHidden'];

@@ -1,12 +1,5 @@
-<?php 
-
-session_session();
-// Destruction de la session
-        
+<?php
+session_start();
 session_destroy();
-    
-// Redirection vers la page de connexion
-
-header('location: boutique-en-ligne/views/index.php');
-
+header('location: index.php');
 ?>
