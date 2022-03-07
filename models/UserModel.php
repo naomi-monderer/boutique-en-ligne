@@ -88,6 +88,47 @@ class UserModel extends Model
 
 
     }
+
+     public function updateUser($id,$nom, $prenom, $email, $login,$id_droits)
+    {    
+       $requete = "UPDATE `utilisateurs` SET `nom`='$nom',`prenom`='$prenom',`email`='$email',`login`='$login', `id_droits`= $id_droits WHERE `id` = '$id'";
+       
+    //    "UPDATE `utilisateurs` SET `nom`=':nom',`prenom`=':prenom',`email`=':email',`login`=':login', `id_droits`=':id_droits'
+    //     WHERE `id` = '$id'";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(
+                            // array( 
+                                // ':nom'=> $nom,
+                                // ':prenom'=> $prenom,
+                                // ':email'=> $email,
+                                // ':login'=> $login,
+                                // ':id_droits'=> $id_droits
+                            // )
+                        );          
+    }
+
+
+    public function updateUsers($id,$nomChamp,$valeurChamp)
+    {    
+       $requete = "UPDATE `utilisateurs` SET `$nomChamp` = '$valeurChamp' WHERE `id` = '$id'";
+       
+    //    "UPDATE `utilisateurs` SET `nom`=':nom',`prenom`=':prenom',`email`=':email',`login`=':login', `id_droits`=':id_droits'
+    //     WHERE `id` = '$id'";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(
+                            // array( 
+                                // ':nom'=> $nom,
+                                // ':prenom'=> $prenom,
+                                // ':email'=> $email,
+                                // ':login'=> $login,
+                                // ':id_droits'=> $id_droits
+                            // )
+                        );          
+    }
+
+
+
+
 }
 ?>
     

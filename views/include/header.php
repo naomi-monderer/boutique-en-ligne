@@ -15,15 +15,15 @@
                  
                 <a href="connexion.php">CONNEXION</a> </br>
                 <a href="inscription.php">INSCRIPTION</a></br>
-                <a href="index.php">ACCUEIL</a></br>
+                <a href="index.php">INDEX</a></br>
+             
                 
         <?php }
                 
                 if(isset($_SESSION['user']))
                         {?>
                           <a href="profil.php">PROFIL</a></br>
-                          <a href="index.php">ACCUEIL</a></br>
-                          <a href="deconnexion.php">DECONNEXION</a></br>
+                         <a href="deconnexion.php">DECONNEXION</a></br>
                           
                           
 
@@ -32,8 +32,7 @@
                         if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 1)
                         { ?>
                             <a href="admin.php">Espace Administrateur</a></br>
-                            <a href="profil.php">PROFIL</a></br>
-                            <a href="deconnexion.php">DECONNEXION</a></br>
+                          
                         
 
                 <?php   } ?>

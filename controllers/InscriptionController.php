@@ -1,5 +1,7 @@
 <?php
 require_once('../models/UserModel.php');
+require_once('controllers/Controller.php');
+
 class InscriptionController 
 {   
     public $prenom;
@@ -20,14 +22,7 @@ class InscriptionController
     {   
         $id_droits = 3;
 
-
-        $login = htmlspecialchars(trim(strtolower($login))); 
-        $nom = htmlspecialchars(trim(strtolower($nom))); 
-        $prenom = htmlspecialchars(trim(strtolower($prenom))); 
-        $email = htmlspecialchars(trim(strtolower($email))); 
-        $password = htmlspecialchars(trim(strtolower($password))); 
-        $passwordConfirm = htmlspecialchars(trim(strtolower($passwordConfirm))); 
-
+      $seurity = $this->model->secureRegisters($prenom,$nom,$login,$email, $nom, $prenom,$email,$password,$passwordConfirm);
 
 
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
