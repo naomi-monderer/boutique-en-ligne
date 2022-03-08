@@ -11,6 +11,18 @@ class ArticleModel extends Model{
         $resultat = $requette->fetchall();
          return $resultat;
     }
+    public function getProductsBySousCategory($id_souscategorie){
+        $requette= $this->connect()->prepare("SELECT * FROM `produits` INNER JOIN auteurs ON id_auteur = auteurs.id WHERE `id_souscategorie`= :id_souscategorie");
+        $requette->execute(['id_souscategorie'=>$id_souscategorie]);
+        $resultat = $requette->fetchall();
+         return $resultat;
+    }
+    public function getsouscategorie($id_souscategorie){
+        $requette= $this->connect()->prepare("SELECT * FROM `souscategories` ");
+        $requette->execute(["non_souscategorie=>$id_souscategorie"]);
+        $resultat= $requette->fetchAll();
+        return  $resultat;
+    }
 
 }
    
