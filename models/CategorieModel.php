@@ -5,7 +5,7 @@ class CategorieModel extends Model {
 
     }
     public function recuperationNoncategorie($id){
-        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `id`=$id");
+        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `id`='$id'");
         $requette->execute();
         $resultat = $requette->fetch();
         return $resultat;
