@@ -55,7 +55,7 @@ class UserModel extends Model
         $result->execute();
         $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         
-        var_dump($checkUser);
+        //var_dump($checkUser);
         
         return $checkUser;
      
