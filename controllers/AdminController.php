@@ -1,8 +1,9 @@
 <?php
 require_once('../models/UserModel.php');
-require('../models/ArticleModel.php');
+require_once('../models/ArticleModel.php');
+require_once('Controller.php');
 
-class AdminController 
+class AdminController extends Controller
 {
 
     public function __construct()
@@ -14,88 +15,84 @@ class AdminController
     public function showAllUsers()
     {   
         $allUsers = $this->model->findAllUsers();
+
         echo '<pre>';
-        // var_dump($allUsers);
         echo '</pre>';
        
         foreach($allUsers as $allUser)
-        {        
+        {          
             echo '<pre>';
             // var_dump($allUser);
             echo '</pre>';
-            ?>
-
-            <!-- <form action="" method="get"> -->
-                    <tr>
+            ?> 
+            <tr>
+                    <form action="" method="POST">
                         <td>
                             <p><?=$allUser['id'];?></p>
-                          
                         </td>
-                        
                         <td>
-                        <form action="" method="get">
                             <input type="text" name="nom" value="<?=$allUser['nom'];?>">
-                            <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                            <input type="submit" name="update" value="Modifier">
-                        </form>    
                         </td>
                         <td>
-                        <form action="" method="get">
-                            <input type="text" name="prenom" value="<?=$allUser['prenom'];?>">
-                            <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                            <input type="submit" name="update" value="Modifier">
-                        </form>        
+                            <input type="text" name="prenom" value="<?=$allUser['prenom'];?>">      
                         </td>
-                          
                         <td>
-                        <form action="" method="get">
-                            <input type="text" name="email" value="<?=$allUser['email'];?>">
-                            <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                            <input type="submit" name="update" value="Modifier">
-                        </form>        
+                            <input type="text" name="email" value="<?=$allUser['email'];?>">      
                         </td>
-
                         <td>
-                        <form action="" method="get">
-                        <input type="text" name="login" value="<?=$allUser['login'];?>">
-                        <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                        <input type="submit" name="update" value="Modifier">
-                        </form>    
+                            <input type="text" name="login" value="<?=$allUser['login'];?>">
                         </td> 
-                        
                         <td>
-                        <form action="" method="get">
+                           
                             <input type="text" name="id_droits" value="<?=$allUser['id_droits'];?>">
-                            <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                            <input type="submit" name="update" value="Modifier">
-                        </form>        
                         </td>
-                    
-                        <!-- <td>
-                            <input type="submit" name="update" value="Modifier">
-                            <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                        </td> -->
-                        </form>
                         <td>
-                            <form action="admin_user.php" method="get">
-                                <input type="submit" name="delete" value="supprimer" >  
-                                <input type="hidden" name="idHidden" value="<?=$allUser['id'];?>" > 
-                            </form>
+                            <input type="submit" name="modify_user" value="modifier" >  
+                            <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
                         </td>
+                    </form>
+                    <form action="admin_user.php" method="get">
+                        <td>
+                                <input type="submit" name="delete_user" value="supprimer" >  
+                                <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
+                            </td>
+                    </form>
+
+                  
                     </tr>
-            <?php            
+        
+        <?php  
         }
-    }
 
+            if(isset($_POST['delete_user']))
+            {   
+                    $id = $_POST['idHidden_user'];
+                    $users = $this->model->findUserById($id);
+                if(!empty($users))
+                {   
+                    $deleteUser= $this->model->deleteUser($id);
+                    header('location: admin_user.php');
+                }
+                else
+                {
+                    $_SESSION['error'] = "Cet utilisateur n'existe pas.";
+                    header('location: admin_user.php');
+                }
+                
 
-    public function delete($id)
-    {   
-         $user = $this->model->findUserById($id); 
-         var_dump($user);
-         $delete = $this->model->deleteUser($id);
-         header('location: admin_user.php');
-        // créer une page delete_user " êtes vous sur de vouloir supprimer cet utilisateurs" en faisant voyager l'id du user dans l'url"
+            }
+               
+            if(isset($_POST['modify_user']))
+            {
+                $id = $_POST['idHidden_user'];
+                $users = $this->model->findUserById($id);
+               
+               
+                $modify = $this->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
+                // header('location: admin_user.php');
+            }
     }
+    
 
     public function modify($id,$nom, $prenom,$login, $email, $id_droits)
     {
@@ -103,60 +100,90 @@ class AdminController
         // verfier la longueur des login min 
         //  verififier que l'email est unique 
         //  id_droits soit <=1 et >=3)
-        // $user = $this->model->findUserById($id); 
+      
         // $id = $user[0]['id'];
-            $modify= $this->model->updateUser($id,$nom, $prenom,$email,$login, $id_droits);
-            header('location: admin_user.php');
-        // header('location: admin_user.php');
-    //     if(!empty($login) && !empty($nom) && !empty($prenom) && !empty($email) && !empty($password))
-    //     {   
-    //         if()
-    //         {
-
-    //         }
-    //     }
-    //     else
-    //     {
-    //         return "Tous les champs doivent être remplis.";
-    //     }
-
-
-    }
-    public function modifynom($id, $nom)
-    {
-        $modify= $this->model->updateUsers($id,'nom',$nom);
-        header('location: admin_user.php');
-        exit;
-    }
-
-    public function modifyprenom($id, $prenom)
-    {
-        $modify= $this->model->updateUsers($id,'prenom',$prenom);
-        header('location: admin_user.php');
-        exit;
-    }
-
-    public function modifyemail($id, $email)
-    {
-        $modify= $this->model->updateUsers($id,'email',$email);
-        header('location: admin_user.php');
-        exit;
-    }
-
-    public function modifylogin($id, $login)
-    {
-        $modify= $this->model->updateUsers($id,'login',$login);
-        header('location: admin_user.php');
-        exit;
-    }
-
-    public function modifyId_droits($id, $id_droits)
-    {
-        $modify= $this->model->updateUsers($id,'id_droits',$id_droits);
-        header('location: admin_user.php');
-        exit;
-    }
   
+        // 
+        $nom = $this->secure(strtolower($nom)); 
+        $prenom = $this->secure(strtolower($prenom)); 
+        $email = $this->secureEmail(strtolower($email));
+     
+        $login = $this->secure($login);
+        $id_droits = $this->secure(intval($id_droits));
+    
+        if(!empty($nom) && !empty($prenom) && !empty($email) && !empty($login) && !empty($id_droits))
+        {   
+            $login_len = strlen($login);
+      
+
+            if($login_len >= 3)
+            {    
+                $checkUserByLogin = $this->model->getUserByLogin($login);
+                echo "<pre>";
+                var_dump($checkUserByLogin[0]['login']);
+                echo "</pre>";
+               
+                
+                if($checkUserBylogin)
+                {   
+                   
+                    // header('location: admin_user.php');
+                    $_SESSION['error'] = 'Le login est déjà utilisé, veuillez en choisir un autre.'; 
+                    var_dump('ok');
+                }
+                else
+                {
+                    var_dump('non');
+                    $modifyUser= $this->model->updateUser($id,$nom, $prenom, $email, $login,$id_droits);
+                    $_SESSION['error'] = null;
+                    unset($_SESSION['error']);
+                }
+               
+            }
+            else
+            {
+                $_SESSION['error'] = 'Le login ou le mot de passe est trop court.'; 
+            }
+
+           
+            
+        }
+        else
+        {
+            $_SESSION['error'] = "Tous les champs doivent être remplis.";
+
+        }
+    }
 }
 
 ?>
+ <!-- $users = $this->model->findUserById($id);
+            if(!empty($users))
+            {   
+                $login_len = strlen($login);
+                $password_len = strlen($password);
+
+                if($login_len >= 3 && $password_len >= 3)
+                {
+                    $sameLoginUsers = $this->model->getUserLogin($login);
+                    $sameEmailUsers = $this->model->getUserByEmail($email);
+                    if(empty($sameLoginUsers[0]))
+                    {
+
+                      
+                    }
+                    else
+                    {
+                        $_SESSION['error'] = 'Ce login est déjà utilisé.';
+                    }
+                }
+                else
+                {
+                    $_SESSION['error'] = 'Le login ou le mot de passe est trop court.';
+                }
+            }
+            else
+            {
+                $_SESSION['error'] = 'Cet utilisateur n\'existe pas.';
+                header('location: admin_user.php');
+            } -->

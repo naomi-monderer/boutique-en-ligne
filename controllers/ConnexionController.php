@@ -1,7 +1,9 @@
 <?php
 require_once("../models/UserModel.php");
+require_once('Controller.php');
 
-class  ConnexionController
+
+class  ConnexionController extends Controller
 {   
     public $login;
     public $password;
@@ -15,9 +17,10 @@ class  ConnexionController
 
     public function connexion($login,$password)
     {   
-        $login = htmlspecialchars(trim(strtolower($login)));
-        $password = htmlspecialchars(trim(strtolower($password)));
+        $login = $this->secure(strtolower($login));
+        $password = $this->secure($password);
 
+    
         if(!empty($login) && !empty($password))
         {
             $sameLoginUsers = $this->model->getUserByLogin($login);

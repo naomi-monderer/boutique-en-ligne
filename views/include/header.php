@@ -22,6 +22,7 @@
                 
                 if(isset($_SESSION['user']))
                         {?>
+                           <a href="index.php">INDEX</a></br>
                           <a href="profil.php">PROFIL</a></br>
                          <a href="deconnexion.php">DECONNEXION</a></br>
                           

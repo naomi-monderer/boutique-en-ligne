@@ -13,6 +13,11 @@ class ArticleModel extends Model{
         $resultat = $requette->fetchall();
          return $resultat;
     }
+    
+    public function InsertArticle()
+    {
+        
+    }
 
 }
    
