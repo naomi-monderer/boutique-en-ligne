@@ -5,6 +5,8 @@ require_once('../controllers/AdminController.php');
 
 
 $controller = new AdminController();
+$allUser = $controller->showAllUsers();
+$allUsers = $controller->displayUsers();
 
 
 ?>
@@ -25,8 +27,45 @@ $controller = new AdminController();
                 <th>SUPPRIMER</th>
                 </thead>
                 <tbody>
-                  <?php $allUser = $controller->showAllUsers();
-                 ?>
+                    <?php
+                 
+                    foreach($allUsers as $allUser)
+                        {          
+                        ?> 
+                            <tr>
+                                <form action="" method="POST">
+                                    <td>
+                                        <p><?=$allUser['id'];?></p>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="nom" value="<?=$allUser['nom'];?>">
+                                    </td>
+                                    <td>
+                                        <input type="text" name="prenom" value="<?=$allUser['prenom'];?>">      
+                                    </td>
+                                    <td>
+                                        <input type="text" name="email" value="<?=$allUser['email'];?>">      
+                                    </td>
+                                    <td>
+                                        <input type="text" name="login" value="<?=$allUser['login'];?>">
+                                    </td> 
+                                    <td>
+                                        
+                                        <input type="text" name="id_droits" value="<?=$allUser['id_droits'];?>">
+                                    </td>
+                                    <td>
+                                        <input type="submit" name="modify_user" value="modifier" >  
+                                        <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
+                                    </td>
+                                </form>
+                                <form action="admin_user.php" method="get">
+                                    <td>
+                                        <input type="submit" name="delete_user" value="supprimer" >  
+                                        <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
+                                    </td>
+                                </form>
+                            </tr>
+                    <?php } ?>
                 </tbody>    
             </table>
         </article>
@@ -38,29 +77,16 @@ $controller = new AdminController();
         </article>
     </section>
 </main>
-<?php
-// var_dump($_SESSION);
 
+<?php
 if(isset($_SESSION['error']))
 {
-    
     echo "<div>" . $_SESSION['error'] . "</div>";
-  
 }
-// unset($_SESSION['error']);
 
-    // echo '<pre>';
-    // var_dump($_GET);
-    // echo '</pre>';
-    // evite les failles xss
-   
-
-  if(isset($_GET['back']))
+if(isset($_GET['back']))
 {
     header('location: admin.php');
 }
 ob_end_flush();
-
-
-
 ?>

@@ -17,45 +17,7 @@ class AdminController extends Controller
 
     public function showAllUsers()
     {   
-        $allUsers = $this->model->findAllUsers();
-         foreach($allUsers as $allUser)
-        {          
-            ?> 
-                <tr>
-                    <form action="" method="POST">
-                        <td>
-                            <p><?=$allUser['id'];?></p>
-                        </td>
-                        <td>
-                            <input type="text" name="nom" value="<?=$allUser['nom'];?>">
-                        </td>
-                        <td>
-                            <input type="text" name="prenom" value="<?=$allUser['prenom'];?>">      
-                        </td>
-                        <td>
-                            <input type="text" name="email" value="<?=$allUser['email'];?>">      
-                        </td>
-                        <td>
-                            <input type="text" name="login" value="<?=$allUser['login'];?>">
-                        </td> 
-                        <td>
-                           
-                            <input type="text" name="id_droits" value="<?=$allUser['id_droits'];?>">
-                        </td>
-                        <td>
-                            <input type="submit" name="modify_user" value="modifier" >  
-                            <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
-                        </td>
-                    </form>
-                    <form action="admin_user.php" method="get">
-                        <td>
-                                <input type="submit" name="delete_user" value="supprimer" >  
-                                <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
-                            </td>
-                    </form>
-                </tr>
-            <?php  
-        }
+       
 
         if(isset($_POST['delete_user']))
         {   
@@ -111,23 +73,25 @@ class AdminController extends Controller
             {    
                 $checkUserByLogin = $this->model->getUserByLogin($login);
                 echo "<pre>";
-                var_dump($checkUserByLogin[0]['login']);
+                var_dump($checkUserByLogin);
                 echo "</pre>";
-               
+
+            
                 
-                if($checkUserBylogin)
+                if(empty($checkUserByLogin[0]))
                 {   
-                   
-                    // header('location: admin_user.php');
-                    $_SESSION['error'] = 'Le login est déjà utilisé, veuillez en choisir un autre.'; 
+                    $modifyUser= $this->model->updateUser($id,$nom, $prenom, $email, $login,$id_droits);
+                    $_SESSION['error'] = null;
+                    unset($_SESSION['error']);
+                  
                     var_dump('ok');
                 }
                 else
                 {
                     var_dump('non');
-                    $modifyUser= $this->model->updateUser($id,$nom, $prenom, $email, $login,$id_droits);
-                    $_SESSION['error'] = null;
-                    unset($_SESSION['error']);
+                    $_SESSION['error'] = 'Le login est déjà utilisé, veuillez en choisir un autre.'; 
+                    // header('location: admin_user.php');
+                   
                 }
                
             }
@@ -146,6 +110,11 @@ class AdminController extends Controller
         }
     }
 
+    public function displayUsers()
+    {
+        $allUsers = $this->model->findAllUsers();
+        return $allUsers;
+    }
     //-----------------------GESTION DES ARTICLES---------------------//
     
 
