@@ -57,7 +57,7 @@ $controller = new AdminController();
 
                     <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
                 </form>
-
+               
             <h2>Ajouter une nouvelle sous-catégorie</h2>
                 <form action="" method="post">
                     <label for="nom_sous_cat">Nouvelle sous-catégorie</label>

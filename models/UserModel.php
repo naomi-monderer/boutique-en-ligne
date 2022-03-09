@@ -27,7 +27,7 @@ class UserModel extends Model
             ":email" => $email,
             ":password" => $password,
             ":login" => $login,
-            ":id_droits"=>$id_droits,
+            ":id_droits" => $id_droits,
         ));
     }
 

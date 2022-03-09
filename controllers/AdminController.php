@@ -1,6 +1,7 @@
 <?php
 require_once('../models/UserModel.php');
 require_once('../models/ArticleModel.php');
+require_once('../models/CategorieModel.php');
 require_once('Controller.php');
 
 class AdminController extends Controller
@@ -9,23 +10,18 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->model = new UserModel;
+        $this->modelCategorie = new CategorieModel;
         
     }
+    //--------------------------GESTION DES USERS------------------------//
 
     public function showAllUsers()
     {   
         $allUsers = $this->model->findAllUsers();
-
-        echo '<pre>';
-        echo '</pre>';
-       
-        foreach($allUsers as $allUser)
+         foreach($allUsers as $allUser)
         {          
-            echo '<pre>';
-            // var_dump($allUser);
-            echo '</pre>';
             ?> 
-            <tr>
+                <tr>
                     <form action="" method="POST">
                         <td>
                             <p><?=$allUser['id'];?></p>
@@ -57,40 +53,35 @@ class AdminController extends Controller
                                 <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
                             </td>
                     </form>
-
-                  
-                    </tr>
-        
-        <?php  
+                </tr>
+            <?php  
         }
 
-            if(isset($_POST['delete_user']))
+        if(isset($_POST['delete_user']))
+        {   
+            $id = $_POST['idHidden_user'];
+            $users = $this->model->findUserById($id);
+            if(!empty($users))
             {   
-                    $id = $_POST['idHidden_user'];
-                    $users = $this->model->findUserById($id);
-                if(!empty($users))
-                {   
-                    $deleteUser= $this->model->deleteUser($id);
-                    header('location: admin_user.php');
-                }
-                else
-                {
-                    $_SESSION['error'] = "Cet utilisateur n'existe pas.";
-                    header('location: admin_user.php');
-                }
-                
-
+                $deleteUser= $this->model->deleteUser($id);
+                header('location: admin_user.php');
             }
-               
-            if(isset($_POST['modify_user']))
+            else
             {
-                $id = $_POST['idHidden_user'];
-                $users = $this->model->findUserById($id);
-               
-               
-                $modify = $this->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
-                // header('location: admin_user.php');
+                $_SESSION['error'] = "Cet utilisateur n'existe pas.";
+                header('location: admin_user.php');
             }
+        }
+               
+        if(isset($_POST['modify_user']))
+        {
+            $id = $_POST['idHidden_user'];
+            $users = $this->model->findUserById($id);
+            
+            
+            $modify = $this->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
+            // header('location: admin_user.php');
+        }
     }
     
 
@@ -154,8 +145,15 @@ class AdminController extends Controller
 
         }
     }
-}
 
+    //-----------------------GESTION DES ARTICLES---------------------//
+    
+
+    public function registerCategorie($nom_categorie)
+    {
+        $insertCategorie = $this->model->insertArticle($nom_categorie);
+    }
+}
 ?>
  <!-- $users = $this->model->findUserById($id);
             if(!empty($users))
@@ -187,3 +185,6 @@ class AdminController extends Controller
                 $_SESSION['error'] = 'Cet utilisateur n\'existe pas.';
                 header('location: admin_user.php');
             } -->
+
+
+            
