@@ -1,6 +1,8 @@
 <?php
-require_once ('../models/UserModel.php');
-class InscriptionController 
+require_once('../models/UserModel.php');
+require_once('Controller.php');
+
+class InscriptionController extends Controller
 {   
     public $prenom;
     public $nom;
@@ -12,22 +14,22 @@ class InscriptionController
 
     public function __construct()
     {
-        // instencie un objet et on appelle l'une de ses méthodes
+      
        $this->model =  new UserModel();
+    
     }
 
     public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm,$id_droits)
     {   
-        $id_droits = 2;
-
-
-        $login = htmlspecialchars(trim(strtolower($login))); 
-        $nom = htmlspecialchars(trim(strtolower($nom))); 
-        $prenom = htmlspecialchars(trim(strtolower($prenom))); 
-        $email = htmlspecialchars(trim(strtolower($email))); 
-        $password = htmlspecialchars(trim(strtolower($password))); 
-        $passwordConfirm = htmlspecialchars(trim(strtolower($passwordConfirm))); 
-
+        $id_droits = 3;
+       
+    
+        $login = $this->secure($login);
+        $nom =$this->secure(strtolower($nom)); 
+        $prenom =$this-> secure(strtolower($prenom)); 
+        $email =$this-> secure(strtolower($email)); 
+        $password =$this-> secure($password); 
+        $passwordConfirm =$this-> secure($passwordConfirm); 
 
 
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
@@ -47,35 +49,33 @@ class InscriptionController
                             if($password == $passwordConfirm)
                         {
                             $password = password_hash($password,PASSWORD_BCRYPT);
-
-                            $this->model->insertUser($prenom,$nom,$login,$email,$password,$id_droits);
+                            $_SESSION['error'] = null;
+                            $this->model->insertUser($nom,$prenom,$email,$password,$login,$id_droits);
                             header('location: ../views/connexion.php');  
                         }
                         else
                         {
-                            return 'Les mots de passe doivent être identiques.';
+                            $_SESSION['error'] = 'Les mots de passe doivent être identiques.';
                         }
                         
                     }
                     else
                     {
-                        return 'Ce email est déjà utilisé.';
+                        $_SESSION['error'] = 'Ce email est déjà utilisé.';
                     }
                 }else{
-                    return 'Ce login est déjà utilisé.';
+                    $_SESSION['error'] = 'Ce login est déjà utilisé.';
                 }
 
             }
             else
             {
-                return 'Votre login ou password est trop court';
+                $_SESSION['error'] = 'Ce login ou ce mot de passe est trop court.';
             }
-            // methodes de UserModel- verification du login et l'email uniques.
-
         }     
         else
         {
-            return 'Tous les champs doivent être remplis.';
+            $_SESSION['error'] = 'Tous les champs doivent être remplis.';
         }        
     }
 

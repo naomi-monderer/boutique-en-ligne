@@ -25,6 +25,13 @@ class CategorieModel extends Model {
         return $resultat;
         
     }
+
+    public function insertCategorie($nom_categorie)
+    {
+        $requete = $this->connect()->prepare("INSERT INTO categories (nom_categorie) VALUES(:nom_categorie)");
+        $resultat->execute(array(":nom_categorie" => $nom_categorie));
+        return $resultat;
+    }
     
         
     

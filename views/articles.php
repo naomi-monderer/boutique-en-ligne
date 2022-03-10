@@ -7,11 +7,7 @@ require_once('include/header.php');
 
 ?>
 <main>
-  
-
-    
-    
-        <section>
+     <section>
 
             <?php if (isset($titre['nom_categorie'])) :?>
                 <h1><?php echo $titre['nom_categorie'] ?></h1>
@@ -50,7 +46,6 @@ require_once('include/header.php');
         <?php endforeach ;?>
         <?php endif;?>
     </section>
-
-    </main>
+</main>
 
    

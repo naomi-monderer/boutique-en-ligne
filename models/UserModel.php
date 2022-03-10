@@ -17,7 +17,7 @@ class UserModel extends Model
         
     }
     
-    public function insertUser($prenom,$nom,$login,$email,$password,$id_droits)
+    public function insertUser($nom,$prenom,$email,$password,$login,$id_droits)
     {
        //Insert les utilisateurs en bdd
         $requete = $this->connect()->prepare("INSERT INTO utilisateurs(nom,prenom,email,password,login,id_droits) VALUES (:nom,:prenom,:email,:password,:login,:id_droits)");
@@ -27,7 +27,7 @@ class UserModel extends Model
             ":email" => $email,
             ":password" => $password,
             ":login" => $login,
-            ":id_droits"=>$id_droits,
+            ":id_droits" => $id_droits,
         ));
     }
 
@@ -55,19 +55,19 @@ class UserModel extends Model
         $result->execute();
         $checkUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         
-        var_dump($checkUser);
+        //var_dump($checkUser);
         
         return $checkUser;
      
     }
 
-    
     public function findUserById($id) :array 
-    {   $this->id = $id;
+    {   #$this->id = $id;
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
         $result->execute(array(':id' => $id));
         $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
+
         return $dataUser;
     }
     
@@ -80,4 +80,37 @@ class UserModel extends Model
         $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
         return $dataUser;
     }
+    public function deleteUser($id)
+    {
+        $requete = "DELETE FROM utilisateurs where id=:id";
+        $result= $this->connect()->prepare($requete);
+        $result->execute(array(':id'=> $id));
+
+
+    }
+
+     public function updateUser($id,$nom, $prenom, $email, $login,$id_droits)
+    {  
+        // var_dump($id_droits);
+       $requete = "UPDATE `utilisateurs` SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`login`=:login, `id_droits`= :id_droits WHERE `id` = :id";
+       
+        $result = $this->connect()->prepare($requete);
+        $result->execute(
+                            array(
+                                ':id' => $id, 
+                                ':nom'=> $nom,
+                                ':prenom'=> $prenom,
+                                ':email'=> $email,
+                                ':login'=> $login,
+                                ':id_droits'=> intval($id_droits)
+                            )
+                        );
+
+    }
+
+
+
+
 }
+?>
+    

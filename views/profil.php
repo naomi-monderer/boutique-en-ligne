@@ -1,18 +1,15 @@
 <?php
     require_once('include/header.php');
-    require_once('../controllers/InscriptionController.php');
+    require_once('../controllers/ProfilController.php');
     
     if(isset($_POST['submit']))
     {
-        $controller = new InscriptionController();
-        $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
+        $controller = new ProfilController();
+        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
        
     }   
 ?>
 <main>
-<section>
-
-    
     <section>
     <h1>Inscription</h1>
 
@@ -28,7 +25,7 @@
             <input type="text" name='nom'placeholder="McGowan">
 
             <label for="email">Email</label>
-            <input type="email" name='email' placeholder="mcgowan@protonmail.com" required>
+            <input type="text" name='email' placeholder="mcgowan@protonmail.com" required>
 
             <label for="password">Mot de passe</label>
             <input type="text" name='password' placeholder="...........">
@@ -45,6 +42,8 @@
 <?php
 if(isset($_POST['submit']))
 {
-    echo "<div>" . $_SESSION['error'] . "</div>";
+    echo "<div> $var </div>";
 }
 ?>    
+
+
