@@ -13,5 +13,10 @@ class ProduitsModel extends Model{
         return $resultat;
     }
 
+    public function getAllProducts()
+    {
+        
+    }
+
 }
    

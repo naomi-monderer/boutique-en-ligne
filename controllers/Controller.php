@@ -3,12 +3,20 @@
 
 class Controller
 {
+    protected $model;
+    protected $modelName;
+    // protected $articleController;
+    // protected $userController;
+    public    $message;
+    public    $messagePass;
+
     public function __construct()
     {
-      
+        $this->model = new $this->modelName;
         // est ce que je peux instancier plusieurs classes dans mon construct?
         // d'ou vient $this->model déjà?
         // $this->model = new CommentModel();
+
     }
 
     public function secure($value)
