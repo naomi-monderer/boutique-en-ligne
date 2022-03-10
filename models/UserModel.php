@@ -66,7 +66,17 @@ class UserModel extends Model
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
         $result->execute(array(':id' => $id));
-        $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
+        $dataUser = $result->fetch();
+
+        return $dataUser;
+    }
+
+    public function getUserById($id)
+    {   #$this->id = $id;
+        $requete = "SELECT * FROM utilisateurs WHERE id = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id));
+        $dataUser = $result->fetch();
 
         return $dataUser;
     }
@@ -88,6 +98,13 @@ class UserModel extends Model
 
 
     }
+
+    public function updateUser($nom, $prenom, $email, $login, $id_droits, $id)
+    {
+       $requete = $this->connect()->prepare('UPDATE `utilisateurs` SET nom = :nom, prenom = :prenom, email = :email, login = :login, :id_droits = id_droits WHERE id = :id');
+       $updateCommentaire = $requete->execute(array('nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'login' => $login, 'id_droits' => $id_droits, 'id' => $id));
+    }
+    
 }
 ?>
     
