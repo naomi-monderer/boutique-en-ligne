@@ -12,6 +12,7 @@ $articlesmodel = new ArticleModel();
 // Id == categorie
 if(!empty($_GET["id"])){
     $titre = $categorie->recuperationNoncategorie($_GET["id"]);
+    var_dump($titre);
     //header
     // $categories = $categorie->allcategorie();
 

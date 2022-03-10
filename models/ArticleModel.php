@@ -23,6 +23,12 @@ class ArticleModel extends Model{
         $resultat= $requette->fetchAll();
         return  $resultat;
     }
+       public function getarticleif($id){
+           $requette = $this->connect()->prepare("SELECT * FROM `produits` INNER JOIN auteurs ON id_auteur = auteurs.id WHERE produits.id=:id");
+           $requette->execute(["id"=>$id]);
+           $resultat = $requette->fetch();
+           return $resultat;
+       }
 
 }
    
