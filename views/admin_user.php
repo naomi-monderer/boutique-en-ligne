@@ -5,7 +5,6 @@ require_once('../controllers/AdminController.php');
 
 
 $controller = new AdminController();
-$allUser = $controller->showAllUsers();
 $allUsers = $controller->displayUsers();
 
 
@@ -58,7 +57,7 @@ $allUsers = $controller->displayUsers();
                                         <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
                                     </td>
                                 </form>
-                                <form action="admin_user.php" method="get">
+                                <form action="" method="post">
                                     <td>
                                         <input type="submit" name="delete_user" value="supprimer" >  
                                         <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
@@ -79,6 +78,24 @@ $allUsers = $controller->displayUsers();
 </main>
 
 <?php
+
+if(isset($_POST['delete_user']))
+{   
+    $id = $_POST['idHidden_user'];
+    $supp = $controller->suppUser($id);
+  
+
+}
+       
+if(isset($_POST['modify_user']))
+{
+    $id = $_POST['idHidden_user'];
+    // $users = $this->model->findUserById($id);
+    
+    // var_dump($_POST);
+    $modify = $controller->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
+    // header('location: admin_user.php');
+}
 if(isset($_SESSION['error']))
 {
     echo "<div>" . $_SESSION['error'] . "</div>";

@@ -1,7 +1,10 @@
 <?php
 require_once('../controllers/AdminController.php');
+// require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
-$controller = new AdminController();
+$controllerAdmin = new AdminController();
+$showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
+
 ?>
 <main>
     <h1> Afficher la liste des articles</h1>
@@ -43,7 +46,7 @@ $controller = new AdminController();
                 <select name="categorie">
                     <option value="choose">Séléctionner une catégorie</option> 
                 </select><br/>
-
+                
                 <input type="submit" name="new_categorie" value="Ajouter un nouvel article">
                 <!-- comment générer l'apparition d'un nouvelle catégorie?-->
             </form>
@@ -60,17 +63,38 @@ $controller = new AdminController();
                
             <h2>Ajouter une nouvelle sous-catégorie</h2>
                 <form action="" method="post">
+
+                <label for="categorie">Catégorie</label>
+                <select name="sous_categorie_select">
+                    <!-- foreach de option pour chaque ligne de categorie  -->
+                   
+                    
+                    <?php  
+                   if (isset($showAllCategoriesInNewCategory))
+                   {    
+                        foreach($showAllCategoriesInNewCategory as $category)
+                        { ?>
+                            <option value="<?php echo $category['id']; ?>">
+
+                            <?php   echo $category['nom_categorie'];?>
+                             </option> 
+                  <?php }
+                   }
+                    ?>
+                   
+                </select><br/>
+
                     <label for="nom_sous_cat">Nouvelle sous-catégorie</label>
-                    <input type="text" name="nom_cat"><br/>
+                    <input type="text" name="nom_sous_cat"><br/>
 
                     <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
                 </form>    
         </article>
 
         <article>
-        <h2>Auteur</h2>
+        <h2>Auteur.ice</h2>
                 <form action="" method="post">
-                    <label for="nom_auteur">Nom de l'auteur</label>
+                    <label for="nom_auteur">Nom de l'auteur.ice</label>
                         <input type="text" name="nom_auteur">
 
                     <label for="prenom_auteur">Prénom de l'auteur</label>
@@ -81,14 +105,47 @@ $controller = new AdminController();
         </article>
 
         <article>
-            <form action="" method="get">
+            <form action="" method="post">
                 <input type="submit" name="back" value="Retourner au menu de gestion">
             </form>
         </article>
     </section>
 </main>
 <?php
-if(isset($_GET['back']))
+
+if(isset($_POST['new_cat']))
+{   
+    $registerCategorie = $controllerAdmin->registerCategorie( $id_categorie ,$_POST['nom_cat']);
+}
+else
+{
+    $_SESSION['error'] = "cette categorie est déjà enregistré";
+}
+
+if(isset($_POST['new_sous_cat']))
+{
+    
+    $id_categorie = $category['id'];
+    $_POST['sous_categorie_select'] == $id_categorie;
+    $registerSousCategorie = $controllerAdmin->registerSousCategorie($_POST['nom_sous_cat'],$id_categorie);
+}
+else
+{
+    $_SESSION['error'] = "cette categorie est déjà enregistré";
+}
+
+if(isset($_POST['new_auteur']))
+{
+    $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
+}
+
+else
+{
+    $_SESSION['error'] = "cette categorie est déjà enregistré";
+}
+
+
+if(isset($_POST['back']))
 {
     header('location: admin.php');
 }

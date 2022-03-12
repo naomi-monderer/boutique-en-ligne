@@ -61,7 +61,7 @@ class UserModel extends Model
      
     }
 
-    public function findUserById($id) :array 
+    public function findUserById($id) :array
     {   #$this->id = $id;
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
@@ -86,18 +86,23 @@ class UserModel extends Model
         $result= $this->connect()->prepare($requete);
         $result->execute(array(':id'=> $id));
 
-
     }
 
      public function updateUser($id,$nom, $prenom, $email, $login,$id_droits)
-    {  
+    {   
+        var_dump($id);
+        var_dump($nom);
+        var_dump($prenom);
+        var_dump($login);
+        var_dump($id_droits);
+        var_dump($email);
         // var_dump($id_droits);
-       $requete = "UPDATE `utilisateurs` SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`login`=:login, `id_droits`= :id_droits WHERE `id` = :id";
+       $requete = "UPDATE `utilisateurs` SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`login`=:login, `id_droits`=:id_droits WHERE `id` = :id";
        
         $result = $this->connect()->prepare($requete);
         $result->execute(
                             array(
-                                ':id' => $id, 
+                                ':id' => intval($id), 
                                 ':nom'=> $nom,
                                 ':prenom'=> $prenom,
                                 ':email'=> $email,
@@ -105,6 +110,8 @@ class UserModel extends Model
                                 ':id_droits'=> intval($id_droits)
                             )
                         );
+
+
 
     }
 
