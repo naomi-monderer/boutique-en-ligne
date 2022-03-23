@@ -8,7 +8,7 @@ class AuteurModel extends Model
 
     }
 
-    public function insertAuteur()
+    public function insertAuteur($nom,$prenom)
     {
         $requete = $this->connect()->prepare("INSERT INTO auteurs(nom,prenom) VALUES(:nom, :prenom)");
         $resultat = $requete->execute(array(":nom" => $nom,
@@ -18,15 +18,23 @@ class AuteurModel extends Model
         return $resultat;
     }
 
-    // public function getAllAuteurs()
-    // {
+    public function getAllAuteurs($nom)
+    {
+        $requete = $this->connect()->prepare("SELECT nom,prenom FROM auteurs WHERE nom=:nom");
+        $requete->execute();
+        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
 
-    // }
+        return $resultat;
+    }
 
-    // public function getAuteurById($id)
-    // {
+    public function getAuteursById($id)
+    {
+        $requete = $this->connect()->prepare("SELECT * FROM auteurs WHERE id = :id");
+        $requete->execute(array(":id" => $id));
+        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
 
-    // }
+        return $resultat;
+    }
 
 
 }

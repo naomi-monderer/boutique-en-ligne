@@ -4,13 +4,13 @@ class CategorieModel extends Model {
     public function __construct(){
 
     }
-    public function getCategorie($id)
+    public function getCategorie($nom_categorie)
     {
-        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `id`=:id");
-        $requette->execute(array(":id" => $id));
-        $resultat = $requette->fetchAll();
+        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `nom_categorie`=:nom_categorie");
+        $requette->execute(array(":nom_categorie" => $nom_categorie));
+        $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
         
-        var_dump($id);
+        var_dump($nom_categorie);
         return $resultat;
 
     }
@@ -18,7 +18,7 @@ class CategorieModel extends Model {
     public function allCategorie(){
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");
         $requette->execute();
-        $resultat = $requette->fetchAll();
+        $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
         return $resultat;
         
     }
