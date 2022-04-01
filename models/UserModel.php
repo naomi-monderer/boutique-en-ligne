@@ -17,7 +17,7 @@ class UserModel extends Model
         
     }
     
-    public function insertUser($prenom,$nom,$login,$email,$password,$id_droits)
+    public function insertUser($nom,$prenom,$email,$password,$login,$id_droits)
     {
        //Insert les utilisateurs en bdd
         $requete = $this->connect()->prepare("INSERT INTO utilisateurs(nom,prenom,email,password,login,id_droits) VALUES (:nom,:prenom,:email,:password,:login,:id_droits)");
@@ -27,7 +27,7 @@ class UserModel extends Model
             ":email" => $email,
             ":password" => $password,
             ":login" => $login,
-            ":id_droits"=>$id_droits,
+            ":id_droits" => $id_droits,
         ));
     }
 
@@ -66,17 +66,7 @@ class UserModel extends Model
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
         $result->execute(array(':id' => $id));
-        $dataUser = $result->fetch();
-
-        return $dataUser;
-    }
-
-    public function getUserById($id)
-    {   #$this->id = $id;
-        $requete = "SELECT * FROM utilisateurs WHERE id = :id";
-        $result = $this->connect()->prepare($requete);
-        $result->execute(array(':id' => $id));
-        $dataUser = $result->fetch();
+        $dataUser = $result->fetchAll(PDO :: FETCH_ASSOC);
 
         return $dataUser;
     }
@@ -95,16 +85,27 @@ class UserModel extends Model
         $requete = "DELETE FROM utilisateurs where id=:id";
         $result= $this->connect()->prepare($requete);
         $result->execute(array(':id'=> $id));
-
-
     }
 
-    public function updateUser($nom, $prenom, $email, $login, $id_droits, $id)
-    {
-       $requete = $this->connect()->prepare('UPDATE `utilisateurs` SET nom = :nom, prenom = :prenom, email = :email, login = :login, :id_droits = id_droits WHERE id = :id');
-       $updateCommentaire = $requete->execute(array('nom' => $nom, 'prenom' => $prenom, 'email' => $email, 'login' => $login, 'id_droits' => $id_droits, 'id' => $id));
+    public function updateLogin($id, $login)
+    {  
+        $requete = "UPDATE `utilisateurs` SET `login`= :login WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':login'=> $login));
     }
-    
+
+    public function updateEmail($id, $email)
+    {  
+        $requete = "UPDATE `utilisateurs` SET email = :email WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':email'=> $email));
+    }
+
+    public function updatePassUser($id, $password)
+    {  
+        $requete = "UPDATE `utilisateurs` SET password = :password WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':password'=> $password));
+    }
 }
 ?>
-    

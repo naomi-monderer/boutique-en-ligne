@@ -7,20 +7,13 @@ require_once('include/header.php');
 
 ?>
 <main>
-     <nav>
+     <section>
 
-     <!-- barre de navigation de toute les categorie -->
-     <?php  foreach($categories as $resultat):?>
-        <a href="articles.php?id=<?php echo $resultat["id"];?>"><?php echo $resultat["nom_categorie"] ?></a>
-     <?php endforeach;  ?>
-         
-     
-     </nav>
-
-    
-    
-        <section>
-            <h1><?php echo $titre['nom_categorie'] ?></h1>
+            <?php if (isset($titre['nom_categorie'])) :?>
+                <h1><?php echo $titre['nom_categorie'] ?></h1>
+            <?php else :?>
+                <h1><?php echo $titre['nom_souscategorie'] ?></h1>
+            <?php endif ;?>
 
             <?php if(isset($erreur)):?>
             <p><?php echo $erreur?></p>
@@ -53,7 +46,6 @@ require_once('include/header.php');
         <?php endforeach ;?>
         <?php endif;?>
     </section>
-
-    </main>
+</main>
 
    

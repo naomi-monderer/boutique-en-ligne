@@ -5,11 +5,14 @@
     if(isset($_POST['submit']))
     {
         $controller = new InscriptionController();
-        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
+        $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
        
     }   
 ?>
 <main>
+<section>
+
+    
     <section>
     <h1>Inscription</h1>
 
@@ -25,7 +28,7 @@
             <input type="text" name='nom'placeholder="McGowan">
 
             <label for="email">Email</label>
-            <input type="text" name='email' placeholder="mcgowan@protonmail.com" required>
+            <input type="email" name='email' placeholder="mcgowan@protonmail.com" required>
 
             <label for="password">Mot de passe</label>
             <input type="text" name='password' placeholder="...........">
@@ -42,8 +45,6 @@
 <?php
 if(isset($_POST['submit']))
 {
-    echo "<div> $var </div>";
+    echo "<div>" . $_SESSION['error'] . "</div>";
 }
 ?>    
-
-

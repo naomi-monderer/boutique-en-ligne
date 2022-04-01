@@ -14,4 +14,3 @@ class ProduitsModel extends Model{
     }
 
 }
-   
