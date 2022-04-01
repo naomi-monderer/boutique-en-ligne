@@ -52,7 +52,7 @@ require_once('include/header.php');
                 <div>
                     <?php if($resultat["stock"]>0):?>
                         <p>En stock</p>
-                        <a href="panier.php">Ajouter au panier</a>
+                        <a href="../controllers/PanierController.php?produit=<?= $resultat["id_produit"] ?>">Ajouter au panier</a>
                     <?php else:?>
                         <p>Temporairement en rupture de stock.</p>
                     <?php endif;?>  

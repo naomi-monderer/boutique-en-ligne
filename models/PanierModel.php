@@ -20,5 +20,14 @@ class PanierModel extends Model{
         $requette->execute(["quantite"=>$quantite,"id_produit"=>$id_produit,"id_utilisateur"=>$id_utilisateur]);
         
     }
+    public function recuperationpanier($id){
+        $requette = $this->connect()->prepare("SELECT * FROM `panier` INNER JOIN produits ON panier.id_produit = produits.id WHERE `id_utilisateur`=:id");
+        $requette->execute(["id"=>$id]);
+        $resultat = $requette->fetchAll();
+        return $resultat;
+        
+
+    }
+  
 
 }
