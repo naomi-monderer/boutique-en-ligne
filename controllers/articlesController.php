@@ -8,7 +8,12 @@ $articlesmodel = new ArticleModel();
 
 // $titrecategorie = $categorie->getsouscategorie($_GET["id"]);
  //header
- $categories = $articlesmodel->getsouscategorie();
+ if (isset($_GET['id'])){
+      $categories = $articlesmodel->getsouscategorie($_GET["id"]);
+
+ }else {
+    $categories = $articlesmodel->getsouscategorie($_GET["id_souscategorie"]);
+ }
 
 // Id == categorie
 if(!empty($_GET["id"])){
