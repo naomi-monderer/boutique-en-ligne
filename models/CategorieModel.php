@@ -14,9 +14,23 @@ class CategorieModel extends Model {
         return $resultat;
 
     }
-  
+
+   
     public function allCategorie(){
+
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");
+        $requette->execute();
+        $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
+        return $resultat;
+        
+    }
+    public function innerCategoriesWithSousCategories(){
+
+        $requette = $this->connect()->prepare(
+        "SELECT *
+        FROM `categories`
+        INNER JOIN souscategories ON categories.id = souscategories.id_categorie 
+        ORDER BY `categories`.`id` ASC ");
         $requette->execute();
         $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
         return $resultat;
@@ -31,7 +45,8 @@ class CategorieModel extends Model {
         return $resultat;
     }
     
-        
+    // public function getSousCategoryInCategories()
+
     
 
 }

@@ -1,117 +1,125 @@
 <?php
+
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
 $controllerAdmin = new AdminController();
+
 $showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
+$listCategories = $controllerAdmin->listCategories();
+$listAuteurs = $controllerAdmin->listAuteurs();
+$miseEnAvant = $controllerAdmin->miseEnAvant();
+$showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
+
+    echo '<pre>';
+    // var_dump($listCategories); 
+    var_dump($_POST);
+    var_dump($_SESSION);
+    echo '</pre>';
+
+// echo '<pre>';
+// var_dump($showAllCategories); 
+// echo '</pre>';
+
 
 
 ?>
 <main>
-    <h1> Afficher la liste des articles</h1>
+    <h1> Ajouter des Articles</h1>
    
 <article>
-    <h2>Enregistrer un nouvel ouvrage</h2>
+    <h2>Enregistrer un nouvel ouvrage:</h2>
         <form action="" method="post">
 
-            <label for="nom">Nom de l'ouvrage</label>
+            <label for="nom">Nom de l'ouvrage:</label>
                 <input type="text" name="nom" value=""> <br/>
 
                 <label for="auteur">Auteur.ice</label>
                     <select name="auteur">
-                        <option value="choose">Séléctionner l'auteur.ice</option>
+                        
+                        <?php foreach($listAuteurs as $listAuteur)
+                        {  ?>
+
+                            <option value="<?= $listAuteur['id']?>">
+                               
+                                <?php echo $listAuteur['nom'] .' '. $listAuteur['prenom']?>
+
+                            </option>
+
+                    <?php } ?>
                     </select>
+
                     <!-- doit generer le formulaire pour enregistrer un nouvel auteur-->
                     <p>Vous ne trouvez pas votre auteur dans la liste. Clikez ici</p><br/>
 
-                <label for="description">Description</label>
-                    <input textarea name="description" value=""><br/>
+                    <label for="description">Description:</label>
+                        <textarea name="description" value=""></textarea><br/>
 
-                <label for="stock"></label>Nombre d'article à ajouter au stock</label>
-                    <input type="number" name="stock" value=""><br/>
+                    <label for="stock"></label>Nombre d'articles à ajouter au stock:</label>
+                        <input type="number" name="stock" value=""><br/>
 
-                <label for="prix">Prix</label>
-                    <input type="number" name="prix" value="">€<br/>
-                
-                <label for="mise_en_avant">Mettre en avant cet article</label>
-                    <select name="mise_en_avant">
-                        <option value="choose">Séléctionner une option</option>    
-                        <option value="yes">oui</option>
-                        <option value="no">non</option>  
-                    </select><br/>
+                    <label for="prix">Prix:</label>
+                        <input type="number" step="0.01" name="prix" value="">€<br/>
                     
-                <label for="editeur">Editeur</label>
-                    <input type="text" name="editeur" value=""><br/>
+                    <label for="mise_en_avant">Mettre en avant cet article:</label>
+                        <select name='mise_en_avant'>  
+                            <option value="1">oui</option>
+                            <option value="0">non</option>  
+                        </select><br/>
+                        
+                    <label for="editeur">Editeur:</label>
+                        <input type="text" name="editeur" value=""><br/>
 
-                <label for="categorie">Catégorie</label>
-                <select name="categorie">
-                    <option value="choose">Séléctionner une catégorie</option> 
+                    <label for="categorie">Catégorie:</label>
+                    <select name="categorie">
+                    <?php foreach($showAllCategories as $showAllCategory) 
+                    {?>   
+                    <option value="<?= $showAllCategory['id']?>">
+                                
+                        <?php echo $showAllCategory['nom_categorie']?>
+                        </option>
+            <?php }?>   
+                </select>
+                    
+                <label for="souscategorie">Sous-Catégorie:</label>
+                <select name="souscategorie">
+               
+                    <?php 
+                    $temp="";  
+                    $booleen = true;
+                    foreach($listCategories as $listCategory) 
+                    { ?>
+                        <?php   if($temp == $listCategory['nom_categorie'])
+                                { ?>
+                                    <option value="<?= $listCategory['id']?>"> 
+                                        <?php  echo $listCategory['nom_souscategorie']?>
+                                    </option>
+                       <?php    
+                                    $booleen = true; // :)
+                                }
+                                else
+                                {?>
+                                    
+                                    <optgroup  value="<?= $listCategory['id_categorie']?>" label="<?php echo $listCategory['nom_categorie']?>">
+                                    <option value="<?= $listCategory['id']?>"> 
+                                        <?php  echo $listCategory['nom_souscategorie']?>
+                                    </option>
+                                    <?php if($booleen == false) // :D
+                                    echo '</optgroup>'; ?>                                 
+                          <?php }?>
+                              
+                    <?php 
+                            $temp = $listCategory['nom_categorie'];
+                    }?>
                 </select><br/>
 
-                <label for="image">Choisir une image </label>
-                <div>
-                    <a href="article.php?id=<?php echo $resultat['id']?>">
-                        <img src="../picture/<?php echo $resultat["image"]; ?>" alt="">
-                    </a>
-                    
-                </div>
+                <label for="image">Choisir une image:</label>
+                    <input type="text" name='image' placeholder="URL IMG">
                 
-                <input type="submit" name="new_categorie" value="Ajouter un nouvel article">
+                <input type="submit" name="new_article" value="Ajouter un nouvel article">
                 <!-- comment générer l'apparition d'un nouvelle catégorie?-->
             </form>
         </article>
-
-        <article>
-            <h2>Ajouter une nouvelle catégorie</h2>
-                <form action="" method="post">
-                    <label for="nom_cat">Nouveau type de catégorie</label>
-                    <input type="text" name="nom_cat"><br/>
-
-                    <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
-                </form>
-               
-            <h2>Ajouter une nouvelle sous-catégorie</h2>
-                <form action="" method="post">
-                <label for="categorie">Catégorie</label>
-                <select name="sous_categorie_select">
-                    <!-- foreach de option pour chaque ligne de categorie  -->
-                   
-                    
-                    <?php  
-                   if (isset($showAllCategoriesInNewCategory))
-                   {    
-                        foreach($showAllCategoriesInNewCategory as $category)
-                        { ?>
-                            <option value="<?php echo $category['id']; ?>">
-
-                            <?php   echo $category['nom_categorie'];?>
-                             </option> 
-                  <?php }
-                   }
-                    ?>
-                   
-                </select><br/>
-
-                    <label for="nom_sous_cat">Nouveau genre de sous-catégorie</label>
-                    <input type="text" name="nom_sous_cat"><br/>
-
-                    <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
-                </form>    
-        </article>
-
-        <article>
-        <h2>Auteur.ice</h2>
-                <form action="" method="post">
-                    <label for="nom_auteur">Nom de l'auteur.ice</label>
-                        <input type="text" name="nom_auteur"><br/>
-
-                    <label for="prenom_auteur">Prénom de l'auteur.ice</label>
-                        <input type="text" name="prenom_auteur"> <br/> 
-
-                        <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
-                </form>
-        </article>
-
         <article>
             <form action="admin.php" method="post">
                 <input type="submit" name="back" value="Retourner au menu de gestion">
@@ -121,33 +129,39 @@ $showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCatego
 </main>
 <?php
 
-if(isset($_POST['new_cat']))
-{   
-    $registerCategorie = $controllerAdmin->registerCategorie($_POST['nom_cat']);
-}
-if(isset($_POST['new_sous_cat']))
-{   
-
-    // $_POST['sous_categorie_select'] = $category['id'];
-    // $id_categorie = $category['id'];
-    $id_categorie = $_POST['sous_categorie_select'];
-    // $id_categorie = $category['id'];
-    // $_POST['sous_categorie_select'] = $id_categorie;
-    $registerSousCategorie = $controllerAdmin->registerSousCategorie($_POST['nom_sous_cat'], $id_categorie);
-
-}
 
 
-if(isset($_POST['new_auteur']))
+if(isset($_POST['new_article']))
 {
-    $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
-}
+// il manque la l'id_sous categorie
+$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
+                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
+                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
+                                                    $_POST['auteur'], $_POST['image']);
 
+}
 
 
 if(isset($_POST['back']))
 {
     header('location:admin.php');
 }
-?>    
 
+
+
+?>  
+
+
+
+<!-- utiliser optgroup pour créer le décalage escompter dans les categories>
+    
+<select name="couleur" multiple>
+  <optgroup label="Couleur">
+    <option value="orange">Orange</option>
+    <option value="bleu" selected>Bleu</option>
+    <option value="rouge">Rouge</option>
+  </optgroup>
+  <optgroup label="Taille">
+   <option value="un">Un</un>
+ </optgroup>
+</select>  -->

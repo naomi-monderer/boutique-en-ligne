@@ -18,11 +18,11 @@ class AuteurModel extends Model
         return $resultat;
     }
 
-    public function getAllAuteurs($nom)
+    public function getAllAuteurs()
     {
-        $requete = $this->connect()->prepare("SELECT nom,prenom FROM auteurs WHERE nom=:nom");
+        $requete = $this->connect()->prepare("SELECT * FROM auteurs");
         $requete->execute();
-        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
+        $resultat = $requete->fetchAll(PDO :: FETCH_ASSOC);
 
         return $resultat;
     }

@@ -6,16 +6,16 @@ require_once("../models/CategorieModel.php");
 $categorie = new CategorieModel();
 $articlesmodel = new ArticleModel();
 
-// $titrecategorie = $categorie->getSousCategorie($_GET["id"]);
-
+// $titrecategorie = $categorie->getsouscategorie($_GET["id"]);
+ //header
+ $categories = $articlesmodel->getsouscategorie();
 
 // Id == categorie
-if(!empty($_GET["id"]))
-{
-    $titre = $categorie->getCategorie($_GET["id"]);
-    var_dump($titre);
-    //header
-    // $categories = $categorie->allCategorie();
+if(!empty($_GET["id"])){
+    $titre = $categorie->recuperationNoncategorie($_GET["id"]);
+   
+   
+    
 
     $productByCategory =$articlesmodel->getProductsByCategory($_GET["id"]);
     if (empty($productByCategory)) {

@@ -15,9 +15,10 @@ class AdminController extends Controller
         $this->modelCategorie = new CategorieModel;
         $this->modelSousCategorie = new SousCategorieModel;
         $this->modelAuteur = new AuteurModel;
+        $this->modelArticle = new ArticleModel;
         
     }
-    //--------------------------GESTION DES USERS------------------------//
+    //----------------GESTION DES USERS------------------------//
      public function modify($id,$nom, $prenom,$login, $email, $id_droits)
     {
            // verifier que le login en bdd est unique
@@ -147,6 +148,9 @@ class AdminController extends Controller
         $getAllCategorie = $this->modelCategorie->allCategorie();
         return $getAllCategorie;
     }
+    // public function showAllSousCategorie(){
+
+    // }
 
   
     public function registerSousCategorie($nom_souscategorie, $id_categorie)
@@ -170,7 +174,7 @@ class AdminController extends Controller
             }
         }
         else    
-        
+
         {
             $_SESSION['error'] = "Veuillez remplir le champs.";
         }
@@ -178,43 +182,64 @@ class AdminController extends Controller
     }
 
     public function registerAuteur($nom,$prenom)
-    {   /* 
-        je ne veux pas qu'on puisse rentrer plusieurs fois les même auteur en bdd.
-         je dois comparer les champs de mes post au niveau du nom et du prenom 
-         avec ce que j'ai en base de données. 
-         en base données dans auteurs j'ai 3 champs. 
-         --------------------------------------------------------
-         je veux qu
-        
-        */
+    {   
         if(!empty($nom) && !empty($prenom))
         {       
-            // $getAuteurs = $this->modelAuteur->getAllAuteurs();
-           
-            // foreach($getAuteurs as $getAuteurs)
-            // {
-            //         $getAuteurs;
-            //         var_dump($getAuteurs);
-            // }
-            $getAuteursById = $this->modelAuteur->getAuteursById($id);
-            var_dump($getAuteursById);
-           
-            // if(isset($auteur['nom']) && isset($auteur['prenom']) )
-            // {
-            //     $_SESSION['error'] = "Veuillez remplir le champs.";
-            // }
-            // else
-            // {
-            //     $insertAuteur = $this->modelAuteur->insertAuteur($nom,$prenom);
-            // }
-
-  
+            $registerAuteur = $this->modelAuteur->insertAuteur($nom,$prenom);
         }
 
     }
     
+    // public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+    // {
+    //     $registerArticle = $this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
 
+    // }
 
+    public function listCategories()
+    {  
+        $allCategories= $this->modelCategorie->innerCategoriesWithSousCategories();
+       return $allCategories;
+    }
+    
+    public function listSouscategories()
+    { 
+        // $allSousCategories= $this->modelSousCategorie->
+    }
+
+    public function listAuteurs()
+    { 
+        $allAuteurs = $this->modelAuteur->getAllAuteurs();
+        return $allAuteurs;
+    }
+    
+    public function miseEnAvant()
+    { 
+
+        if(isset($_POST['mise_en_avant']) == 1){
+            $_POST['mise_en_avant'] == true;
+        }
+        // else
+        // {
+        //     $_POST['mise_en_avant'] == false;
+        // }
+    }
+
+   public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+   {
+        // if(!empty(trim($titre)) && !empty(trim($description)) && !empty(trim($stock)) && !empty(trim($prix)) && !empty(trim($mise_en_avant)) && !empty(trim($editeur)) && !empty($id_categorie) && !empty($id_souscategorie) && !empty(trim($id_auteur)) && !empty($image))
+        // {
+            $insertArticle=$this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+        // }
+        // else
+        // {
+        //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
+        // }
+   }  
+   public function modifyArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+   {
+       $updateArticle=$this->modelArticle->updateArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+   }
 }
 
 ?>

@@ -5,6 +5,7 @@ require_once("../controllers/ArticleController.php");
 ?>
 <main>
     
+    
         <h1><?php echo $produit["titre"];?></h1>
         <div>
             
@@ -18,7 +19,14 @@ require_once("../controllers/ArticleController.php");
             <div>
                 <?php if($produit["stock"]>0):?>
                     <p>En stock</p>
-                    <a href="">Ajout du panier</a>
+                    <form action="../controllers/PanierController.php"method="POST">
+                        <input type="hidden" name="produit" value="<?php echo $produit["id_produit"]  ?>">
+                         <input type="submit"name="panier" value="panier">
+                            
+                        
+
+
+                    </form>
                 <?php else: ?>
                     <p>Pas de stock</p>
                 <?php endif;?>

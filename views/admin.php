@@ -16,20 +16,29 @@ require_once('include/header.php');
                     <article>
                         <h2>Gestion des articles</h2>
                         <form action="" method="get">
-                            <input type="submit" name="display_article" value="Afficher les articles">
+                            <input type="submit" name="display_article" value="Ajouter des articles"></br>
+                            <input type="submit" name="display_select_list" value="Générer des listes pour spécifier vos articles">
                         </form>
                        
                     </article>    
             </article>
          
 </main>
-<?php   
+<?php
+/* This button allow the admin to display modify and delete these users*/
+if(isset($_GET['display_user']))
+{ 
+    header('location: admin_user.php');
+} 
+/* This button allow the admin to register articles*/
 if(isset($_GET['display_article']))
 {
     header('location: admin_article.php');
 }
-if(isset($_GET['display_user']))
-{ 
-    header('location: admin_user.php');
+/* This button allow the admin to register articles*/
+if(isset($_GET['display_select_list']))
+{
+    header('location: admin_other_forms.php');
 }
+
 ?>

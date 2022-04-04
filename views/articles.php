@@ -7,6 +7,23 @@ require_once('include/header.php');
 
 ?>
 <main>
+    
+<nav>
+    <a href="index.php">Retour a accueil</a>
+   
+   
+    <?php
+
+
+    foreach($categories as $resultat){
+        echo " <a href='articles.php?id_souscategorie=".$resultat["id"]."'>".$resultat["nom_souscategorie"]."</a>";
+    }
+    
+
+    ?>
+   
+
+    </nav>
      <section>
 
             <?php if (isset($titre['nom_categorie'])) :?>
@@ -21,14 +38,13 @@ require_once('include/header.php');
             
 
         <?php foreach($productByCategory as $resultat) :?>
-           
             <div>
                 <div>
-                    <a href="article.php?id=<?php echo $resultat['id']?>"><img src="../picture/<?php echo $resultat["image"]; ?>" alt=""></a>
+                    <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img src="../picture/<?php echo $resultat["image"]; ?>" alt=""></a>
                     
                 </div>
                 <div>
-                     <a href="article.php?id=<?php echo $resultat["id"]?>"><p>Titre: <?php echo $resultat["titre"];  ?></p></a>
+                     <a href="article.php?id=<?php echo $resultat["id_produit"]?>"><p>Titre: <?php echo $resultat["titre"];  ?></p></a>
                      <p>Auteur: <?php  echo $resultat["nom"].' '. $resultat["prenom"];  ?></p>
                      <p>Description</p>
                      <p><?php echo $resultat["description"];?></p>

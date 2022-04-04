@@ -14,11 +14,3 @@ $controller = new AdminController();
     </section>    
 </main>
 <?php
-if(isset($_GET["oui"]))
-{
-
-}
-if(isset($_GET["non"]))
-{
-
-}

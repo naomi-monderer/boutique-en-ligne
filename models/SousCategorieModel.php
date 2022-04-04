@@ -26,8 +26,10 @@ class SousCategorieModel extends Model
     public function allsouscategorie(){
         $requette = $this->connect()->prepare("SELECT * FROM `souscategories`");
         $requette->execute();
-        $resultat = $requette->fetchAll();
-        return $resultat;
+        while($resultat = $requette->fetchAll());
+        {
+            return $resultat;
+        }
         
     }
     public function insertSousCategorie($nom_souscategorie,$id_categorie)
