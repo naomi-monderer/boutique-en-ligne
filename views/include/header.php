@@ -11,22 +11,25 @@
 </head>
 <body>
     <header>
+
+            <img id="logo" src="../picture/logo_boutique.png">
+
             <nav>
+
                 <?php if(!isset($_SESSION['user']))
                 {?>
                  
-                <a href="connexion.php">CONNEXION</a> </br>
-                <a href="inscription.php">INSCRIPTION</a></br>
-                <a href="index.php">INDEX</a></br>
+                <a href="connexion.php">Connexion</a>
+                <a href="inscription.php">Inscription</a>
+                <a href="panier.php">Panier</a>
              
                 
         <?php }
                 
                 if(isset($_SESSION['user']))
                         {?>
-                        <a href="index.php">INDEX</a></br>
-                        <a href="profil.php">PROFIL</a></br>
-                         <a href="deconnexion.php">DECONNEXION</a></br>
+                        <a href="profil.php">Profil</a></br>
+                         <a href="deconnexion.php">déconnexion</a></br>
                           
                           
 
@@ -39,8 +42,6 @@
                         
 
                 <?php   } ?>
-
-              
-                
+   
             </nav>
     </header>

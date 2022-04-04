@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : lun. 07 mars 2022 à 06:30
+-- Généré le : jeu. 10 mars 2022 à 10:00
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `nom_categorie`) VALUES
-(1, 'Asterix'),
-(2, 'roman');
+(1, 'Roman'),
+(2, 'Manga');
 
 -- --------------------------------------------------------
 
@@ -190,14 +190,15 @@ CREATE TABLE IF NOT EXISTS `produits` (
   KEY `id_auteur` (`id_auteur`),
   KEY `id_categorie` (`id_categorie`),
   KEY `id_souscategorie` (`id_souscategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `produits`
 --
 
 INSERT INTO `produits` (`id`, `titre`, `description`, `stock`, `prix`, `mise_en_avant`, `promotion`, `editeur`, `id_categorie`, `id_souscategorie`, `id_auteur`, `image`) VALUES
-(2, 'TEST', 'TEST', 84, '12', 1, NULL, 'TEST', 1, 1, 1, 'asterix.jpg');
+(2, 'TEST', 'TEST', 84, '12', 1, NULL, 'TEST', 1, 1, 1, 'asterix.jpg'),
+(3, 'Aterix 2', 'une description de la bd', 12, '12', 1, NULL, 'Editeur', 1, 1, 1, 'asterix.jpg');
 
 -- --------------------------------------------------------
 
@@ -217,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `souscategories` (
 --
 
 INSERT INTO `souscategories` (`id`, `nom_souscategorie`) VALUES
-(1, 'SOUS CATEGORIE');
+(1, 'Aventure');
 
 -- --------------------------------------------------------
 
