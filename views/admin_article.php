@@ -14,7 +14,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
     echo '<pre>';
     // var_dump($listCategories); 
     var_dump($_POST);
-    var_dump($_SESSION);
+    // var_dump($_SESSION);
     echo '</pre>';
 
 // echo '<pre>';
@@ -72,46 +72,45 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 
                     <label for="categorie">Catégorie:</label>
                     <select name="categorie">
-                    <?php foreach($showAllCategories as $showAllCategory) 
-                    {?>   
-                    <option value="<?= $showAllCategory['id']?>">
+                        <?php foreach($showAllCategories as $showAllCategory) 
+                        {?>   
+                            <option value="<?= $showAllCategory['id']?>">
+                                <?php echo $showAllCategory['nom_categorie']?>
+                            </option>
+                        <?php }?>   
+                    </select>
+                        
+                    <label for="souscategorie">Sous-Catégorie:</label>
+                    <select name="souscategorie">
+                
+                        <?php 
+                        $temp="";  
+                        $booleen = true;
+                        foreach($listCategories as $listCategory) 
+                        { ?>
+                            <?php   if($temp == $listCategory['nom_categorie'])
+                                    { ?>
+                                        <option value="<?= $listCategory['id']?>"> 
+                                            <?php  echo $listCategory['nom_souscategorie']?>
+                                        </option>
+                        <?php    
+                                        $booleen = true; // :)
+                                    }
+                                    else
+                                    {?>
+                                        
+                                        <optgroup  value="<?= $listCategory['id_categorie']?>" label="<?php echo $listCategory['nom_categorie']?>">
+                                        <option value="<?= $listCategory['id']?>"> 
+                                            <?php  echo $listCategory['nom_souscategorie']?>
+                                        </option>
+                                        <?php if($booleen == false) // :D
+                                        echo '</optgroup>'; ?>                                 
+                            <?php }?>
                                 
-                        <?php echo $showAllCategory['nom_categorie']?>
-                        </option>
-            <?php }?>   
-                </select>
-                    
-                <label for="souscategorie">Sous-Catégorie:</label>
-                <select name="souscategorie">
-               
-                    <?php 
-                    $temp="";  
-                    $booleen = true;
-                    foreach($listCategories as $listCategory) 
-                    { ?>
-                        <?php   if($temp == $listCategory['nom_categorie'])
-                                { ?>
-                                    <option value="<?= $listCategory['id']?>"> 
-                                        <?php  echo $listCategory['nom_souscategorie']?>
-                                    </option>
-                       <?php    
-                                    $booleen = true; // :)
-                                }
-                                else
-                                {?>
-                                    
-                                    <optgroup  value="<?= $listCategory['id_categorie']?>" label="<?php echo $listCategory['nom_categorie']?>">
-                                    <option value="<?= $listCategory['id']?>"> 
-                                        <?php  echo $listCategory['nom_souscategorie']?>
-                                    </option>
-                                    <?php if($booleen == false) // :D
-                                    echo '</optgroup>'; ?>                                 
-                          <?php }?>
-                              
-                    <?php 
-                            $temp = $listCategory['nom_categorie'];
-                    }?>
-                </select><br/>
+                        <?php 
+                                $temp = $listCategory['nom_categorie'];
+                        }?>
+                    </select><br/>
 
                 <label for="image">Choisir une image:</label>
                     <input type="text" name='image' placeholder="URL IMG">

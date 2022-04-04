@@ -18,6 +18,8 @@ require_once('include/header.php');
                         <form action="" method="get">
                             <input type="submit" name="display_article" value="Ajouter des articles"></br>
                             <input type="submit" name="display_select_list" value="Générer des listes pour spécifier vos articles">
+                            <input type="submit" name="manage_articles" value="Gérer les articles">
+                            <input type="submit" name="manage_specificities" value="Gérer les specificités des articles">
                         </form>
                        
                     </article>    
@@ -39,6 +41,14 @@ if(isset($_GET['display_article']))
 if(isset($_GET['display_select_list']))
 {
     header('location: admin_other_forms.php');
+}
+if(isset($_GET['manage_articles']))
+{
+    header('location: admin_manage_articles.php');
+}
+if(isset($_GET['manage_specificities']))
+{
+    header('location: admin_manage_other_forms.php');
 }
 
 ?>

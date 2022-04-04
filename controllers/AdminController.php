@@ -148,9 +148,6 @@ class AdminController extends Controller
         $getAllCategorie = $this->modelCategorie->allCategorie();
         return $getAllCategorie;
     }
-    // public function showAllSousCategorie(){
-
-    // }
 
   
     public function registerSousCategorie($nom_souscategorie, $id_categorie)
@@ -173,13 +170,12 @@ class AdminController extends Controller
                 $insertSousCategorie = $this->modelSousCategorie->insertSousCategorie($nom_souscategorie,$id_categorie);
             }
         }
-        else    
-
-        {
+        else{
             $_SESSION['error'] = "Veuillez remplir le champs.";
         }
         return $resultSousCategorie;
     }
+
 
     public function registerAuteur($nom,$prenom)
     {   
@@ -190,11 +186,7 @@ class AdminController extends Controller
 
     }
     
-    // public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
-    // {
-    //     $registerArticle = $this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
-
-    // }
+  
 
     public function listCategories()
     {  
@@ -202,11 +194,7 @@ class AdminController extends Controller
        return $allCategories;
     }
     
-    public function listSouscategories()
-    { 
-        // $allSousCategories= $this->modelSousCategorie->
-    }
-
+    
     public function listAuteurs()
     { 
         $allAuteurs = $this->modelAuteur->getAllAuteurs();
@@ -215,35 +203,79 @@ class AdminController extends Controller
     
     public function miseEnAvant()
     { 
-
+        
         if(isset($_POST['mise_en_avant']) == 1){
             $_POST['mise_en_avant'] == true;
         }
-        // else
-        // {
-        //     $_POST['mise_en_avant'] == false;
-        // }
+        
     }
-
-   public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
-   {
+    
+    public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+    {
         // if(!empty(trim($titre)) && !empty(trim($description)) && !empty(trim($stock)) && !empty(trim($prix)) && !empty(trim($mise_en_avant)) && !empty(trim($editeur)) && !empty($id_categorie) && !empty($id_souscategorie) && !empty(trim($id_auteur)) && !empty($image))
         // {
             $insertArticle=$this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
-        // }
-        // else
-        // {
-        //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
-        // }
-   }  
-   public function modifyArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
-   {
-       $updateArticle=$this->modelArticle->updateArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
-   }
+            // }
+            // else
+            // {
+                //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
+                // }
+    }  
+
+    public function modifyArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+    {
+        $updateArticle=$this->modelArticle->updateArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+    }
+
+    public function displayAllArticles()
+    {
+        $displayAllArticles = $this->modelArticle->getAllArticles();
+    
+        return $displayAllArticles;
+    }
+
+
+
 }
+        
 
-?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // public function listSouscategories()
+        // { 
+        //     // $allSousCategories= $this->modelSousCategorie->
+        // }
+        
+        ?>
  
-
-
-            
+ 
+ 
+ 

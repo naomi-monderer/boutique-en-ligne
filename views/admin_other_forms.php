@@ -25,61 +25,62 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 
 ?>
 <main>
-<h2>Ajouter une nouvelle catégorie</h2>
+    <section>
+        <article>               
+            <h2>Ajouter une nouvelle catégorie</h2>
                 <form action="" method="post">
                     <label for="nom_cat">Nouveau type de catégorie</label>
                     <input type="text" name="nom_cat"><br/>
 
                     <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
                 </form>
-               
-            <h2>Ajouter une nouvelle sous-catégorie</h2>
-                <form action="" method="post">
-                <label for="sous_categorie_select">Catégorie</label>
-                <select name="sous_categorie_select">
-                    <!-- foreach de option pour chaque ligne de categorie  -->
-                   
-                    
-                    <?php  
-                   if (isset($showAllCategoriesInNewCategory))
-                   {    
-                        foreach($showAllCategoriesInNewCategory as $category)
-                        { ?>
-                            <option value="<?php echo $category['id']; ?>">
+            </article>   
 
-                            <?php   echo $category['nom_categorie'];?>
-                             </option> 
-                  <?php }
-                   }
-                    ?>
-                   
-                </select><br/>
+            <article>
+                <h2>Ajouter une nouvelle sous-catégorie</h2>
+                <form action="" method="post">
+                    <label for="sous_categorie_select">Catégorie</label>
+                        <select name="sous_categorie_select">
+                        <!-- foreach de option pour chaque ligne de categorie  -->
+                            <?php  
+                                    if (isset($showAllCategoriesInNewCategory))
+                                    {    
+                                        foreach($showAllCategoriesInNewCategory as $category)
+                                        { ?>
+                                            <option value="<?php echo $category['id']; ?>">
+
+                                            <?php   echo $category['nom_categorie'];?>
+                                            </option> 
+                            <?php       }
+                                    }
+                            ?>
+                    
+                        </select><br/>
 
                     <label for="nom_sous_cat">Nouveau genre de sous-catégorie</label>
-                    <input type="text" name="nom_sous_cat"><br/>
-
-                    <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
+                        <input type="text" name="nom_sous_cat"><br/>
+                        <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
                 </form>    
-        </article>
+            </article>
 
-        <article>
-        <h2>Auteur.ice</h2>
-                <form action="" method="post">
-                    <label for="nom_auteur">Nom de l'auteur.ice</label>
-                        <input type="text" name="nom_auteur"><br/>
+            <article>
+                <h2>Auteur.ice</h2>
+                    <form action="" method="post">
+                        <label for="nom_auteur">Nom de l'auteur.ice</label>
+                            <input type="text" name="nom_auteur"><br/>
 
-                    <label for="prenom_auteur">Prénom de l'auteur.ice</label>
-                        <input type="text" name="prenom_auteur"> <br/> 
+                        <label for="prenom_auteur">Prénom de l'auteur.ice</label>
+                            <input type="text" name="prenom_auteur"> <br/> 
 
-                        <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
+                            <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
+                    </form>
+            </article>
+
+            <article>
+                <form action="admin.php" method="post">
+                    <input type="submit" name="back" value="Retourner au menu de gestion">
                 </form>
-        </article>
-
-        <article>
-            <form action="admin.php" method="post">
-                <input type="submit" name="back" value="Retourner au menu de gestion">
-            </form>
-        </article>
+            </article>
     </section>
 </main>
 <?php

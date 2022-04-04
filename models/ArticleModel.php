@@ -80,10 +80,10 @@ class ArticleModel extends Model{
     public function getAllArticles(){
         $requete = $this->connect()->prepare("SELECT * From produits");
         $requete->execute();
-        $resultat = $requete->fetchAll();
+        $resultat = $requete->fetchAll(PDO :: FETCH_ASSOC);
         return $resultat;
     }
-     // id 	titre 	description 	stock 	prix 	mise_en_avant 	editeur 	id_categorie 	id_souscategorie 	id_auteur 	image 
+
     public function updateArticle()
     {
         $sql ="UPDATE `produits` SET (`titre`=:titre,`description`= :description ,`stock`=:stock,`mise_en_avant`=:mise_en_avant, `editeur`=:editeur,`id_categorie`=:id_categorie,`id_souscategorie`=:id_souscategorie,`id_auteur`=:id_auteur ,`image`=:image WHERE `id` = :id";
