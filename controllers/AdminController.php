@@ -113,7 +113,7 @@ class AdminController extends Controller
     }
 
 
-    //-----------------------GESTION DES ARTICLES---------------------//
+    //-----------------------AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
     
     public function registerCategorie($nom_categorie)
     {
@@ -203,11 +203,10 @@ class AdminController extends Controller
     
     public function miseEnAvant()
     { 
-        
-        if(isset($_POST['mise_en_avant']) == 1){
-            $_POST['mise_en_avant'] == true;
+         if(isset($_POST['mise_en_avant']) == 1)
+        {
+            $_POST['mise_en_avant'] == true;       
         }
-        
     }
     
     public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
@@ -221,7 +220,9 @@ class AdminController extends Controller
                 //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
                 // }
     }  
+     //-----------------------/AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
 
+     //-----------------------MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
     public function modifyArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
     {
         $updateArticle=$this->modelArticle->updateArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
@@ -233,8 +234,32 @@ class AdminController extends Controller
     
         return $displayAllArticles;
     }
+     //-----------------------/MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
 
+     public function suppAuteur($id)
+     {
+         $suppAuteur = $this->modelAuteur->deleteAuteur($id);
+     }
 
+     public function suppCategorie($id)
+     {
+         $suppCategorie = $this->modelCategorie->deleteCategorie($id);
+     }
+     public function suppSousCategorie($id)
+     {
+         $suppSousCategorie = $this->modelSousCategorie->deleteSousCategorie($id);
+     }
+
+     public function suppArticle($id)
+     {
+        $suppArticle = $this->modelArticle->deleteArticle($id);
+     }
+
+     public function tabArticles()
+     {
+         $displayArticles = $this->modelArticle->InnerArticlesWithOptions();
+         return $displayArticles;
+     }
 
 }
         

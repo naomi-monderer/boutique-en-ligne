@@ -1,9 +1,13 @@
 <?php
 require_once('../controllers/AdminController.php');
 require_once('include/header.php');
+
 $controllerAdmin = new AdminController();
+
 $allCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 $lists= $controllerAdmin->listCategories();
+$listAuteurs= $controllerAdmin->listAuteurs();
+
 echo '<pre>';
 var_dump($lists);
 echo '</pre>';
@@ -18,37 +22,37 @@ echo '</pre>';
                 <thead>
                     <th>ID</th>
                     <th>CATÉGORIES</th>
-                    <th>MODIFIER</th>
-                    <th>SUPPRIMER</th>
+                   
                 </thead>
                 <tbody>
                  
                     <td>
                         <?php
-                            foreach($allCategories as $allCategory){
+                            foreach($allCategories as $category){
 
                         ?>        
                            <tr>
                                <form action="" method="post">
                                     <td>
-                                        <p><?= $allCategory['id']?></p>
+                                        <p><?= $category['id']?></p>
                                     </td>
                                     <td>
-                                        <input type="text" name="nom_cat" value="<?= $allCategory['nom_categorie']?>">
+                                        <input type="text" name="nom_cat" value="<?= $category['nom_categorie']?>">
                                     </td>
                                     <td>
-                                        <input type="submit" name="modify_cat" value="modifier" >  
-                                        <input type="hidden" name="idHidden_cat" value="<?=$allArticle['id'];?>" > 
+                                        <input type="submit" name="modify_categorie" value="modifier" >  
+                                        <input type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
                                     </td>
                                 </form>
                                 <form action="" method="post">
                                     <td>
-                                        <input type="submit" name="delete_cat" value="supprimer" >  
-                                        <input type="hidden" name="idHidden_cat" value="<?=$allArticle['id'];?>" > 
+                                        <input type="submit" name="delete_categorie" value="supprimer" >  
+                                        <input type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
+                                        
                                     </td>
                                 </form>
                             </tr>
-                    <?php } ?>
+                    <?php  } ?>
                     
                 </tbody>
             </table>
@@ -59,42 +63,37 @@ echo '</pre>';
                     <th>ID</th>
                     <th>CATÉGORIES</th>
                     <th>SOUS-CATÉGORIES</th>
-                    <th>MODIFIER</th>
-                    <th>SUPPRIMER</th>
+                   
                 </thead>
                 <tbody>
                     <td>
-                        <?php foreach($allCategories as $allCategory)
-                            { ?>        
+                
+                        <?php foreach($lists as $list)
+                            { 
+                                // ce foreach vient du fetch de la fonction ListCategories qui a pour requete innerjoin dans modelArticle
+                                ?>        
                                 <tr>
                                     <form action="" method="post">
                                         <td>
-                                            <p><?= $allCategory['id']?></p>
+                                            <p><?= $list['id_categorie'];?></p>
                                         </td>
                                         <td>
-                                        <select name="categorie">
-                                                <?php foreach($allCategories as $allCategory) 
-                                                {?>   
-                                                    <option value="<?= $allCategory['id']?>">
-                                                        <?php echo $allCategory['nom_categorie']?>
-                                                    </option>
-                                          <?php }?>   
-                                        </select>
+                                            <p><?= $list['nom_categorie'];?></p>
                                         </td>
                                         <td>
-                                        <?php 
-                                        ?>
-                                            <input type="text" name="nom_cat" value="<?= $allCategory['nom_categorie']?>">
-                                        </td>
+                                            <input type="text" name="sous-cat" value="<?= $list['nom_souscategorie'];?>">
+                                        </td>    
+                                     
                                         <td>
-                                            <input type="submit" name="modify_user" value="modifier" >  
-                                            <input type="hidden" name="idHidden_user" value="<?=$allArticle['id'];?>" > 
+                                            <input type="submit" name="modify_souscategorie" value="modifier" >  
+                                            <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
                                         </td>
                                     </form>
                                     <form action="" method="post">
                                         <td>
-                                            <input type="submit" name="delete_user" value="supprimer" >  
-                                            <input type="hidden" name="idHidden_user" value="<?=$allArticle['id'];?>" > 
+                                            <input type="submit" name="delete_souscategorie" value="supprimer" >  
+                                            <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
+                                            <?php var_dump($list['id']); ?>
                                         </td>
                                     </form>
                                 </tr>
@@ -103,51 +102,46 @@ echo '</pre>';
                     
                 </tbody>
             </table>
-               
-
-                    <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
-                </form>
-            </article>   
 
             <article>
-                <h2>Ajouter une nouvelle sous-catégorie</h2>
-                <form action="" method="post">
-                    <label for="sous_categorie_select">Catégorie</label>
-                        <select name="sous_categorie_select">
-                        <!-- foreach de option pour chaque ligne de categorie  -->
-                            <?php  
-                                    if (isset($showAllCategoriesInNewCategory))
-                                    {    
-                                        foreach($showAllCategoriesInNewCategory as $category)
-                                        { ?>
-                                            <option value="<?php echo $category['id']; ?>">
-
-                                            <?php   echo $category['nom_categorie'];?>
-                                            </option> 
-                            <?php       }
-                                    }
-                            ?>
-                    
-                        </select>
-
-                    <label for="nom_sous_cat">Nouveau genre de sous-catégorie</label>
-                        <input type="text" name="nom_sous_cat"><br/>
-                        <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
-                </form>    
-            </article>
-
-            <article>
-                <h2>Auteur.ice</h2>
-                    <form action="" method="post">
-                        <label for="nom_auteur">Nom de l'auteur.ice</label>
-                            <input type="text" name="nom_auteur"><br/>
-
-                        <label for="prenom_auteur">Prénom de l'auteur.ice</label>
-                            <input type="text" name="prenom_auteur"> <br/> 
-
-                            <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
-                    </form>
-            </article>
+                <h2> Gestion des Auteur.ices</h2>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>NOM</th>
+                        <th>PRENOM</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach($listAuteurs as $listAuteur)
+                                { ?>
+                                    <tr>
+                                        <form action="" method="post">
+                                            <td>
+                                                <p><?= $listAuteur['id']?></p>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="nom_auteur" value="<?= $listAuteur['nom']?>">
+                                            </td>
+                                            <td>
+                                            <input type="text" name="prenom_auteur" value="<?= $listAuteur['prenom']?>">
+                                            </td>
+                                            <td>
+                                                <input type="submit" name="modify_auteur" value="modifier" >  
+                                                <input type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
+                                            </td>
+                                        </form>
+                                        <form action="" method="post">
+                                            <td>
+                                                <input type="submit" name="delete_auteur" value="supprimer" >  
+                                                <input type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
+                                                <?php var_dump($listAuteur['id']); ?>
+                                            </td>
+                                        </form>
+                                     </tr>
+                         <?php  } ?>
+                    </tbody>
+                </table>
+              
 
 
         <form action="admin.php" method="post">
@@ -156,3 +150,22 @@ echo '</pre>';
     </article>
     </section>
 </main>
+<?php
+if(isset($_POST['delete_categorie']))
+{
+    $id=$_POST['idHidden_categorie'];
+    $suppCategorie = $controllerAdmin->suppCategorie($id);
+}
+
+if(isset($_POST['delete_auteur']))
+{   
+    $id = $_POST['idHidden_auteur'];
+    $suppAuteur= $controllerAdmin->suppAuteur($id);
+}
+
+if(isset($_POST['delete_souscategorie']))
+{ 
+    $id = $_POST['idHidden_souscategorie'];
+    $suppSousCategorie = $controllerAdmin->suppSousCategorie($id);
+}
+?>

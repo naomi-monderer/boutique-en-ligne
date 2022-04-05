@@ -40,4 +40,13 @@ class SousCategorieModel extends Model
                                 ));
         return $resultat; 
     }
+    
+    public function deleteSousCategorie($id)
+    {
+        $requete = $this->connect()->prepare("DELETE FROM souscategories WHERE id=:id");
+        $requete->execute(array(":id" => $id));
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $resultat;
+    }
 }

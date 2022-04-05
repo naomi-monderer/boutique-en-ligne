@@ -99,6 +99,27 @@ class ArticleModel extends Model{
                                 ":image"=>$image));
 
     }
+    public function InnerArticlesWithOptions()
+    {
+        $sql = "SELECT produits.*, categories.nom_categorie, souscategories.nom_souscategorie, auteurs.nom , auteurs.prenom
+                FROM produits
+                INNER JOIN categories ON produits.id_categorie = categories.id
+                INNER JOIN souscategories ON produits.id_souscategorie = souscategories.id
+                INNER JOIN auteurs ON produits.id_auteur = auteurs.id
+                ";
+        $requete = $this->connect()->prepare($sql);
+        $requete->execute();
+        $resultat = $requete->fetchAll(PDO :: FETCH_ASSOC);       
+        
+        return $resultat;
+    }
+
+    public function deleteArticle($id)
+    {
+        $sql = "DELETE FROM produits WHERE id = :id";
+        $requete = $this->connect()->prepare($sql);
+        $requete->execute(array('id' => $id));
+    }
 
 
 

@@ -20,9 +20,6 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 // echo '<pre>';
 // var_dump($showAllCategories); 
 // echo '</pre>';
-
-
-
 ?>
 <main>
     <h1> Ajouter des Articles</h1>
@@ -126,41 +123,3 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
         </article>
     </section>
 </main>
-<?php
-
-
-
-if(isset($_POST['new_article']))
-{
-// il manque la l'id_sous categorie
-$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
-                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
-                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
-                                                    $_POST['auteur'], $_POST['image']);
-
-}
-
-
-if(isset($_POST['back']))
-{
-    header('location:admin.php');
-}
-
-
-
-?>  
-
-
-
-<!-- utiliser optgroup pour créer le décalage escompter dans les categories>
-    
-<select name="couleur" multiple>
-  <optgroup label="Couleur">
-    <option value="orange">Orange</option>
-    <option value="bleu" selected>Bleu</option>
-    <option value="rouge">Rouge</option>
-  </optgroup>
-  <optgroup label="Taille">
-   <option value="un">Un</un>
- </optgroup>
-</select>  -->

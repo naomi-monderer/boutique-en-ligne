@@ -44,6 +44,14 @@ class CategorieModel extends Model {
 
         return $resultat;
     }
+    public function deleteCategorie($id)
+    {
+        $requete = $this->connect()->prepare("DELETE FROM categories WHERE id=:id");
+        $requete->execute(array(":id" => $id));
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $resultat;
+    }
     
     // public function getSousCategoryInCategories()
 

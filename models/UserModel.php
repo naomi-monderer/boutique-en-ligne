@@ -82,7 +82,7 @@ class UserModel extends Model
     }
     public function deleteUser($id)
     {
-        $requete = "DELETE FROM utilisateurs where id=:id";
+        $requete = "DELETE FROM utilisateurs WHERE id=:id";
         $result= $this->connect()->prepare($requete);
         $result->execute(array(':id'=> $id));
 

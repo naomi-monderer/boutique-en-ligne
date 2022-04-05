@@ -35,6 +35,14 @@ class AuteurModel extends Model
 
         return $resultat;
     }
+    public function deleteAuteur($id)
+    {
+        $requete = $this->connect()->prepare("DELETE FROM auteurs WHERE id=:id");
+        $requete->execute(array(":id" => $id));
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+        return $resultat;
+    }
 
 
 }
