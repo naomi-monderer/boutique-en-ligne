@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,12 @@
     <header>
 
             <img id="logo" src="../picture/logo_boutique.png">
+
+            <form action="../controllers/RechercheController.php" method="GET">
+
+                <input type="search" name="search" placeholder="Rechercher un livre..." >
+                <button type="submit">Rechercher</button>
+            </form>
 
             <nav>
 
