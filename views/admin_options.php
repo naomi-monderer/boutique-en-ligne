@@ -10,6 +10,7 @@ $listCategories = $controllerAdmin->listCategories();
 $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
+// $Articles = $controllerAdmin->
 
     echo '<pre>';
     // var_dump($listCategories); 
@@ -20,9 +21,6 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 // echo '<pre>';
 // var_dump($showAllCategories); 
 // echo '</pre>';
-
-
-
 ?>
 <main>
     <section>

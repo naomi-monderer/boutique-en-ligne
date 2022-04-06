@@ -21,12 +21,6 @@ class AdminController extends Controller
     //----------------GESTION DES USERS------------------------//
      public function modify($id,$nom, $prenom,$login, $email, $id_droits)
     {
-           // verifier que le login en bdd est unique
-        // verfier la longueur des login min 
-        //  verififier que l'email est unique 
-        
-
-  
         $nom = $this->secure(strtolower($nom)); 
         $prenom = $this->secure(strtolower($prenom)); 
         $email = $this->secureEmail(strtolower($email));
@@ -36,7 +30,6 @@ class AdminController extends Controller
         if(!empty($nom) && !empty($prenom) && !empty($email) && !empty($login) && !empty($id_droits))
         {   
             $login_len = strlen($login);
-      
 
             if($login_len >= 3)
             {    
@@ -71,17 +64,11 @@ class AdminController extends Controller
                 {
                     $_SESSION['error'] = "les rôles pouvant être attribués sont compris entre 1 et 3.";
                 }
-                
-            
-               
             }
             else
             {
                 $_SESSION['error'] = 'Le login ou le mot de passe est trop court.'; 
             }
-
-           
-            
         }
         else
         {
@@ -117,6 +104,7 @@ class AdminController extends Controller
     
     public function registerCategorie($nom_categorie)
     {
+        $nom_categorie =  ucwords($nom_categorie);
         if(!empty($nom_categorie))
         {   
             $nomCategorie = $this->modelCategorie->getCategorie($nom_categorie);
@@ -152,6 +140,7 @@ class AdminController extends Controller
   
     public function registerSousCategorie($nom_souscategorie, $id_categorie)
     {   
+        $nom_souscategorie = ucwords($nom_souscategorie);
         if(!empty($nom_souscategorie))
         {   
             $resultSousCategories= $this->modelSousCategorie->getCategoriesByNameSousCategorie($id_categorie);
@@ -178,7 +167,9 @@ class AdminController extends Controller
 
 
     public function registerAuteur($nom,$prenom)
-    {   
+    {   $nom = ucwords($nom);
+        $prenom = ucwords($prenom);
+
         if(!empty($nom) && !empty($prenom))
         {       
             $registerAuteur = $this->modelAuteur->insertAuteur($nom,$prenom);
@@ -234,7 +225,7 @@ class AdminController extends Controller
     
         return $displayAllArticles;
     }
-     //-----------------------/MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
+     //-----------------------SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
 
      public function suppAuteur($id)
      {
@@ -252,13 +243,24 @@ class AdminController extends Controller
 
      public function suppArticle($id)
      {
+        var_dump($id); 
         $suppArticle = $this->modelArticle->deleteArticle($id);
-     }
 
+     }
+      //-----------------------SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
+
+     //-----------------------------MODIFIER DES ARTICLES OU DES OPTIONS----------------------------------//
      public function tabArticles()
      {
          $displayArticles = $this->modelArticle->InnerArticlesWithOptions();
          return $displayArticles;
+     }
+
+
+     public function allArticles()
+     {
+         $allArticles= $this->modelArticle->getAllArticles();
+         return $allArticles;
      }
 
 }

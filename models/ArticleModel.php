@@ -36,9 +36,7 @@ class ArticleModel extends Model{
     }
    
    
-   
-
-    public function getstock($id){
+   public function getstock($id){
         $requette= $this->connect()->prepare("SELECT `stock` FROM produits WHERE `id`=:id");
         $requette->execute(["id"=>$id]);
         $resultat = $requette->fetch();
@@ -77,12 +75,19 @@ class ArticleModel extends Model{
 
     //     }
     }
+    
     public function getAllArticles(){
         $requete = $this->connect()->prepare("SELECT * From produits");
         $requete->execute();
-        $resultat = $requete->fetchAll(PDO :: FETCH_ASSOC);
+        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
         return $resultat;
     }
+    // public function getArticles(){
+    //     $requete = $this->connect()->prepare("SELECT * From produits");
+    //     $requete->execute();
+    //     $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
+    //     return $resultat;
+    // }
 
     public function updateArticle()
     {
@@ -115,10 +120,12 @@ class ArticleModel extends Model{
     }
 
     public function deleteArticle($id)
-    {
+    {   
+        
         $sql = "DELETE FROM produits WHERE id = :id";
         $requete = $this->connect()->prepare($sql);
-        $requete->execute(array('id' => $id));
+        $requete->execute(array('id' => intval($id)));
+       
     }
 
 

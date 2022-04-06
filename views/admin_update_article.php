@@ -5,16 +5,15 @@ require_once('../controllers/AdminController.php');
 require_once('include/header.php');
 $controllerAdmin = new AdminController();
 
-$showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
 $listCategories = $controllerAdmin->listCategories();
 $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
+$article = $controllerAdmin->allArticles();
+
 
     echo '<pre>';
-    // var_dump($listCategories); 
-    var_dump($_POST);
-    // var_dump($_SESSION);
+    var_dump($article);
     echo '</pre>';
 
 // echo '<pre>';
@@ -29,7 +28,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
         <form action="" method="post">
 
             <label for="nom">Nom de l'ouvrage:</label>
-                <input type="text" name="nom" value=""> <br/>
+                <input type="text" name="nom" value="<?=$article['titre']?>"> <br/>
 
                 <label for="auteur">Auteur.ice</label>
                     <select name="auteur">
@@ -50,13 +49,15 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
                     <p>Vous ne trouvez pas votre auteur dans la liste. Clikez ici</p><br/>
 
                     <label for="description">Description:</label>
-                        <textarea name="description" value=""></textarea><br/>
+                        <textarea name="description" value="<?=$article['description']?>">
+                            <?=$article['description']?>
+                        </textarea><br/>
 
                     <label for="stock"></label>Nombre d'articles à ajouter au stock:</label>
-                        <input type="number" name="stock" value=""><br/>
+                        <input type="number" name="stock" value="<?=$article['stock']?>"><br/>
 
                     <label for="prix">Prix:</label>
-                        <input type="number" step="0.01" name="prix" value="">€<br/>
+                        <input type="number" step="0.01" name="prix" value="<?=$article['prix']?>">€<br/>
                     
                     <label for="mise_en_avant">Mettre en avant cet article:</label>
                         <select name='mise_en_avant'>  
@@ -65,7 +66,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
                         </select><br/>
                         
                     <label for="editeur">Editeur:</label>
-                        <input type="text" name="editeur" value=""><br/>
+                        <input type="text" name="edit   eur" value="<?=$article['editeur']?>"><br/>
 
                     <label for="categorie">Catégorie:</label>
                     <select name="categorie">
@@ -110,9 +111,12 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
                     </select><br/>
 
                 <label for="image">Choisir une image:</label>
-                    <input type="text" name='image' placeholder="URL IMG">
+                    <input type="text" name='image' value="<?=$article['image']?>"placeholder="URL IMG"></br>
+                    <img src="<?=$article['image']?>" alt="" style="width:100px">
                 
-                <input type="submit" name="new_article" value="Ajouter un nouvel article">
+                <input type="submit" name="modify_article" value="Modifier cet article">
+                <input type="hidden" name ="idHidden_modify" value="<?=$article['id']?>">
+                <?= $article['id']?>
                 <!-- comment générer l'apparition d'un nouvelle catégorie?-->
             </form>
         </article>
@@ -123,3 +127,11 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
         </article>
     </section>
 </main>
+<?php
+if(isset($_POST['modify_article']))
+{
+    $id = $_POST['idHidden_modify'];
+    
+}
+
+?>

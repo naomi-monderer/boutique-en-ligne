@@ -16,6 +16,11 @@ echo '<pre>';
 var_dump($innerDisplayArticles);
 echo '</pre>';
 // var_dump($allArticles);
+if (isset($_POST['modify_article']))
+{
+    $id = $POST['idHidden_article'];
+    header('Location: admin_update_article.php');
+}
 
 ?>
 <main>
@@ -48,7 +53,7 @@ echo '</pre>';
                         {          
                         ?> 
                             <tr>
-                                <form action="" method="POST">
+                                <form action="" method="post">
                                     
                                     <td>
                                         <p><?=$displayArticle['id'];?></p>
@@ -80,26 +85,19 @@ echo '</pre>';
 
                                     <td>
                                     <p><?=$displayArticle['nom_souscategorie'];?></p>
-                                        
-    
                                     </td>
                                     <td>
-                                        
-                              
-                                         <p><?=$displayArticle['nom'].''. $displayArticle['prenom'];?></p>
-                                
+                                        <p><?=$displayArticle['nom'].''. $displayArticle['prenom'];?></p>
                                     </td>
-                             
-            
                                     <td>
                                         <input type="submit" name="modify_article" value="modifier" >  
-                                        <input type="hidden" name="idHidden_article" value="<?=$allArticle['id'];?>" > 
+                                        <input type="hidden" name="idHidden_article" value="<?=$displaylArticle['id'];?>" > 
                                     </td>
                                 </form>
                                 <form action="" method="post">
                                     <td>
                                         <input type="submit" name="delete_article" value="supprimer" >  
-                                        <input type="hidden" name="idHidden_article" value="<?=$allArticle['id'];?>" > 
+                                        <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
                                     </td>
                                 </form>
                             </tr>
@@ -117,9 +115,12 @@ echo '</pre>';
 </main>
 <?php
 if(isset($_POST['delete_article']))
-{   
+{   var_dump($id);
     $id = $_POST['idHidden_article'];
     $suppArticle = $controllerAdmin->suppArticle($id);
 
 }
+
+
+
 ?>
