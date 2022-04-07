@@ -5,7 +5,7 @@ require_once("../models/PanierModel.php");
 $articles = new ArticleModel();
 $panier = new PanierModel();
 
-echo 'ok';
+
 
 if(isset($_GET["produit"])){
   
@@ -60,7 +60,7 @@ if(isset($_GET["produit"])){
     $recuperation = $panier->recuperationpanier($_SESSION["user"][0]["id"]);
     // boucle quantite * prix 
     $total = 0;
-    var_dump($total);
+
     foreach($recuperation as $resultat){
 
     
@@ -69,7 +69,7 @@ if(isset($_GET["produit"])){
     $prixquantite = $prix * $quantiter;
     $total = $prixquantite + $total;
     
-    var_dump($total);   
+     
     
     
   

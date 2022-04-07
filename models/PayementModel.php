@@ -4,7 +4,7 @@ class payementModel extends Model{
 
     public function createCommande($commande,$total,$id){
         $requete = $this->connect()->prepare("INSERT INTO `commandes`( `date`, `total`, `id_utilisateur`, `id_commande`) VALUES (NOW(), :total, :id, :commande)");
-        var_dump($requete);
+    
         $requete->execute(["commande" => $commande, "total" => $total , "id" => $id]);
 
     }

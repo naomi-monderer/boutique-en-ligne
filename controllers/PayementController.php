@@ -25,7 +25,7 @@ if(!empty($name)&& !empty($carte)&& !empty($cvc)&& !empty($expiration)&& !empty(
                        //Creation du numero de commande == dade du jour + numero aleatoir
                        $date = date("mY");
                        $numero_commande = $date.rand();
-                       var_dump($_SESSION);
+                       
 
                        // Insertion de la commande et de son detail
                        require_once('../models/PayementModel.php');
