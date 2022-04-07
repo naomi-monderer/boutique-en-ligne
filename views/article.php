@@ -34,7 +34,7 @@ require_once("../controllers/ArticleController.php");
             <div >
                 <p>Auteur: <?php echo  $produit["prenom"]; echo " ". $produit["nom"] ?> </p>
                 <p>Description</p>
-                <p><?php  echo $produit["description"]  ?></p>
+                <p class="descriptionarticle"> <?php  echo $produit["description"]  ?></p>
 
             </div>
             <div>

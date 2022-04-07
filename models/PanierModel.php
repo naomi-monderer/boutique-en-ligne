@@ -28,6 +28,12 @@ class PanierModel extends Model{
         
 
     }
+
+    public function delete($id){
+        $requette = $this->connect()->prepare("DELETE FROM `panier` WHERE `id_utilisateur` = :id");
+        $requette->execute(["id"=>$id]);
+       
+    }
   
 
 }
