@@ -55,3 +55,4 @@ if (!empty($_GET['id_souscategorie'])){
 
 
 // recuperation cataegorie et sous categorie
+// 
