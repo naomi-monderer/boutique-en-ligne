@@ -40,19 +40,3 @@ if (!empty($_GET['id_souscategorie'])){
     $titre = $categorie->recuperationNonSouscategorie($_GET['id_souscategorie']);
     $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
-
-
-
-
-
-
-
-
-
-// verif sous categorie
-
-
-
-
-// recuperation cataegorie et sous categorie
-// 
