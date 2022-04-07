@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +10,35 @@
 <body>
     <header>
             <nav>
+                <?php if(!isset($_SESSION['user']))
+                {?>
+                 
                 <a href="connexion.php">CONNEXION</a> </br>
                 <a href="inscription.php">INSCRIPTION</a></br>
-                <a href="profil.php">PROFIL</a></br>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
+                <a href="index.php">INDEX</a></br>
+             
+                
+        <?php }
+                
+                if(isset($_SESSION['user']))
+                        {?>
+                           <a href="index.php">INDEX</a></br>
+                          <a href="profil.php">PROFIL</a></br>
+                         <a href="deconnexion.php">DECONNEXION</a></br>
+                          
+                          
+
+                <?php    }
+
+                        if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 1)
+                        { ?>
+                            <a href="admin.php">Espace Administrateur</a></br>
+                          
+                        
+
+                <?php   } ?>
+
+              
+                
             </nav>
     </header>

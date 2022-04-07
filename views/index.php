@@ -1,14 +1,30 @@
 <?php
-session_start();
 require_once('../controllers/ConnexionController.php');
 require_once('include/header.php');
-$controller = new UserModel;
-
-var_dump($_SESSION['user']);
-// if(($_SESSION['user'])
-// {
-  
-// }
+$controller = new ConnexionController();
 
 ?>
 
+<main>
+
+    <h1>Accueil</h1>
+
+    <?php
+    
+    if(!empty($_SESSION)) {
+
+        echo '<p>Bonjour : ' . $_SESSION['user'][0]['prenom'] .''. $_SESSION['user'][0]['nom'] . '</p>';
+    } else {
+
+        echo 'non connecte';
+    }
+    ?>
+
+</main>
+
+<?php
+
+require_once("include/footer.php");
+
+?>
+<main>

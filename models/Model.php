@@ -13,5 +13,6 @@ abstract class Model extends Bddconnexion
         $this->bdd = $this->connect();
     }
     
+
    
 }

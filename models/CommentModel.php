@@ -1,7 +1,7 @@
 <?php
-require('Model.php');
+require_once('Model.php');
 
-class commentModel extends Model
+class CommentModel extends Model
 {
 
     public function __construct()
@@ -9,25 +9,27 @@ class commentModel extends Model
 
     }
 
-    public function insertCommentaire()
+    public function insertCommentaire($commentaire, $id_utilisateur, $id_produit)
     {
-        $requete = $this->connect()->prepare('INSERT INTO commentaires(commentaire, id_utilisateur, id_article, date) VALUES(:commentaire, :id_utilisateur, :id_article, NOW())');
+        $requete = $this->connect()->prepare('INSERT INTO commentaires(commentaire, id_utilisateur, id_produit, date) VALUES(:commentaire, :id_utilisateur, :id_produit, NOW())');
         $requete->execute(array(
             'commentaire' => $commentaire,
-            'id_utilisateur' => $_SESSION['id'],
-            'id_produit' => $article_id,
+            'id_utilisateur' => $id_utilisateur,
+            'id_produit' => $id_produit,
         ));
     }
 
-    public function getCommentaires()
+    public function getCommentaires($id_produit)
     {
-        $requete = $this->connect()->prepare('SELECT * FROM `commentaires`
-                                 INNER JOIN produits ON produits.id = commentaires.id_produit
-                                 WHERE produits.id = :produit_id');
-        $requete->execute(array('produit_id' => $produit_id));
-        $getCommentaires = $requete->fetchAll();
+        $requete = $this->connect()->prepare('SELECT commentaires.id, commentaire, id_utilisateur, id_produit, date, utilisateurs.login
+                                              FROM commentaires
+                                              INNER JOIN produits ON produits.id = commentaires.id_produit
+                                              INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur
+                                              WHERE produits.id = :id_produit');
+        $requete->execute(array('id_produit' => $id_produit));
+        $getCommentaires = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-        return $commentaires;
+        return $getCommentaires;
     }
 
     public function updateCommentaire()
@@ -36,7 +38,7 @@ class commentModel extends Model
         $updateCommentaire = $requete->execute(array('commentaire' => $commentaire, 'id' => $id));
     }
 
-    public function deleteCommentaire()
+    public function deleteCommentaire($id)
     {
         $requete = $this->connect()->prepare(('DELETE FROM `commentaires` WHERE id = :id'));
         $requete->execute(['id' => $id]);
