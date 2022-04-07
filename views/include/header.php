@@ -29,7 +29,6 @@ session_start();
                  
                 <a href="connexion.php">Connexion</a>
                 <a href="inscription.php">Inscription</a>
-                <a href="panier.php">Panier</a>
              
                 
         <?php }
@@ -38,6 +37,7 @@ session_start();
                         {?>
                         <a href="profil.php">Profil</a></br>
                          <a href="deconnexion.php">déconnexion</a></br>
+                         <a href="panier.php">Panier</a>
                           
                           
 

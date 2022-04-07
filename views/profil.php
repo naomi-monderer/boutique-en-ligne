@@ -1,8 +1,9 @@
 <?php
     require_once('include/header.php');
     require_once('../controllers/ProfilController.php');
+    require_once('../controllers/CommandeConstroller.php');
 
-    //var_dump($_SESSION);
+
     $controller = new ProfilController();
 
     $id = $_SESSION['user'][0]['id'];
