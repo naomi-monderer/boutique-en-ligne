@@ -27,16 +27,14 @@ if(!empty($_GET["id"])){
         $erreur = "aucun article dans cette categorie";
     }
     
-  
-
-
 }else
 {
 
 }
 
 // If id_souscategorie == articles des sous categories
-if (!empty($_GET['id_souscategorie'])){
-    $titre = $categorie->recuperationNonSouscategorie($_GET['id_souscategorie']);
+if (!empty($_GET['id_souscategorie']))
+{
+    $titre = $categorie->getSousCategorie($_GET['id_souscategorie']);
     $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
