@@ -17,10 +17,10 @@ require_once('include/header.php');
                         <h2>Gestion des articles</h2>
                         <form action="" method="get">
                             <input type="submit" name="display_article" value="Ajouter des articles"></br>
-                            <input type="submit" name="display_select_list" value="Générer des listes pour spécifier vos articles"></br>
+                            <input type="submit" name="display_select_list" value="Ajouter des options"></br>
                             <input type="submit" name="tab_articles" value="Gérer les articles"></br>
-                            <input type="submit" name="manage_specificities" value="Gérer les specificités des articles"></br>
-                            <input type="submit" name="update_article" value="Modifier les articles">
+                            <input type="submit" name="manage_specificities" value="Gérer les options"></br>
+                            <!-- <input type="submit" name="update_article" value="Modifier les articles"> -->
                         </form>
                        
                     </article>    

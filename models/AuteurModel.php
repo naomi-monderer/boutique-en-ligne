@@ -44,6 +44,13 @@ class AuteurModel extends Model
         return $resultat;
     }
 
+    public function updateAuteur($id,$nom,$prenom)
+    { 
+        $requete = $this->connect()->prepare("UPDATE auteurs SET nom= :nom, prenom = :prenom WHERE id = :id");
+        $requete->execute(array(":id" => intval($id),
+                                ":nom" => $nom,
+                                ":prenom" => $prenom));
+    }
 
 }
 

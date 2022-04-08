@@ -79,31 +79,17 @@ class ArticleModel extends Model{
     public function getAllArticles(){
         $requete = $this->connect()->prepare("SELECT * From produits");
         $requete->execute();
-        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         return $resultat;
     }
-    // public function getArticles(){
-    //     $requete = $this->connect()->prepare("SELECT * From produits");
-    //     $requete->execute();
-    //     $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
-    //     return $resultat;
-    // }
+    public function getArticle($id){
+        $requete = $this->connect()->prepare("SELECT * From produits WHERE id = :id");
+        $requete->execute(array(":id" => $id));
+        $resultat = $requete->fetch(PDO :: FETCH_ASSOC);
 
-    public function updateArticle()
-    {
-        $sql ="UPDATE `produits` SET (`titre`=:titre,`description`= :description ,`stock`=:stock,`mise_en_avant`=:mise_en_avant, `editeur`=:editeur,`id_categorie`=:id_categorie,`id_souscategorie`=:id_souscategorie,`id_auteur`=:id_auteur ,`image`=:image WHERE `id` = :id";
-        $requete = $this->connect()->prepare($sql);
-        $requete->execute(array(":titre"=>$titre,
-                                ":description"=>$description,
-                                ":stock"=>$stock,
-                                ":mise_en_avant"=>$mise_en_avant,
-                                ":editeur"=>$editeur,
-                                ":id_categorie"=>$id_categorie,
-                                ":id_souscategorie"=>$id_souscategorie,
-                                ":id_auteur"=>$id_auteur,
-                                ":image"=>$image));
-
+        return $resultat;
     }
+    
     public function InnerArticlesWithOptions()
     {
         $sql = "SELECT produits.*, categories.nom_categorie, souscategories.nom_souscategorie, auteurs.nom , auteurs.prenom
@@ -121,11 +107,29 @@ class ArticleModel extends Model{
 
     public function deleteArticle($id)
     {   
-        
+
         $sql = "DELETE FROM produits WHERE id = :id";
         $requete = $this->connect()->prepare($sql);
         $requete->execute(array('id' => intval($id)));
-       
+    }
+
+    public function updateArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+    {
+        $sql = "UPDATE `produits` SET `titre`=:titre,`description`= :description ,`stock`=:stock, `prix`=:prix,`mise_en_avant`=:mise_en_avant, `editeur`=:editeur,`id_categorie`=:id_categorie,`id_souscategorie`=:id_souscategorie,`id_auteur`=:id_auteur ,`image`=:image WHERE `id` = :id";
+        $requete = $this->connect()->prepare($sql);
+        $requete->execute(array(":id" => $id,
+                                ":titre"=>$titre,
+                                ":description"=>$description,
+                                ":stock"=>$stock,
+                                ":prix" => $prix,
+                                ":mise_en_avant"=>$mise_en_avant,
+                                ":editeur"=>$editeur,
+                                ":id_categorie"=>$id_categorie,
+                                ":id_souscategorie"=>$id_souscategorie,
+                                ":id_auteur"=>$id_auteur,
+                                ":image"=>$image
+                            ));
+
     }
 
 

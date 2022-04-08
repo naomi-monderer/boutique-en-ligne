@@ -103,8 +103,9 @@ class AdminController extends Controller
     //-----------------------AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
     
     public function registerCategorie($nom_categorie)
+
     {
-        $nom_categorie =  ucwords($nom_categorie);
+        // $nom_categorie =  ucwords($nom_categorie);
         if(!empty($nom_categorie))
         {   
             $nomCategorie = $this->modelCategorie->getCategorie($nom_categorie);
@@ -116,19 +117,19 @@ class AdminController extends Controller
                 $insertCategorie = $this->modelCategorie->insertCategorie($nom_categorie);
                 $_SESSION['error'] = null;
                  unset($_SESSION['error']);
-                // $_SESSION['error'] = $insertCategorie; // retour true or false de l'insertion
+           
             }
+
             else
             {
                 $_SESSION['error']= "Cette catégorie existe déjà."; 
             }
+            return $nomCategorie;
         }
         else
         {
             $_SESSION['error']= "Veuillez remplir le champs.";   
         }
-
-        return $nomCategorie;
     }
 
     public function showAllCategoriesInNewCategory()
@@ -140,45 +141,46 @@ class AdminController extends Controller
   
     public function registerSousCategorie($nom_souscategorie, $id_categorie)
     {   
-        $nom_souscategorie = ucwords($nom_souscategorie);
+        // $nom_souscategorie = ucwords($nom_souscategorie);
         if(!empty($nom_souscategorie))
         {   
             $resultSousCategories= $this->modelSousCategorie->getCategoriesByNameSousCategorie($id_categorie);
-             $bool = true;
+                $bool = true;
             foreach($resultSousCategories as $resultSousCategorie)
             {
                 if($resultSousCategorie["nom_souscategorie"] == $nom_souscategorie){
                         
                         $bool = false;
-                        $_SESSION['error'] = "Veuillez remplir le champs.";
+                        $_SESSION['error'] = "Cette sous-categorie existe déjà.";
                         var_dump('existe deja');
+                        
                 }
             }
             if($bool == true)
             {
                 $insertSousCategorie = $this->modelSousCategorie->insertSousCategorie($nom_souscategorie,$id_categorie);
-            }
+            } 
+            return $resultSousCategorie;
         }
-        else{
+        else
+        {
             $_SESSION['error'] = "Veuillez remplir le champs.";
         }
-        return $resultSousCategorie;
     }
 
 
     public function registerAuteur($nom,$prenom)
-    {   $nom = ucwords($nom);
-        $prenom = ucwords($prenom);
+    { 
+        //   $nom = ucwords($nom);
+        // $prenom = ucwords($prenom);
 
         if(!empty($nom) && !empty($prenom))
-        {       
+        {      
             $registerAuteur = $this->modelAuteur->insertAuteur($nom,$prenom);
         }
-
     }
     
   
-
     public function listCategories()
     {  
         $allCategories= $this->modelCategorie->innerCategoriesWithSousCategories();
@@ -211,12 +213,14 @@ class AdminController extends Controller
                 //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
                 // }
     }  
-     //-----------------------/AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
+    //-----------------------/AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
 
-     //-----------------------MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
-    public function modifyArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+    //-----------------------MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
+    
+    public function modifyArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
     {
-        $updateArticle=$this->modelArticle->updateArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+        $modifyArticle = $this->modelArticle->updateArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+        return $modifyArticle;
     }
 
     public function displayAllArticles()
@@ -249,19 +253,72 @@ class AdminController extends Controller
      }
       //-----------------------SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
 
-     //-----------------------------MODIFIER DES ARTICLES OU DES OPTIONS----------------------------------//
+     //-----------------------------MODIFIER DES ARTICLES OU DES OPTIONS-------------------------------//
+                                            /* Articles */
+
+     // permet d'afficher les articles dans admin_tab_articles.php
      public function tabArticles()
      {
          $displayArticles = $this->modelArticle->InnerArticlesWithOptions();
          return $displayArticles;
      }
 
-
-     public function allArticles()
+    // permet de recuperer les articles dans admin_update_articles.php 
+     public function Article($id)
      {
-         $allArticles= $this->modelArticle->getAllArticles();
+     
+         $allArticles= $this->modelArticle->getArticle($id);
+  
          return $allArticles;
+         
      }
+                                         /* Catégories */
+     public function modifyCategorie($id,$nom_categorie)
+     {
+        if (!empty($nom_categorie))
+        {   
+
+            $modifyCategorie = $this->modelCategorie->updateCategorie($id,$nom_categorie);
+        }
+        else
+        {
+            $_SESSION['error']='Veuillez renseigner le nom de la nouvelle catégorie';
+        }
+         
+         return $modifyCategorie;
+     }
+    
+    public function modifyAuteur($id,$nom,$prenom)
+    {   $nom = ucwords($nom);
+        $prenom = ucwords($prenom);
+        if(!empty($prenom) && !empty($prenom))
+        {
+            $modifyAuteur = $this->modelAuteur->updateAuteur($id,$nom,$prenom);
+        }
+        else
+        {
+            $_SESSION['error']='Veuillez renseigner le nom et le prénom de l\'auteur.ice';
+        }
+        return $modifyAuteur;
+    }
+
+    public function modifySousCategorie($id,$id_categorie,$nom_souscategorie)
+    {   
+        if (!empty($nom_souscategorie))
+        {
+            $result = $this->modelSousCategorie->selectAllWhere("nom_souscategorie",'souscategories','id_categorie',$id_categorie); 
+            var_dump($result);
+            $modifySouscategorie = $this->modelSousCategorie->updateSousCategorie($id,$nom_souscategorie);
+            return $modifySouscategorie;
+        }
+        else
+        {
+            $_SESSION['error']='Veuillez renseigner le nom de la nouvelle sous-catégorie';
+        }
+       
+    }
+    
+   
 
 }
         

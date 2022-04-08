@@ -15,8 +15,7 @@ class CategorieModel extends Model {
 
     }
 
-   
-    public function allCategorie(){
+   public function allCategorie(){
 
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");
         $requette->execute();
@@ -53,7 +52,14 @@ class CategorieModel extends Model {
         return $resultat;
     }
     
-    // public function getSousCategoryInCategories()
+   public function updateCategorie($id,$nom_categorie)
+   {
+       $requete = $this->connect()->prepare("UPDATE categories SET nom_categorie = :nom_categorie WHERE id = :id");
+       $requete->execute(array(":id" => $id,
+                                ":nom_categorie" => $nom_categorie,
+                                
+                                        ));
+    }
 
     
 

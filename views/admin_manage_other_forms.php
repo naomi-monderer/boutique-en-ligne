@@ -9,7 +9,7 @@ $lists= $controllerAdmin->listCategories();
 $listAuteurs= $controllerAdmin->listAuteurs();
 
 echo '<pre>';
-var_dump($lists);
+var_dump($allCategories);
 echo '</pre>';
 
 ?>
@@ -87,13 +87,14 @@ echo '</pre>';
                                         <td>
                                             <input type="submit" name="modify_souscategorie" value="modifier" >  
                                             <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
+                                            <input type="hidden" name="idHidden_cat" value="<?=$list['id_categorie'];?>" > 
                                         </td>
                                     </form>
                                     <form action="" method="post">
                                         <td>
                                             <input type="submit" name="delete_souscategorie" value="supprimer" >  
                                             <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
-                                            <?php var_dump($list['id']); ?>
+                                            <?php var_dump($_POST); ?>
                                         </td>
                                     </form>
                                 </tr>
@@ -115,7 +116,7 @@ echo '</pre>';
                         <?php foreach($listAuteurs as $listAuteur)
                                 { ?>
                                     <tr>
-                                        <form action="" method="post">
+                                        <form action="admin_manage_other_forms.php" method="post">
                                             <td>
                                                 <p><?= $listAuteur['id']?></p>
                                             </td>
@@ -151,21 +152,51 @@ echo '</pre>';
     </section>
 </main>
 <?php
+/* GESTIONS DES ERREURS */
+if(isset($_SESSION['error'])) // il faut y reflechir    
+{
+    echo "<div>" . $_SESSION['error'] . "</div>";
+}
+/* Categories*/ 
 if(isset($_POST['delete_categorie']))
 {
     $id=$_POST['idHidden_categorie'];
     $suppCategorie = $controllerAdmin->suppCategorie($id);
 }
 
+if(isset($_POST['modify_categorie']))
+{
+    $id=$_POST['idHidden_categorie'];
+    // $nom_categorie = $_POST['nom_cat'];
+    $modifyCategorie = $controllerAdmin->modifyCategorie($id,$_POST['nom_cat']);
+    // var_dump($nom_categorie);
+    var_dump($id);
+}
+
+
+/* Auteurs*/ 
 if(isset($_POST['delete_auteur']))
 {   
     $id = $_POST['idHidden_auteur'];
     $suppAuteur= $controllerAdmin->suppAuteur($id);
 }
 
+if(isset($_POST['modify_auteur']))
+{   
+    $id = $_POST['idHidden_auteur'];
+    $modifyAuteur= $controllerAdmin->modifyAuteur($id,$_POST['nom_auteur'],$_POST['prenom_auteur']);
+    // header('location: admin_manage_other_forms.php');
+}
+
+/* Sous-Catégories*/ 
 if(isset($_POST['delete_souscategorie']))
 { 
     $id = $_POST['idHidden_souscategorie'];
     $suppSousCategorie = $controllerAdmin->suppSousCategorie($id);
+}
+if(isset($_POST['modify_souscategorie']))
+{ 
+    $id = $_POST['idHidden_souscategorie'];
+    $modifySousCategorie= $controllerAdmin->modifySousCategorie($id, $_POST['idHidden_cat'],$_POST['sous-cat']);
 }
 ?>

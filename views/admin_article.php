@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_POST);
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
@@ -59,12 +59,12 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
                         <input type="number" name="stock" value=""><br/>
 
                     <label for="prix">Prix:</label>
-                        <input type="number" step="0.01" name="prix" value="">€<br/>
+                        <input type="number"  name="prix" value="">€<br/>
                     
                     <label for="mise_en_avant">Mettre en avant cet article:</label>
                         <select name='mise_en_avant'>  
-                            <option value="oui">oui</option>
-                            <option value="non">non</option>  
+                            <option value="1">oui</option>
+                            <option value="0    ">non</option>  
                         </select><br/>
                         
                     <label for="editeur">Editeur:</label>
@@ -127,9 +127,6 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
     </section>
 </main>
 <?php
-
-
-
 if(isset($_POST['new_article']))
 {
 // il manque la l'id_sous categorie

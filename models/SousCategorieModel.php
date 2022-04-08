@@ -22,6 +22,15 @@ class SousCategorieModel extends Model
         return $resultat;
 
     }
+    public function selectAllWhere($target,$table,$column,$value)
+    {
+        $requette = $this->connect()->prepare("SELECT $target FROM $table WHERE $column = ?");
+        $requette->execute(array($value));
+        $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
+        // var_dump($resultat);
+        return $resultat;
+
+    }
 
     public function allsouscategorie(){
         $requette = $this->connect()->prepare("SELECT * FROM `souscategories`");
@@ -49,4 +58,13 @@ class SousCategorieModel extends Model
 
         return $resultat;
     }
+
+    public function updateSousCategorie($id,$nom_souscategorie)
+    {;
+        $requete = $this->connect()->prepare("UPDATE `souscategories` SET nom_souscategorie = :nom_souscategorie  WHERE id = :id");
+        $requete->execute(array(":nom_souscategorie" => $nom_souscategorie,
+                                 ":id" => $id
+                                         ));
+    }
+
 }

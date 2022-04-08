@@ -1,4 +1,5 @@
 <?php
+// ob_start();
 require_once('../controllers/AdminController.php');
 require_once('include/header.php');
 $controllerAdmin = new AdminController();
@@ -12,17 +13,14 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
 // $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 // $showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
 
-echo '<pre>';
-var_dump($innerDisplayArticles);
-echo '</pre>';
+// echo '<pre>';
+// var_dump($innerDisplayArticles);
+// echo '</pre>';
 // var_dump($allArticles);
-if (isset($_POST['modify_article']))
-{
-    $id = $POST['idHidden_article'];
-    header('Location: admin_update_article.php');
-}
+
 
 ?>
+
 <main>
     <section>
     <article>
@@ -53,7 +51,7 @@ if (isset($_POST['modify_article']))
                         {          
                         ?> 
                             <tr>
-                                <form action="" method="post">
+                                <form action="admin_update_article.php" method="post">
                                     
                                     <td>
                                         <p><?=$displayArticle['id'];?></p>
@@ -91,7 +89,7 @@ if (isset($_POST['modify_article']))
                                     </td>
                                     <td>
                                         <input type="submit" name="modify_article" value="modifier" >  
-                                        <input type="hidden" name="idHidden_article" value="<?=$displaylArticle['id'];?>" > 
+                                        <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
                                     </td>
                                 </form>
                                 <form action="" method="post">
@@ -114,13 +112,23 @@ if (isset($_POST['modify_article']))
     </section>
 </main>
 <?php
+// if (isset($_POST['modify_article']))
+// {   
+//     // var_dump($_POST);
+
+//     // var_dump($displayArticle['id']);
+//     $id = $_POST['idHidden_article'];
+//     header('Location: admin_update_article.php');
+// }
+
 if(isset($_POST['delete_article']))
-{   var_dump($id);
+{  
+    //  var_dump($id);
     $id = $_POST['idHidden_article'];
     $suppArticle = $controllerAdmin->suppArticle($id);
 
 }
 
 
-
+// ob_end_flush();
 ?>

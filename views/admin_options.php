@@ -24,6 +24,11 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 ?>
 <main>
     <section>
+    <?php if(isset($_SESSION['error']))
+{
+    echo "<div>" . $_SESSION['error'] . "</div>";
+}   
+?>
         <article>               
             <h2>Ajouter une nouvelle catégorie</h2>
                 <form action="" method="post">
@@ -32,7 +37,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 
                     <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
                 </form>
-            </article>   
+            </article>
 
             <article>
                 <h2>Ajouter une nouvelle sous-catégorie</h2>
@@ -82,6 +87,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
     </section>
 </main>
 <?php
+
 
 if(isset($_POST['new_cat']))
 {   
