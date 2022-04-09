@@ -6,7 +6,7 @@ require_once('include/header.php');
 
 
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,8 @@ require_once('include/header.php');
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style//fontello/css/fontello.css">
     <title>Document</title>
-</head>
+</head> -->
 <body>
-    <header>
-
-    </header>
     <main class="mainArticles"> 
     
         <nav>

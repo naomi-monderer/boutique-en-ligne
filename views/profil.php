@@ -1,49 +1,74 @@
 <?php
     require_once('include/header.php');
     require_once('../controllers/ProfilController.php');
-    
-    if(isset($_POST['submit']))
+    require_once('../controllers/CommandeConstroller.php');
+
+
+    $controller = new ProfilController();
+
+    $id = $_SESSION['user'][0]['id'];
+    $dataUser = $controller->recupId($id);
+
+    if(isset($_POST['submitLogin']))
     {
-        $controller = new ProfilController();
-        $var = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
-       
-    }   
-?>
-<main>
-    <section>
-    <h1>Inscription</h1>
-
-        <form action="inscription.php" method="post">
         
-            <label for="login">Identifiant</label>
-            <input type="text" name='login' placeholder="Rosy">
+        $controller->modifyLogin($_POST['login']);  
+    }
 
-            <label for="prenom">Prénom</label>
-            <input type="text" name='prenom' placeholder="Rose ">
+    if(isset($_POST['submitEmail']))
+    {
+        
+        $controller->modifyEmail($_POST['email']); 
+    } 
 
-            <label for="nom">Nom</label>
-            <input type="text" name='nom'placeholder="McGowan">
+    if(isset($_POST['submitPass']))
+    {
+        
+        $controller->modifyPassword($_POST['password'],$_POST['passwordConfirm']); 
+    } 
+   
+?>
 
-            <label for="email">Email</label>
-            <input type="text" name='email' placeholder="mcgowan@protonmail.com" required>
+<main>
 
-            <label for="password">Mot de passe</label>
-            <input type="text" name='password' placeholder="...........">
+    <h1>Mon profil</h1>
 
-            <label for="passwordConfirm">Confirmez le mote de passe</label>
-            <input type="text" name='passwordConfirm' placeholder="..........">
-            
-           <input type="hidden" name="id_droits">
+    <section>
 
-            <input type="submit" name="submit" value="valider">
+        <form action="" method="post">
+        
+            <label for="login">Login</label>
+            <input type="text" name='login'  value="<?= $dataUser[0]['login']?>">
+
+            <input type="submit" name="submitLogin" value="Modifier">
         </form>
+
+        <form action="" method="post">
+        
+            <label for="email">Email</label>
+            <input type="email" name='email'  value="<?= $dataUser[0]['email']?>">
+
+            <input type="submit" name="submitEmail" value="Modifier">
+        </form>
+
+        <form action="" method="post">
+        
+        <label for="password">Mot de passe</label>
+        <input type="password" name='password'  placeholder="********">
+
+        <label for="password">Confirmez le mot de passe</label>
+        <input type="password" name='passwordConfirm'  placeholder="********">
+        
+        <input type="submit" name="submitPass" value="Modifier">
+    </form>
     </section>
+
 </main>
+
 <?php
-if(isset($_POST['submit']))
+if(isset($_POST['submitLogin']) || isset($_POST['submitEmail']) || isset($_POST['submitPass']))
 {
-    echo "<div> $var </div>";
+    echo "<div>" . $_SESSION['error'] . "</div>";
 }
-?>    
 
-
+?>  

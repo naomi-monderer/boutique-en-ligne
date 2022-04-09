@@ -5,20 +5,52 @@ $controller = new ConnexionController();
 
 ?>
 
-<main>
+<main class = "page_accueil">
 
-    <h1>Accueil</h1>
+    <div class="sidebar">
 
-    <?php
-    
-    if(!empty($_SESSION)) {
+        <a href="#">TOUS LES PRODUITS</a>
+        <a href="#">TOUTES LES NOUVEAUTES</a>
+        <a href="#">LES MEILLEURES VENTES</a>
 
-        echo '<p>Bonjour : ' . $_SESSION['user'][0]['prenom'] .''. $_SESSION['user'][0]['nom'] . '</p>';
-    } else {
+    </div>
 
-        echo 'non connecte';
-    }
-    ?>
+    <section>
+
+        <h2>LES BONS PLANS</h2>
+
+        <article>
+
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/La-Permaculture-au-jardin-mois-par-mois.jpg">
+            <img src="../picture/Boule-Bill-Bill-se-tient-a-Caro.jpg">
+            <img src="../picture/Bug.jpg">
+            <img src="../picture/Bug.jpg">
+        </article>
+
+        <h2>NOUVEAUTES</h2>
+
+        <article>
+            
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/La-Permaculture-au-jardin-mois-par-mois.jpg">
+            <img src="../picture/Boule-Bill-Bill-se-tient-a-Caro.jpg">
+            <img src="../picture/Bug.jpg">
+            <img src="../picture/Bug.jpg">
+        </article>
+
+        <h2>LES MEILLEURES VENTES</h2>
+
+        <article>
+
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/asterix.jpg">
+            <img src="../picture/Bug.jpg">
+        </article>
+
+    </section>
 
 </main>
 
@@ -27,4 +59,3 @@ $controller = new ConnexionController();
 require_once("include/footer.php");
 
 ?>
-<main>

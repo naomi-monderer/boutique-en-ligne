@@ -3,6 +3,7 @@
 require_once("../models/ArticleModel.php"); 
 require_once("../models/CategorieModel.php");
 
+
 $categorie = new CategorieModel();
 $articlesmodel = new ArticleModel();
 
@@ -34,7 +35,7 @@ if(!empty($_GET["id"])){
 
 // If id_souscategorie == articles des sous categories
 if (!empty($_GET['id_souscategorie']))
-{
-    $titre = $categorie->getSousCategorie($_GET['id_souscategorie']);
+{   
+    $titre = $categorie->getsouscategorie($_GET['id_souscategorie']);
     $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
