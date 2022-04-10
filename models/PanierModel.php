@@ -21,7 +21,7 @@ class PanierModel extends Model{
         
     }
     public function recuperationpanier($id){
-        $requette = $this->connect()->prepare("SELECT * FROM `panier` INNER JOIN produits ON panier.id_produit = produits.id WHERE `id_utilisateur`=:id");
+        $requette = $this->connect()->prepare("SELECT * FROM `panier` INNER JOIN produits ON panier.id_produit = produits.id INNER JOIN auteurs on auteurs.id = produits.id_auteur WHERE `id_utilisateur`=:id");
         $requette->execute(["id"=>$id]);
         $resultat = $requette->fetchAll();
         return $resultat;
@@ -33,6 +33,10 @@ class PanierModel extends Model{
         $requette = $this->connect()->prepare("DELETE FROM `panier` WHERE `id_utilisateur` = :id");
         $requette->execute(["id"=>$id]);
        
+    }
+    public function deleterarticlepanier($id){
+        $requette = $this->connect()->prepare("DELETE FROM `panier` WHERE `id_produit`= :id");
+        $requette->execute(["id"=>$id]);
     }
   
 
