@@ -1,4 +1,5 @@
-* partie article */ .imgarticle {
+/* partie article ................... */
+.imgarticle {
   width: 25%;
 }
 .article {
@@ -10,16 +11,88 @@
   text-align: justify;
 }
 
-html,
-body {
-  width: 100%;
-  min-height: 100vh;
+.article div:nth-child(2) {
+  width: 50%;
+  padding-left: 3%;
 }
-
-h2 {
+.buttonarticle {
+  text-decoration: none;
+  border: #f5b027 solid 2px;
+  padding: 2vh;
+  color: black;
+  background-color: #f5b027;
+  display: block;
+  margin-top: 5%;
+  border-radius: 6px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+.titrearticle {
   font-family: "Roboto", sans-serif;
 }
+p {
+  font-family: "Roboto", sans-serif;
+}
+.enstock {
+  color: green;
+}
 
+.mainArticles {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.navArticle {
+  width: 15%;
+  padding-top: 3%;
+}
+
+.navArticle a {
+  display: block;
+  text-decoration: none;
+}
+
+.aSousCat {
+  padding-left: 20%;
+}
+
+.mainArticles section {
+  width: 85%;
+}
+.titreArtices {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 45px;
+}
+
+hr {
+  margin-bottom: 3%;
+}
+.articles {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.articleDiv {
+  width: 20%;
+  margin-bottom: 3%;
+}
+
+.articleDiv img {
+  display: block;
+  width: 95%;
+  padding: 5%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.articleDivDescription {
+  width: 80%;
+  padding: 2%;
+  margin: auto;
+  text-align: justify;
+}
 /******** HEADER *********/
 
 body {
@@ -150,12 +223,12 @@ section h2 {
   margin: 30px auto;
 }
 
-section {
+/* section {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding-bottom: 35px;
-}
+} */
 
 section article div {
   display: flex;
@@ -222,8 +295,50 @@ footer a {
   font-family: "Roboto", sans-serif;
 }
 
+/* panier */
+
 .panier {
   display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
   background-color: #ffffff;
 }
 .bodypanier .panier div:nth-child(2) section {
@@ -232,6 +347,7 @@ footer a {
 .ppanier {
   height: 24vh;
 }
+
 /* partie payement */
 .row {
   display: block;

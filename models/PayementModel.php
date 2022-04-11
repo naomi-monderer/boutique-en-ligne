@@ -12,7 +12,12 @@ class payementModel extends Model{
     public function createDetailCommande($id_produit,$quantite,$id_commande){
         $requete = $this->connect()->prepare("INSERT INTO `detail_commande`( `id_produit`, `quantite`, `id_commande`) VALUES ($id_produit,$quantite ,$id_commande)");
         var_dump($requete);
-        $requete->execute();
+        
+    }
+
+    public function addAddress($id,$adresse,$codepostal,$ville,$pays){
+        $requete = $this->connect()->prepare("INSERT INTO `adresse`(`id_utilisateur`, `adresse`, `codepostal`, `ville`, `pays`) VALUES (:id,:adresse,:codepostal,:ville,:pays)");
+        $requete->execute(["id" => $id ,"adresse" => $adresse ,"codepostal" => $codepostal ,"ville" => $ville ,"pays" => $pays]);
     }
     
 }

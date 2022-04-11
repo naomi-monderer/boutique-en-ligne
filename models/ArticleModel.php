@@ -45,7 +45,7 @@ class ArticleModel extends Model{
 
     public  function uptadesotck($id_produit,$quantite)
     {
-          $requette = $this->connect()->prepare("UPDATE `produits` SET `stock`=:quantite WHERE `id`:id_produit");
+          $requette = $this->connect()->prepare("UPDATE `produits` SET `stock`=:quantite WHERE `id`=:id_produit");
           $requette->execute(["quantite"=>$quantite,"id_produit"=>$id_produit]);
           
     }

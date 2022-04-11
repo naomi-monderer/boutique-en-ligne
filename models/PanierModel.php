@@ -34,9 +34,9 @@ class PanierModel extends Model{
         $requette->execute(["id"=>$id]);
        
     }
-    public function deleterarticlepanier($id){
-        $requette = $this->connect()->prepare("DELETE FROM `panier` WHERE `id_produit`= :id");
-        $requette->execute(["id"=>$id]);
+    public function deleterarticlepanier($id,$user){
+        $requette = $this->connect()->prepare("DELETE FROM `panier` WHERE `id_produit`= $id AND `id_utilisateur` = $user");
+        $requette->execute();
     }
   
 
