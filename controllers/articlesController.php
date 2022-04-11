@@ -40,7 +40,3 @@ if (!empty($_GET['id_souscategorie'])){
     $titre = $categorie->recuperationNonSouscategorie($_GET['id_souscategorie']);
     $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
