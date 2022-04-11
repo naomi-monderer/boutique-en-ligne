@@ -19,7 +19,7 @@ if(isset($_GET["produit"])){
         $quantite = 1;
        
         $produitajouter = $panier->verificationarticle($id_produit,$id_utilisateur);
-        var_dump($produitajouter);
+        
         // je verifie si article a dega etai ajouter par utilisateur
         if(empty($produitajouter)){
             // on ajout le produit dans le panier 
@@ -58,6 +58,8 @@ if(isset($_GET["produit"])){
 }
 // on fait une recuperation pour afficher le panier
     $recuperation = $panier->recuperationpanier($_SESSION["user"][0]["id"]);
+  
+    
     // boucle quantite * prix 
     $total = 0;
 
@@ -84,6 +86,13 @@ if(isset($_GET["produit"])){
             "id" => $recuperation[$i]['id'],
             "quantite" => $recuperation[$i]['quantite']
         ];
+    }
+    //suppresion de article du panier de utilisateur
+    if(isset($_GET["delete"])){
+        $deleteproduit = $panier->deleterarticlepanier($_GET["delete"]);
+        header("location: ../views/panier.php");
+        
+
     }
     
 
