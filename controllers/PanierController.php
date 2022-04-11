@@ -19,7 +19,7 @@ if(isset($_GET["produit"])){
         $quantite = 1;
        
         $produitajouter = $panier->verificationarticle($id_produit,$id_utilisateur);
-        var_dump($produitajouter);
+        var_dump($produitajouter);A.121-1 article 12 du Code des assurances
         // je verifie si article a dega etai ajouter par utilisateur
         if(empty($produitajouter)){
             // on ajout le produit dans le panier 
@@ -44,7 +44,7 @@ if(isset($_GET["produit"])){
 
         }
 
-        // probleme de stock qui ce met pas a jour
+        
 
 
 
@@ -69,12 +69,22 @@ if(isset($_GET["produit"])){
     $prixquantite = $prix * $quantiter;
     $total = $prixquantite + $total;
     
-    var_dump($total);     
-        
+    var_dump($total);   
+    
+    
+  
 
     }
     // frai de port
-    //  $total = $total + 5;
+    $_SESSION['total'] = $total + 5;
+
+    // Ajout produit session
+    for ($i = 0 ; $i < COUNT($recuperation) ; $i++){
+        $_SESSION['produits'][$i] = [
+            "id" => $recuperation[$i]['id'],
+            "quantite" => $recuperation[$i]['quantite']
+        ];
+    }
     
 
 

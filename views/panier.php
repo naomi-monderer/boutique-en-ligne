@@ -1,6 +1,7 @@
 <?php
 require_once("../controllers/PanierController.php");
 var_dump($recuperation);
+
     ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,6 +9,7 @@ var_dump($recuperation);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/style.css">
     <title>panier</title>
 </head>
 <body>
@@ -15,9 +17,10 @@ var_dump($recuperation);
 
     </header>
     <main>
-        <div>
+    <h1>panier</h1>
+        <div class="panier">
             <section>
-                <h1>panier</h1>
+                
                 <?php  foreach($recuperation as $resultat):?>
                     <!-- boucle image -->
                     <img src="../picture/<?php echo $resultat['image']?>" alt="">
@@ -25,6 +28,7 @@ var_dump($recuperation);
                     <p>quantité:<?= $resultat["quantite"]?> </p>
 
                     <?php endforeach; ?>
+                    
 
 
 
@@ -43,7 +47,7 @@ var_dump($recuperation);
                 <p>Total: <?php echo $total ?> €</p>
                 <p>Frais de port: 5€</p>
                 <p> Total de la commande: <?php echo $total + 5?>€</p>
-                <a href="">Valider panier</a>
+                <a class="buttonarticle" href="payement.php">Valider panier</a>
 
             </section>
         </div>

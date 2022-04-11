@@ -21,7 +21,7 @@ class CategorieModel extends Model {
     public function allcategorie(){
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");
         $requette->execute();
-        $resultat = $requette->fetchAll();
+        $resultat = $requette->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
         
     }

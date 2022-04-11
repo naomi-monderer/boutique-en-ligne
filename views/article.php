@@ -1,8 +1,27 @@
 <?php
+
 require_once("../controllers/ArticleController.php");
 require_once('../controllers/CommentController.php');
+require_once('include/header.php');
 
+// Vérififier si le formulaire à bien été envoyé 
+if(isset($_POST['submit']))
+{
+    require_once("../models/CommentModel.php");
+    $id_utilisateur = $_SESSION['user'][0]['id'];
 
+    //Vérifier si l'utilisateur est connecté 
+    if(isset($id_utilisateur))
+    {
+
+        $commentaires = trim(htmlspecialchars($_POST['comment']));
+
+        $commentaireModel = new CommentModel();
+        $commentaireModel->insertCommentaire($commentaires, $id_utilisateur, $_GET['id']);
+
+        header("Refresh:0");
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +42,7 @@ require_once('../controllers/CommentController.php');
 </head>
 <body>
     <header>
-        <?php require_once('include/header.php'); ?>
+        
     </header>
     <main>
     
@@ -35,7 +54,7 @@ require_once('../controllers/CommentController.php');
             <div >
                 <p>Auteur: <?php echo  $produit["prenom"]; echo " ". $produit["nom"] ?> </p>
                 <p>Description</p>
-                <p><?php  echo $produit["description"]  ?></p>
+                <p class="descriptionarticle"> <?php  echo $produit["description"]  ?></p>
 
             </div>
             <div>
@@ -65,10 +84,11 @@ require_once('../controllers/CommentController.php');
 
             <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
             
-                <form action="../views/produit.php?id=<?= $commentaire['id_produit'] ?>" method="get">
+                <form action="../views/article.php?id=<?= $_GET['id'] ?>" method="get">
                 
                     <input type="submit" name="delete" value="supprimer">
                     <input type="hidden" name="idHidden" value="<?=$commentaire['id'];?>">
+                    <input type="hidden" name="id" value="<?=$_GET['id'];?>">
                 </form>
 
             <?php endif; ?>

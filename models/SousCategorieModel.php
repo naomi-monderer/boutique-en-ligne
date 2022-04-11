@@ -14,7 +14,7 @@ class SousCatgeorieModel extends Model
     public function allsouscategorie(){
         $requette = $this->connect()->prepare("SELECT * FROM `souscategories`");
         $requette->execute();
-        $resultat = $requette->fetchAll();
+        $resultat = $requette->fetchAll(PDO::FETCH_ASSOC);
         return $resultat;
         
     }

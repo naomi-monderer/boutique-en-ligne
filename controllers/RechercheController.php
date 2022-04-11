@@ -13,5 +13,5 @@ if(isset($_GET['search']) && !empty($_GET['search']))
     $_SESSION['search'] = $Recherche->rechercheProduitsBySearch($_GET['search']);
 
     //var_dump($_SESSION);
-   header('location: ../views/recherche.php');
+    header('location: ../views/recherche.php');
 }
