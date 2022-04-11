@@ -10,8 +10,8 @@ $listCategories = $controllerAdmin->listCategories();
 $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
-
-    echo '<pre>';
+echo '<pre>';
+var_dump($listCategories);
     // var_dump($listCategories); 
     var_dump($_POST);
     // var_dump($_SESSION);

@@ -145,5 +145,12 @@ class ArticleModel extends Model{
         $resultat = $requete->fetchAll();
         return $resultat;
     }
+
+    public function getAllProducts() {
+        $requete = $this->connect()->prepare("SELECT * FROM `produits` ORDER BY id DESC");
+        $requete->execute();
+        $resultat = $requete->fetchAll();
+        return $resultat;
+    }
 }
    

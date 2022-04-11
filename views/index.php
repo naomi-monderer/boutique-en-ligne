@@ -1,7 +1,7 @@
 <?php
 require_once('include/header.php');
 require_once('../controllers/ConnexionController.php');
-// require_once('../controllers/IndexController.php');
+require_once('../controllers/IndexController.php');
 
 $controller = new ConnexionController();
 
@@ -11,9 +11,8 @@ $controller = new ConnexionController();
 
     <div class="sidebar">
 
-        <a href="#">TOUS LES PRODUITS</a>
+        <a href="articles.php">TOUS LES PRODUITS</a>
         <a href="#">TOUTES LES NOUVEAUTES</a>
-        <a href="#">LES MEILLEURES VENTES</a>
 
         <!-- <form id="form1">
 		    <label for="montrer">BD</label>
@@ -34,11 +33,11 @@ $controller = new ConnexionController();
 
             <?php foreach($afficherNomCategories as $afficher) : ?>
 
-                <a href=""><?php echo $afficher['nom_categorie'] ?></a>
+                <a href="articles.php?id=<?php echo $afficher['id']; ?>"><?php echo $afficher['nom_categorie'] ?></a>
 
                 <?php foreach($afficherNomSousCategories as $afficher) : ?>
 
-                    <a class="sous" href=""><?php echo $afficher['nom_souscategorie'] ?></a>
+                    <a class="sous" href="articles.php?id_souscategorie=<?php echo $afficher['id']; ?>"><?php echo $afficher['nom_souscategorie'] ?></a>
 
                 <?php endforeach; ?>
             <?php endforeach; ?>

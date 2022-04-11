@@ -19,11 +19,7 @@ $articlesmodel = new ArticleModel();
 // Id == categorie
 if(!empty($_GET["id"])){
     $titre = $categorie->recuperationNoncategorie($_GET["id"]);
-   
-   
-    
-
-    $productByCategory =$articlesmodel->getProductsByCategory($_GET["id"]);
+   $productByCategory = $articlesmodel->getProductsByCategory($_GET["id"]);
     if (empty($productByCategory)) {
         $erreur = "aucun article dans cette categorie";
     }
@@ -37,5 +33,7 @@ if(!empty($_GET["id"])){
 if (!empty($_GET['id_souscategorie']))
 {   
     $titre = $categorie->getsouscategorie($_GET['id_souscategorie']);
+    // pourquoi je pull une version avec des erreurs alors que sur le code de gégé ca marche 
+    // quand je remplace par $articlesmodel la variable $categorie.
     $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
