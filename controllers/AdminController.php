@@ -114,20 +114,20 @@ class AdminController extends Controller
             if(count($nomCategorie) == 0)
             {
                 $insertCategorie = $this->modelCategorie->insertCategorie($nom_categorie);
-                $_SESSION['error'] = null;
-                 unset($_SESSION['error']);
+                // $_SESSION['error'] = '<p style=color:green;>enregistrement de la catégorie réussi.</p>';
+                //  unset($_SESSION['error']);
            
             }
 
             else
             {
-                $_SESSION['error']= "Cette catégorie existe déjà."; 
+               return "<p style=color:orange;> Cette catégorie existe déjà.</p>"; 
             }
             return $nomCategorie;
         }
         else
         {
-            $_SESSION['error']= "Veuillez remplir le champs.";   
+           return "<p style=color:orange;>Veuillez remplir le champs.<p style=color:red;>";   
         }
     }
 

@@ -12,22 +12,13 @@ $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 // $Articles = $controllerAdmin->
 
-    echo '<pre>';
+    // echo '<pre>';
     // var_dump($listCategories); 
     // var_dump($_POST);
-    var_dump($_SESSION);
-    echo '</pre>';
+    // var_dump($_SESSION);
+    // echo '</pre>';
 
-// echo '<pre>';
-// var_dump($showAllCategories); 
-// echo '</pre>';
-?>
-<main>
-    <section>
-    <?php if(isset($_SESSION['error']))
-{
-    echo "<div>" . $_SESSION['error'] . "</div>";
-} 
+
     
 if(isset($_POST['new_cat']))
 {   
@@ -47,6 +38,8 @@ if(isset($_POST['new_auteur']))
     $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
 }  
 ?>
+<main>
+    <section>
         <article>               
             <h2>Ajouter une nouvelle catégorie</h2>
                 <form action="" method="post">
@@ -56,7 +49,13 @@ if(isset($_POST['new_auteur']))
                     <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
                 </form>
             </article>
-
+            <?php 
+                var_dump($registerCategorie);
+                if(isset($registerCategorie))
+                {
+                    echo $registerCategorie;
+                }
+            ?>
             <article>
                 <h2>Ajouter une nouvelle sous-catégorie</h2>
                 <form action="" method="post">
