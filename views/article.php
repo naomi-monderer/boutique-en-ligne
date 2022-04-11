@@ -1,11 +1,48 @@
 <?php
+
 require_once("../controllers/ArticleController.php");
-$title='Article';
+require_once('../controllers/CommentController.php');
+$title = 'Article';
 require_once('include/header.php');
 
+// Vérififier si le formulaire à bien été envoyé 
+if(isset($_POST['submit']))
+{
+    require_once("../models/CommentModel.php");
+    $id_utilisateur = $_SESSION['user'][0]['id'];
+
+    //Vérifier si l'utilisateur est connecté 
+    if(isset($id_utilisateur))
+    {
+
+        $commentaires = trim(htmlspecialchars($_POST['comment']));
+
+        $commentaireModel = new CommentModel();
+        $commentaireModel->insertCommentaire($commentaires, $id_utilisateur, $_GET['id']);
+
+        header("Refresh:0");
+    }
+}
+
 ?>
-<main>
-    <h1 class="titrearticle"><?php echo $produit["titre"];?></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style//style.css">
+
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        
+    </header>
+    <main>
+    
+    
+        <h1 class="titrearticle"><?php echo $produit["titre"];?></h1>
         <div class="article">
             
             <img class="imgarticle" src="../picture/<?php echo $produit['image'];  ?>" alt="">
@@ -40,10 +77,11 @@ require_once('include/header.php');
 
             <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
             
-                <form action="../views/produit.php?id=<?= $commentaire['id_produit'] ?>" method="get">
+                <form action="../views/article.php?id=<?= $_GET['id'] ?>" method="get">
                 
                     <input type="submit" name="delete" value="supprimer">
                     <input type="hidden" name="idHidden" value="<?=$commentaire['id'];?>">
+                    <input type="hidden" name="id" value="<?=$_GET['id'];?>">
                 </form>
 
             <?php endif; ?>

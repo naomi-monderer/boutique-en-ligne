@@ -352,11 +352,6 @@ class AdminController extends Controller
 
 
 
-
-        // public function listSouscategories()
-        // { 
-        //     // $allSousCategories= $this->modelSousCategorie->
-        // }
         
         ?>
  

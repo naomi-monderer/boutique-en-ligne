@@ -11,6 +11,12 @@
   text-align: justify;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
 .article div:nth-child(2) {
   width: 50%;
   padding-left: 3%;
@@ -28,8 +34,66 @@
   text-transform: uppercase;
   text-align: center;
 }
-.titrearticle {
+.titrearticle
+{
   font-family: "Roboto", sans-serif;
+}
+/******** HEADER *********/
+
+body{
+    background: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+.search {
+    width: 100%;
+    height: 35px;
+    position: relative;
+    display: flex;
+}
+
+header form input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ADADAD;
+    border-right: none;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+header form input:focus{
+    color: #ADADAD;
+}
+
+header form button {
+    width: 40px;
+    border: 1px solid #adadad;
+    background: #adadad;
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+header form {
+    width: 300px;
+}
+
+#logo {
+    width: auto;
+    height: 70%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+    /* padding: 2% 0; */
+    font-family: 'Roboto', sans-serif;
 }
 p {
   font-family: "Roboto", sans-serif;
@@ -49,6 +113,49 @@ p {
 
 .mainArticles nav a {
   display: block;
+}
+/******** SIDEBAR -- CHEKBOX ********/
+
+/* label {
+    display: block;
+    cursor:pointer
+}
+
+input[type="checkbox"] {
+    display:none;
+} 
+ 
+.sidebar div {
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: ease-in-out 0.3s
+}
+
+#form1 input[type="checkbox"]:checked + .contenu {
+    max-height: 100%;
+    margin-bottom: 1em;
+}
+
+#form2 input[type="checkbox"]#montrer2:checked ~ .contenu {
+    max-height: 100%;
+    margin-bottom: 1em;
+}
+
+.contenu {
+    display: flex;
+    flex-direction: column;
+} */
+
+.sous {
+    color: blue;
+    font-weight: bold;
+}
+
+/******* SECTION / ARTICLE *********/
+
+section h2 {
+    margin: 30px auto;
 }
 
 .aSousCat {
@@ -83,6 +190,16 @@ hr {
   padding: 5%;
   margin: auto;
   border: 1px solid black;
+}
+/****************************/
+
+
+section form {
+    display: flex;
+    flex-direction: column;
+    background: whitesmoke;
+    border-radius: 10px;
+    padding: 3%;
 }
 
 .articleDivDescription {

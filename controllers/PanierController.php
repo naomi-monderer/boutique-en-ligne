@@ -19,7 +19,7 @@ if(isset($_GET["produit"])){
         $quantite = 1;
        
         $produitajouter = $panier->verificationarticle($id_produit,$id_utilisateur);
-        
+        var_dump($produitajouter);
         // je verifie si article a dega etai ajouter par utilisateur
         if(empty($produitajouter)){
             // on ajout le produit dans le panier 

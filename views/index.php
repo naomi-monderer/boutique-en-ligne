@@ -1,6 +1,8 @@
 <?php
-require_once('../controllers/ConnexionController.php');
 require_once('include/header.php');
+require_once('../controllers/ConnexionController.php');
+// require_once('../controllers/IndexController.php');
+
 $controller = new ConnexionController();
 
 ?>
@@ -13,42 +15,64 @@ $controller = new ConnexionController();
         <a href="#">TOUTES LES NOUVEAUTES</a>
         <a href="#">LES MEILLEURES VENTES</a>
 
+        <!-- <form id="form1">
+		    <label for="montrer">BD</label>
+		    <input type="checkbox" name="montrer" id="montrer"/>
+
+            <div class="contenu">
+
+                <a href=""></a>
+            </div>
+
+        </form> -->
+
+        <!-- <form id="form1">
+            <label for="montrer">ROMAN</label>
+            <input type="checkbox" name="montrer" id="montrer"/>
+
+            <div class="contenu"> -->
+
+            <?php foreach($afficherNomCategories as $afficher) : ?>
+
+                <a href=""><?php echo $afficher['nom_categorie'] ?></a>
+
+                <?php foreach($afficherNomSousCategories as $afficher) : ?>
+
+                    <a class="sous" href=""><?php echo $afficher['nom_souscategorie'] ?></a>
+
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+
+            </div>
+<!-- 
+        </form> -->
     </div>
 
     <section>
 
-        <h2>LES BONS PLANS</h2>
+        <article> 
 
-        <article>
+        <?php foreach($afficherMiseEnAvant as $show) : ?>
 
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/La-Permaculture-au-jardin-mois-par-mois.jpg">
-            <img src="../picture/Boule-Bill-Bill-se-tient-a-Caro.jpg">
-            <img src="../picture/Bug.jpg">
-            <img src="../picture/Bug.jpg">
+            <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+
+        <?php endforeach; ?>
+
         </article>
 
         <h2>NOUVEAUTES</h2>
 
-        <article>
-            
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/La-Permaculture-au-jardin-mois-par-mois.jpg">
-            <img src="../picture/Boule-Bill-Bill-se-tient-a-Caro.jpg">
-            <img src="../picture/Bug.jpg">
-            <img src="../picture/Bug.jpg">
-        </article>
+        
+        <article> 
 
-        <h2>LES MEILLEURES VENTES</h2>
+        <?php foreach($afficherNouveautes as $show) : ?>
 
-        <article>
+            <img src="../picture/<?php echo $show['image'];  ?>" alt="">
 
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/asterix.jpg">
-            <img src="../picture/Bug.jpg">
-        </article>
+        <?php endforeach; ?>
+
+        
+        </article> 
 
     </section>
 

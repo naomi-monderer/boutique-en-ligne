@@ -23,10 +23,12 @@ session_start();
 
             <img id="logo" src="../picture/logo_boutique.png">
 
+            
             <form action="../controllers/RechercheController.php" method="GET">
-
-                <input type="search" name="search" placeholder="Rechercher un livre..." >
-                <button type="submit">Rechercher</button>
+                <div class="search">
+                    <input type="search" name="search" placeholder="Rechercher un livre...">
+                    <button type="submit">OK</button>
+                </div>
             </form>
 
             <nav>
@@ -34,7 +36,7 @@ session_start();
                 <?php if(!isset($_SESSION['user']))
                 {?>
                  
-                <a href="connexion.php">Connexion</a>
+                <a class="test" href="connexion.php">Connexion</a>
                 <a href="inscription.php">Inscription</a>
              
                 

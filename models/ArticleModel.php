@@ -132,7 +132,18 @@ class ArticleModel extends Model{
 
     }
 
+    public function getProductsByMiseEnAvant() {
+        $requete = $this->connect()->prepare("SELECT * FROM `produits` WHERE mise_en_avant = 1 ORDER BY id DESC LIMIT 5");
+        $requete->execute();
+        $resultat = $requete->fetchAll();
+        return $resultat;
+    }
 
-
+    public function getProductsByNouveautes() {
+        $requete = $this->connect()->prepare("SELECT * FROM `produits` ORDER BY id DESC LIMIT 5");
+        $requete->execute();
+        $resultat = $requete->fetchAll();
+        return $resultat;
+    }
 }
    
