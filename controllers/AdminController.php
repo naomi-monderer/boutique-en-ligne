@@ -16,13 +16,12 @@ class AdminController extends Controller
         $this->modelSousCategorie = new SousCategorieModel;
         $this->modelAuteur = new AuteurModel;
         $this->modelArticle = new ArticleModel;
-        
     }
     //----------------GESTION DES USERS------------------------//
      public function modify($id,$nom, $prenom,$login, $email, $id_droits)
-    {
-        $nom = $this->secure(strtolower($nom)); 
-        $prenom = $this->secure(strtolower($prenom)); 
+    {   // 
+        $nom = $this->secure(ucwords($nom)); 
+        $prenom = $this->secure(ucwords($prenom)); 
         $email = $this->secureEmail(strtolower($email));
         $login = $this->secure($login);
         $id_droits = $this->secure(intval($id_droits));
@@ -103,9 +102,9 @@ class AdminController extends Controller
     //-----------------------AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
     
     public function registerCategorie($nom_categorie)
-
     {
-        // $nom_categorie =  ucwords($nom_categorie);
+        
+        $nom_categorie =$this->secure(ucwords($nom_categorie));
         if(!empty($nom_categorie))
         {   
             $nomCategorie = $this->modelCategorie->getCategorie($nom_categorie);
@@ -141,38 +140,49 @@ class AdminController extends Controller
   
     public function registerSousCategorie($nom_souscategorie, $id_categorie)
     {   
-        // $nom_souscategorie = ucwords($nom_souscategorie);
+        $nom_souscategorie = $this->secure(ucwords($nom_souscategorie));
+      
         if(!empty($nom_souscategorie))
         {   
             $resultSousCategories= $this->modelSousCategorie->getCategoriesByNameSousCategorie($id_categorie);
-                $bool = true;
-            foreach($resultSousCategories as $resultSousCategorie)
-            {
-                if($resultSousCategorie["nom_souscategorie"] == $nom_souscategorie){
+            // echo "<pre>";
+            // var_dump($resultSousCategories);
+            // echo "</pre>";
+            $bool = true;
+            // $_SESSION['error']= "";
+            // var_dump($_SESSION);
+                foreach($resultSousCategories as $resultSousCategorie)
+                {
+                    if($resultSousCategorie["nom_souscategorie"] == $nom_souscategorie)
+                    {
+                            
+                            var_dump($resultSousCategorie["nom_souscategorie"],$nom_souscategorie);
                         
-                        $bool = false;
-                        $_SESSION['error'] = "Cette sous-categorie existe déjà.";
-                        var_dump('existe deja');
-                        
+                            $bool = false;
+                            return "<p style='color:red;'>Cette sous-categorie existe déjà.</p>";
+                            // var_dump('existe deja');        
+                    }
                 }
-            }
-            if($bool == true)
-            {
-                $insertSousCategorie = $this->modelSousCategorie->insertSousCategorie($nom_souscategorie,$id_categorie);
-            } 
-            return $resultSousCategorie;
+
+                if($bool == true)
+                {
+                    $insertSousCategorie = $this->modelSousCategorie->insertSousCategorie($nom_souscategorie,$id_categorie);
+                    // $_SESSION['error']= "";
+                    
+                    return "<p style='color:green;'>enregistrement réussi</p>";
+                } 
         }
         else
         {
-            $_SESSION['error'] = "Veuillez remplir le champs.";
+            return "Veuillez remplir le champs.";
         }
     }
 
 
     public function registerAuteur($nom,$prenom)
     { 
-        //   $nom = ucwords($nom);
-        // $prenom = ucwords($prenom);
+          $nom =$this->secure(ucwords($nom));
+        $prenom =$this->secure(ucwords($prenom));
 
         if(!empty($nom) && !empty($prenom))
         {      
@@ -203,25 +213,121 @@ class AdminController extends Controller
     }
     
     public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
-    {
-        // if(!empty(trim($titre)) && !empty(trim($description)) && !empty(trim($stock)) && !empty(trim($prix)) && !empty(trim($mise_en_avant)) && !empty(trim($editeur)) && !empty($id_categorie) && !empty($id_souscategorie) && !empty(trim($id_auteur)) && !empty($image))
-        // {
-            $insertArticle=$this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
-            // }
-            // else
-            // {
-                //     $_SESSION['error'] = 'veuillez remplir ce champs. zrfstgzrtdgsf' ;
-                // }
-    }  
+    {   
+        $titre = $this->secureWithoutTrim($titre);
+        $description= $this->secureWithoutTrim($description);
+        $stock = $this->secure($stock);
+        $prix = $this->secure($prix);
+        $mise_en_avant = $this->secure(intval($mise_en_avant));
+        $editeur = $this->secureWithoutTrim($editeur);
+        $id_categorie = $this->secure(intval($id_categorie));
+        $id_souscategorie = $this->secure(intval($id_souscategorie));
+        $id_auteur = $this->secure(intval($id_auteur));
+        // $image = $this->secure($image);
+        var_dump(strlen($stock));
+        if(!empty($titre) && !empty($description) && !empty($prix) && !empty($mise_en_avant) && !empty($editeur) && !empty($id_categorie) && !empty($id_souscategorie) && !empty($id_auteur) && !empty($image))
+        {   
+            
+            $description_len = strlen($description);
+            if($description_len <= 500)
+            {   // a partir de stock la fonction passe dans le premier else.
+                // var_dump($stock >=1);
+                if($stock > 0  )
+                {   
+                    
+            //         if($prix >=1)
+            //         {   
+            //             $url_len = strlen($image); 
+            //             if($url_len >= 255)
+            //             {
+                            $insertArticle=$this->modelArticle->insertArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+            //             }
+            //             else
+            //             {
+            //                 return '<p style= color:red;>L\'adresse URL doit être inférieure à 500 caractères.</p>';
+            //             }
+                    // }
+                    // else
+                    // {
+                    //     return  '<p style= color:red;>Le prix ne peut pas être égal à 0.</p>';
+                    // }
+                }
+                else
+                {
+                    return  '<p style= color:red;>Le montant du stock est invalide.</p>';
+                }
+            }
+            else
+            {
+                return  '<p style= color:red;>La description doit être inférieure à 500 caractères.</p>';
+            }
+        }
+        else
+        {
+          return  '<p style= color:red;>Veuillez remplir tous les champs.</p>';   
+        }  
+    }
     //-----------------------/AJOUTER ARTICLES OU OPTIONS (categorie, sous-categorie, auteur)---------------------//
 
-    //-----------------------MODIFIER OU SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
+    //-----------------------MODIFIER DES ARTICLES -----------------------------------//
     
-    public function modifyArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
-    {
-        $modifyArticle = $this->modelArticle->updateArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
-        return $modifyArticle;
+public function modifyArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
+{   
+    $titre = $this->secureWithoutTrim($titre);
+    $description= $this->secureWithoutTrim($description);
+    $stock = $this->secure(intval($stock));
+    $prix = $this->secure($prix);
+    $mise_en_avant = $this->secure(intval($mise_en_avant));
+    $editeur = $this->secureWithoutTrim($editeur);
+    $id_categorie = $this->secure(intval($id_categorie));
+    $id_souscategorie = $this->secure(intval($id_souscategorie));
+    $id_auteur = $this->secure(intval($id_auteur));
+    // $image = $this->secure($image);
+
+    if(!empty($titre) && !empty($description) && !empty($stock) && !empty($prix) && !empty($mise_en_avant) && !empty($editeur) && !empty($id_categorie) && !empty($id_souscategorie) && !empty($id_auteur) && !empty($image))
+    {   
+        
+        $description_len = strlen($description);
+        if($description_len <= 500)
+        {   // a partir de stock la fonction passe dans le premier else.
+            
+            if($stock >= 1 )
+            {   
+                
+                // if($prix >=1)
+                // {   
+                //     $url_len = strlen($image); 
+                //     if($url_len >= 255)
+                //     { 
+                    $modifyArticle = $this->modelArticle->updateArticle($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+    
+            //         }
+            //         else
+            //         {
+            //             return '<p style= color:red;>L\'adresse URL doit être inférieure à 500 caractères.</p>';
+            //         }
+            //     }
+            //     else
+            //     {
+            //         return  '<p style= color:red;>Le prix ne peut pas être égal à 0.</p>';
+            //     }
+            }
+            else
+            {
+                return  '<p style= color:red;>Le stock doit être supérieur à 1.</p>';
+            }
+        }
+        else
+        {
+            return  '<p style= color:red;>La description doit être inférieure à 500 caractères.</p>';
+                }
     }
+    else
+    {
+    return  '<p style= color:red;>Veuillez remplir tous les champs.</p>';   
+    }  
+
+}
 
     public function displayAllArticles()
     {
@@ -253,7 +359,7 @@ class AdminController extends Controller
      }
       //-----------------------SUPPRIMER DES ARTICLES OU DES OPTIONS-----------------------------------//
 
-     //-----------------------------MODIFIER DES ARTICLES OU DES OPTIONS-------------------------------//
+     //------------------------MODIFIER DES OPTIONS---------------------------------------------------//
                                             /* Articles */
 
      // permet d'afficher les articles dans admin_tab_articles.php
@@ -275,48 +381,80 @@ class AdminController extends Controller
                                          /* Catégories */
      public function modifyCategorie($id,$nom_categorie)
      {
+       $nom_categorie = ucwords($nom_categorie);
         if (!empty($nom_categorie))
         {   
-
-            $modifyCategorie = $this->modelCategorie->updateCategorie($id,$nom_categorie);
+            $result = $this->modelCategorie->getOneValue('categories','nom_categorie',$nom_categorie);
+            var_dump($result);
+            if(count($result) == 0)
+            {
+                $modifyCategorie = $this->modelCategorie->updateCategorie($id,$nom_categorie);
+                var_dump('nananaan');
+                header('Location: admin_manage_other_forms.php');
+                // return  "La catégorie a été modifié en:". $nom_categorie;
+            }
+            else
+            {
+                $_SESSION['error'] = 'Cette Catégorie existe déjà.';
+            }
         }
         else
         {
             $_SESSION['error']='Veuillez renseigner le nom de la nouvelle catégorie';
         }
-         
-         return $modifyCategorie;
-     }
+    }
     
     public function modifyAuteur($id,$nom,$prenom)
     {   $nom = ucwords($nom);
         $prenom = ucwords($prenom);
-        if(!empty($prenom) && !empty($prenom))
-        {
+        var_dump($nom,$prenom);
+        if(!empty($nom) && !empty($prenom))
+        {   
             $modifyAuteur = $this->modelAuteur->updateAuteur($id,$nom,$prenom);
         }
         else
         {
-            $_SESSION['error']='Veuillez renseigner le nom et le prénom de l\'auteur.ice';
+            return '<p style = color:red;> Veuillez renseigner le nom ou le prénom de l\'auteur.ice dans le champs vide.</p>';
         }
-        return $modifyAuteur;
+       
     }
 
     public function modifySousCategorie($id,$id_categorie,$nom_souscategorie)
     {   
+        $nom_souscategorie = ucwords($nom_souscategorie);
+
         if (!empty($nom_souscategorie))
-        {
+        {   
+            $bool= true;
             $result = $this->modelSousCategorie->selectAllWhere("nom_souscategorie",'souscategories','id_categorie',$id_categorie); 
-            var_dump($result);
-            $modifySouscategorie = $this->modelSousCategorie->updateSousCategorie($id,$nom_souscategorie);
-            return $modifySouscategorie;
+            // echo '<pre>';
+            // var_dump($result);
+            // echo '</pre>';
+            
+            foreach($result as $res)
+            {   
+                if($res['nom_souscategorie'] == $nom_souscategorie)
+                {   
+                    var_dump($nom_souscategorie,$res['nom_souscategorie']);
+                    $bool== false;
+                    return '<p style = color:red;> Cette sous-catégorie existe déjà pour cette catégorie.</p>';
+                }
+            }    
+            if($bool == true)
+            {
+                $modifySouscategorie = $this->modelSousCategorie->updateSousCategorie($id,$nom_souscategorie);
+                // return 'l\'enregistrement de la sous-catégorie a bien été pris en compte.';
+                header('Location: admin_manage_other_forms.php');
+            }
+            
         }
         else
         {
-            $_SESSION['error']='Veuillez renseigner le nom de la nouvelle sous-catégorie';
+           return '<p style = color:red;> Veuillez renseigner le nom de la nouvelle sous-catégorie dans le champs vide.</p>';
         }
        
     }
+
     
    
 

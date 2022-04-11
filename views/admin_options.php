@@ -15,7 +15,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
     echo '<pre>';
     // var_dump($listCategories); 
     // var_dump($_POST);
-    // var_dump($_SESSION);
+    var_dump($_SESSION);
     echo '</pre>';
 
 // echo '<pre>';
@@ -27,7 +27,25 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
     <?php if(isset($_SESSION['error']))
 {
     echo "<div>" . $_SESSION['error'] . "</div>";
-}   
+} 
+    
+if(isset($_POST['new_cat']))
+{   
+    $registerCategorie = $controllerAdmin->registerCategorie($_POST['nom_cat']);
+}
+
+
+if(isset($_POST['new_sous_cat']))
+{   
+    $id_categorie = $_POST['sous_categorie_select'];
+    $registerSousCategorie = $controllerAdmin->registerSousCategorie($_POST['nom_sous_cat'], $id_categorie);
+}
+
+
+if(isset($_POST['new_auteur']))
+{
+    $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
+}  
 ?>
         <article>               
             <h2>Ajouter une nouvelle catégorie</h2>
@@ -59,11 +77,17 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
                             ?>
                     
                         </select><br/>
-
                     <label for="nom_sous_cat">Nouveau genre de sous-catégorie</label>
                         <input type="text" name="nom_sous_cat"><br/>
                         <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
                 </form>    
+                <?php 
+                    if(isset($registerSousCategorie))
+                    {
+                    
+                        echo $registerSousCategorie;
+                    }
+                ?>
             </article>
 
             <article>
@@ -89,21 +113,5 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 <?php
 
 
-if(isset($_POST['new_cat']))
-{   
-    $registerCategorie = $controllerAdmin->registerCategorie($_POST['nom_cat']);
-}
 
-
-if(isset($_POST['new_sous_cat']))
-{   
-    $id_categorie = $_POST['sous_categorie_select'];
-    $registerSousCategorie = $controllerAdmin->registerSousCategorie($_POST['nom_sous_cat'], $id_categorie);
-}
-
-
-if(isset($_POST['new_auteur']))
-{
-    $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
-}
 ?>

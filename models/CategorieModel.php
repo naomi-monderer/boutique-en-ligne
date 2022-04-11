@@ -12,9 +12,9 @@ class CategorieModel extends Model {
         
         var_dump($nom_categorie);
         return $resultat;
-
     }
 
+    
    public function allCategorie(){
 
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");

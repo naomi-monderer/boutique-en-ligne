@@ -30,7 +30,7 @@
 
                 <?php    }
 
-                        if(isset($_SESSION['user'][0]) && $_SESSION['user'][0]['id_droits'] == 1)
+                        if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 1)
                         { ?>
                             <a href="admin.php">Espace Administrateur</a></br>
                           
