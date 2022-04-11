@@ -29,39 +29,27 @@ session_start();
 
             ?>
             <form class="formu" id=paiement>
-  <fieldset>
-    <legend>Votre identité</legend>
 
-    <ol>
-      <li>
-        <label for=nom>Nom</label>
-        <input id=nom name=nom type=text placeholder="Prénom et nom" required autofocus>
-      </li>
-      <li>
-        <label for=email>Email</label>
-        <input id=email name=email type=email placeholder="exemple@domaine.com" required>
-      </li>
-      <li>
-        <label for=telephone>Téléphone</label>
-        <input id=telephone name=telephone type=tel placeholder="par ex&nbsp;: +3375500000000" required>
-      </li>
-    </ol>
-  </fieldset>
+   
 
   <fieldset>
     <legend>Adresse de livraison</legend>
       <ol>
         <li>
           <label for=adresse>Adresse</label>
-          <textarea id=adresse name=adresse rows=5 required></textarea>
+          <textarea id=adresse name="adresse" rows=5 required></textarea>
         </li>
         <li>
           <label for=codepostal>Code postal</label>
-          <input id=codepostal name=codepostal type=text required>
+          <input id=codepostal name="codepostal" type=text required>
         </li>
           <li>
           <label for=pays>Pays</label>
-          <input id=pays name=pays type=text required>
+          <input id=pays name="pays" type=text required>
+        </li>
+        <li>
+            <label for="ville">Votre ville</label>
+            <input type="text" name="ville" id="">
         </li>
       </ol>
       </form>
