@@ -1,8 +1,9 @@
 <?php
-require("../models/UserModel.php");
-<<<<<<< HEAD
+require_once("../models/UserModel.php");
+require_once('Controller.php');
 
-class  ConnexionController
+
+class  ConnexionController extends Controller
 {   
     public $login;
     public $password;
@@ -10,25 +11,16 @@ class  ConnexionController
 
 
     public function __construct()
-=======
-// $bdd = new BddConnexion("localhost","boutique","root","");
-// $pdo= $bdd->connexion();
-// $utilisateur = new Utilisateur($pdo);
-// $login = security($_POST["login"]);
-
-class User
-{
-    public function connexion()
->>>>>>> 848cc49ec0b5460b34f36b2bb263baaa655fca61
     {
         $this->model = new UserModel;
     }
 
     public function connexion($login,$password)
     {   
-        $login = htmlspecialchars(trim(strtolower($login)));
-        $password = htmlspecialchars(trim(strtolower($password)));
+        $login = $this->secure(strtolower($login));
+        $password = $this->secure($password);
 
+    
         if(!empty($login) && !empty($password))
         {
             $sameLoginUsers = $this->model->getUserByLogin($login);
@@ -47,19 +39,14 @@ class User
             }
             else
             {
-                return ' login n\'est pas connu.';
+                return 'Ce login n\'est pas correct.';
             }
         }
         else
         {
 
-            echo  " les champs doivent etre remplis";
-
+            echo  "Tous les champs doivent etre remplis";
         }
-
-        
-
-
     }
 }
 

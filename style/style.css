@@ -1,0 +1,147 @@
+/* partie article ................... */
+.imgarticle {
+  width: 25%;
+}
+.article {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.descriptionarticle {
+  text-align: justify;
+}
+
+.article div:nth-child(2) {
+  width: 50%;
+  padding-left: 3%;
+}
+.buttonarticle {
+  text-decoration: none;
+  border: #f5b027 solid 2px;
+  padding: 2vh;
+  color: black;
+  background-color: #f5b027;
+  display: block;
+  margin-top: 5%;
+  border-radius: 6px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+.titrearticle {
+  font-family: "Roboto", sans-serif;
+}
+p {
+  font-family: "Roboto", sans-serif;
+}
+.enstock {
+  color: green;
+}
+/* partie articles */
+
+.mainArticles {
+  display: flex;
+}
+.mainArticles nav {
+  width: 15%;
+  padding-top: 3%;
+}
+
+.mainArticles nav a {
+  display: block;
+}
+
+.aSousCat {
+  padding-left: 20%;
+}
+
+.mainArticles section {
+  width: 85%;
+}
+.titreArtices {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 45px;
+}
+
+hr {
+  margin-bottom: 3%;
+}
+.articles {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.articleDiv {
+  width: 20%;
+  margin-bottom: 3%;
+}
+
+.articleDiv img {
+  display: block;
+  width: 95%;
+  padding: 5%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.articleDivDescription {
+  width: 80%;
+  padding: 2%;
+  margin: auto;
+  text-align: justify;
+}
+/* panier */
+
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+/* .divdescarticle {
+  width: 80%;
+} */
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
