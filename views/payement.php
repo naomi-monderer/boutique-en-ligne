@@ -8,6 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style//style.css">
     <title>payement</title>
 </head>
 <body>
@@ -27,9 +28,35 @@ session_start();
             }
 
             ?>
-            <form action="../controllers/PayementController.php"  method="POST">
+            <form class="formu" id=paiement>
+
+   
+
+  <fieldset>
+    <legend>Adresse de livraison</legend>
+      <ol>
+        <li>
+          <label for=adresse>Adresse</label>
+          <textarea id=adresse name="adresse" rows=5 required></textarea>
+        </li>
+        <li>
+          <label for=codepostal>Code postal</label>
+          <input id=codepostal name="codepostal" type=text required>
+        </li>
+          <li>
+          <label for=pays>Pays</label>
+          <input id=pays name="pays" type=text required>
+        </li>
+        <li>
+            <label for="ville">Votre ville</label>
+            <input type="text" name="ville" id="">
+        </li>
+      </ol>
+      </form>
+    </fieldset>
+            <form class="row"  action="../controllers/PayementController.php"  method="POST">
                 
-                <div >
+                <div class="formpayement" >
                     <div'>
                         <label>Nom sur la carte</label>
                         <input type='text' name="name">
@@ -56,7 +83,7 @@ session_start();
                     </div>
                 </div>
 
-                <button  type='submit'>Payer »</button>
+                <button class="payementbutton" type='submit'>Payer »</button>
                     
                 </div>
             </form>

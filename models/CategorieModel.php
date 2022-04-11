@@ -20,6 +20,13 @@ class CategorieModel extends Model {
         return $resultat;
 
     }
+    public function recuperationNonSouscategorie($id){
+        $requette = $this->connect()->prepare("SELECT * FROM `souscategories` WHERE `id`=$id");
+        $requette->execute();
+        $resultat = $requette->fetch();
+        return $resultat;
+
+    }
 
    public function allCategorie(){
 

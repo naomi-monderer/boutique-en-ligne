@@ -14,6 +14,7 @@ class payementModel extends Model{
         var_dump($requete);
         $requete->execute();
     }
+    
 }
 
 

@@ -39,7 +39,7 @@ require_once('include/header.php');
 
         <section>
 
-        <?php foreach($showAllProducts as $resultat) :?>
+        <?php foreach($productByCategory  as $resultat) :?>
 
             <?php var_dump($resultat); ?>
             <div class="articles">
