@@ -1,4 +1,4 @@
-* {
+*{
     margin: 0;
     padding: 0;
 }
@@ -340,7 +340,17 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     /* padding: 1vh 0; */
-}
+} */
+.page_accueil section article {
+    border-top: 1px solid #adadad;
+    border-bottom: 1px solid #adadad;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 1vh 0; */
+} 
 
 
 /********* PAGE ACCUEIL ************/
@@ -423,3 +433,160 @@ footer a {
 }
 
 
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
+
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*********** BACK OFFICE **********/
+.main-bo 
+{
+    display: flex;
+    /* padding:0; */
+}
+
+.contener-bo
+{   
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    
+    width: 25%;
+    background-color:#F5B027;
+    /* padding:0px; */
+   
+}
+
+.nav-bo
+{   margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: baseline;
+    height: 40%;
+    background-color:#F5B027;
+    border: none;
+    
+}
+.contener-titre-bo
+{
+    width:70%;
+}
+
+.contener-liste-bo
+{
+    /* background-color:#9DBFAF; */
+    width: 90%;
+    display: flex;
+}
+
+.ul-nav-bo
+{
+    list-style-type: none;
+
+}
+.liste-bo
+{
+    margin:10px 0 10px 20px;
+}
+a {
+    text-decoration: none;
+   
+}
+
+a:hover
+{
+
+}
+
+/*******/
+.contener-principal 
+{
+    display: flex;
+    /* flex-direction: column; */
+}
+.principal
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+/********** /BACK OFFICE\ ********/
