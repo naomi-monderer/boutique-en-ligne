@@ -433,6 +433,13 @@ fieldset {
     border: none;
     
 }
+.contener-rest
+{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
 .contener-titre-bo
 {
     width:70%;

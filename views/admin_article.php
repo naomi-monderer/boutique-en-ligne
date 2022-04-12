@@ -151,12 +151,7 @@ echo '<pre>';
                             <!-- comment générer l'apparition d'un nouvelle catégorie?-->
                     </form>
             </article>
-        <!-- <article>
-            <form action="admin.php" method="post">
-                <input type="submit" name="back" value="Retourner au menu de gestion">
-            </form>
-        </article> -->
-    </section>
+     </section>
 </main>
 <?php
 if(isset($_POST['new_article']))
@@ -174,22 +169,4 @@ if(isset($_POST['back']))
 {
     header('location:admin.php');
 }
-
-
-
 ?>  
-
-
-
-<!-- utiliser optgroup pour créer le décalage escompter dans les categories>
-    
-<select name="couleur" multiple>
-  <optgroup label="Couleur">
-    <option value="orange">Orange</option>
-    <option value="bleu" selected>Bleu</option>
-    <option value="rouge">Rouge</option>
-  </optgroup>
-  <optgroup label="Taille">
-   <option value="un">Un</un>
- </optgroup>
-</select>  -->
