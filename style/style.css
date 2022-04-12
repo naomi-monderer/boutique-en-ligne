@@ -142,7 +142,7 @@ header {
     font-size: 18px;
 }
 
-section {
+.page_accueil section {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -157,7 +157,7 @@ section {
     margin: 2vh;
 } */
 
-section article {
+.page_accueil section article {
     border-bottom: 1px solid #adadad;
     height: max-content;
     width: 100%;
