@@ -1,0 +1,596 @@
+<<<<<<< HEAD
+=======
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* partie article ................... */
+.imgarticle {
+  width: 25%;
+}
+.article {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.descriptionarticle {
+  text-align: justify;
+}
+
+.article div:nth-child(2) { 
+  width: 50%;
+  padding-left: 3%;
+}
+.buttonarticle {
+  text-decoration: none;
+  border: #f5b027 solid 2px;
+  padding: 2vh;
+  color: black;
+  background-color: #f5b027;
+  display: block;
+  margin-top: 5%;
+  border-radius: 6px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+.titrearticle {
+  font-family: "Roboto", sans-serif;
+}
+p {
+  font-family: "Roboto", sans-serif;
+}
+.enstock {
+  color: green;
+}
+/* partie articles */
+
+.mainArticles {
+  display: flex;
+}
+.mainArticles nav {
+  width: 15%;
+  padding-top: 3%;
+}
+
+.mainArticles nav a {
+  display: block;
+}
+
+.aSousCat {
+  padding-left: 20%;
+}
+
+.mainArticles section {
+  width: 85%;
+}
+.titreArtices {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 45px;
+}
+
+hr {
+  margin-bottom: 3%;
+}
+.articles {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.articleDiv {
+  width: 20%;
+  margin-bottom: 3%;
+}
+
+.articleDiv img {
+  display: block;
+  width: 95%;
+  padding: 5%;
+  margin: auto;
+  border: 1px solid black;
+}
+
+.articleDivDescription {
+  width: 80%;
+  padding: 2%;
+  margin: auto;
+  text-align: justify;
+}
+/* panier */
+
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+/* .divdescarticle {
+  width: 80%;
+} */
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}
+
+ 
+
+/******** HEADER *********/
+
+body {
+  background: #f2f2f2;
+  font-family: "Open Sans", sans-serif;
+}
+
+.search {
+  width: 100%;
+  height: 35px;
+  position: relative;
+  display: flex;
+}
+
+header form input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #adadad;
+  border-right: none;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+header form input:focus {
+  color: #adadad;
+}
+
+header form button {
+    width: 40px;
+    border: 1px solid #F5B027;
+    background: #F5B027;
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+header form {
+  width: 300px;
+}
+
+#logo {
+    width: 100px;
+    height: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  /* padding: 2% 0; */
+  font-family: "Roboto", sans-serif;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+nav a:hover {
+    padding-bottom: 5px;
+    border-bottom: solid 2px black;
+    transition: transform 2s ease-in-out;
+}
+
+
+header {
+  border-bottom: 1px solid #adadad;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+/******** PAGE ACCUEIL *********/
+
+/******** SIDEBAR *********/
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #adadad;
+  width: 280px;
+  margin-left: 20px;
+}
+
+.sidebar a {
+  color: black;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.sidebar h2 {
+  margin-bottom: 10px;
+}
+
+.sidebar p:first-child {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/******* ARTICLE DE LA PAGE D'ACCUEIL *********/
+
+.page_accueil section h2 {
+    margin: 30px 0 5px 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.page_accueil section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 35px;
+}
+
+.page_accueil section article {
+    border-bottom: 1px solid #adadad;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 1vh 0; */
+} */
+.page_accueil section article {
+    border-top: 1px solid #adadad;
+    border-bottom: 1px solid #adadad;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 1vh 0; */
+} 
+
+
+/********* PAGE ACCUEIL ************/
+
+.page_accueil {
+  display: flex;
+}
+
+.page_accueil img {
+    max-width: 300px;
+}
+
+.page_accueil article img {
+    width: 100%;
+    max-height: 220px;
+    border-right: 1px solid #adadad;
+}
+
+.page_accueil article {
+    width: 100%;
+    height: 100%;
+}
+
+.page_accueil article {
+    border-top: 1px solid #ADADAD;
+}
+
+.page_accueil article a {
+    /* width: 15%; */
+    width: calc(100%/5 - 15px);
+    height: auto;
+    margin: 5px;
+    border: 1px solid #ADADAD;
+    background: #ffffff;
+}
+
+.page_accueil article p {
+    text-align: center;
+}
+
+.page_accueil article a{
+    text-decoration: none;
+    color: black;
+}
+
+/********** MAIN ***********/
+
+main {
+  width: 100%;
+  min-height: 80vh;
+}
+
+/****************************/
+
+section form {
+  display: flex;
+  flex-direction: column;
+  background: whitesmoke;
+  border-radius: 10px;
+  padding: 3%;
+}
+
+/********** FOOTER *********/
+
+footer {
+  height: 70px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  bottom: 0;
+  position: static;
+  width: 100%;
+}
+
+footer a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
+
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*********** BACK OFFICE **********/
+.main-bo 
+{
+    display: flex;
+    /* padding:0; */
+}
+
+.contener-bo
+{   
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    
+    width: 25%;
+    background-color:#F5B027;
+    /* padding:0px; */
+   
+}
+
+.nav-bo
+{   margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: baseline;
+    height: 40%;
+    background-color:#F5B027;
+    border: none;
+    
+}
+.contener-titre-bo
+{
+    width:70%;
+}
+
+.contener-liste-bo
+{
+    /* background-color:#9DBFAF; */
+    width: 90%;
+    display: flex;
+}
+
+.ul-nav-bo
+{
+    list-style-type: none;
+
+}
+.liste-bo
+{
+    margin:10px 0 10px 20px;
+}
+a {
+    text-decoration: none;
+   
+}
+
+a:hover
+{
+
+}
+
+/*******/
+.contener-principal 
+{
+    display: flex;
+    /* flex-direction: column; */
+}
+.principal
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+/********** /BACK OFFICE\ ********/
+
+>>>>>>> origin/develop

@@ -1,24 +1,65 @@
 <?php
-require_once('../controllers/ConnexionController.php');
 require_once('include/header.php');
+require_once('../controllers/ConnexionController.php');
+require_once('../controllers/IndexController.php');
+
 $controller = new ConnexionController();
 
 ?>
 
-<main>
+<main class = "page_accueil">
 
-    <h1>Accueil</h1>
+    <div class="sidebar">
 
-    <?php
-    
-    if(!empty($_SESSION)) {
+    <p>LES CATEGORIES :</p>
+        <?php foreach($afficherNomCategories as $show) : ?>
+ 
+            <a href="articles.php?id=<?php echo $show['id'] ?>"><?php echo $show['nom_categorie'] ?></a>
+        <?php endforeach; ?>
 
-        echo '<p>Bonjour : ' . $_SESSION['user'][0]['prenom'] .''. $_SESSION['user'][0]['nom'] . '</p>';
-    } else {
+    </div>
 
-        echo 'non connecte';
-    }
-    ?>
+    <section>
+
+        <h2>LES BONS PLANS</h2>
+
+        <article>
+
+        <?php foreach($afficherMiseEnAvant as $show) : ?>
+
+            <a href="article.php?id=<?php echo $show['id_produit']; ?>">
+                    
+                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <p>Titre : <?php echo $show['titre']; ?></p>
+                <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
+                <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>
+            </a>
+
+        <?php endforeach; ?>
+
+        </article>
+
+        <h2>LES NOUVEAUTES</h2>
+
+        
+        <article>
+
+        <?php foreach($afficherNouveautes as $show) : ?>
+
+
+            <a href="article.php?id=<?php echo $show['id_produit']; ?>">
+                    
+                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <p>Titre : <?php echo $show['titre']; ?></p>
+                <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
+                <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>
+            </a>
+        
+        <?php endforeach; ?>
+
+        </article> 
+
+    </section>
 
 </main>
 

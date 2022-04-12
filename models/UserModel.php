@@ -102,9 +102,25 @@ class UserModel extends Model
                             ));
     }
 
+    public function updateLogin($id, $login)
+    {  
+        $requete = "UPDATE `utilisateurs` SET `login`= :login WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':login'=> $login));
+    }
 
+    public function updateEmail($id, $email)
+    {  
+        $requete = "UPDATE `utilisateurs` SET email = :email WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':email'=> $email));
+    }
 
-
+    public function updatePassUser($id, $password)
+    {  
+        $requete = "UPDATE `utilisateurs` SET password = :password WHERE `id` = :id";
+        $result = $this->connect()->prepare($requete);
+        $result->execute(array(':id' => $id, ':password'=> $password));
+    }
 }
 ?>
-    

@@ -1,7 +1,5 @@
 <?php
 
-
-
 if(!empty($_GET["id"])){
     require_once("../models/CommentModel.php");
   
@@ -14,6 +12,7 @@ if(!empty($_GET['delete']))
 {
     if(isset($_GET['idHidden']))
     {
+        
 
         require_once("../models/CommentModel.php");
 
@@ -25,7 +24,7 @@ if(!empty($_GET['delete']))
         // j'appelle ma methode delete dans le model
         $deleteComment->deleteCommentaire($id);
 
-        header('location: produit.php');
+        header('location: article.php?id='.$_GET['id']);
     }
 
 

@@ -431,8 +431,8 @@ public function modifySousCategorie($id,$id_categorie,$nom_souscategorie)
     {
         return '<p style = color:red;> Veuillez remplir le champs correspondant à la sous-catégorie.</p>';
     }
-    
 }
+
 public function modifyAuteur($id,$nom,$prenom)
 {   
     $nom = ucwords($nom);

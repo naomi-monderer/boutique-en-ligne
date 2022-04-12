@@ -11,6 +11,19 @@ class CategorieModel extends Model {
         $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
         
         var_dump($nom_categorie);
+    }
+    
+    public function recuperationNoncategorie($id){
+        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `id`='$id'");
+        $requette->execute();
+        $resultat = $requette->fetch();
+        return $resultat;
+
+    }
+    public function recuperationNonSouscategorie($id){
+        $requette = $this->connect()->prepare("SELECT * FROM `souscategories` WHERE `id`=$id");
+        $requette->execute();
+        $resultat = $requette->fetch();
         return $resultat;
     }
 

@@ -46,12 +46,7 @@ class  ConnexionController extends Controller
         {
 
             echo  "Tous les champs doivent etre remplis";
-
         }
-
-        
-
-
     }
 }
 
