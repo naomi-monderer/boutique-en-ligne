@@ -4,30 +4,27 @@ require_once('include/header.php');
 ?>
 <main>
     <section>
-     <div class="nav-back-office">
-        <ul>
-            <li>
-                <a href="admin_user.php">Gestions des utilisateurs</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_article.php">Nouvel Article</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_tab_articles.php">Gestion des Articles</a>
-            </li>
-            <li>
-                <i></i> 
-                <a href="admin_options.php">Nouvelles Options</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_manage_other_forms.php">Gestions des options</a>
-            </li>
-        </ul>
-     </div>
-    </section>
+        <h1>Espace Administratif</h1>
+            <article>
+                    <article>
+                        <h2>Gestion des utilisateurs</h2>
+                        <form action="" method="get">
+                            <input type="submit" name="display_user" value="Afficher les utilisateurs">
+                        </form>
+
+                    </article>
+                    <article>
+                        <h2>Gestion des articles</h2>
+                        <form action="" method="get">
+                            <input type="submit" name="display_article" value="Ajouter des articles"></br>
+                            <input type="submit" name="display_select_list" value="Ajouter des options"></br>
+                            <input type="submit" name="tab_articles" value="Gérer les articles"></br>
+                            <input type="submit" name="manage_specificities" value="Gérer les options"></br>
+                            <!-- <input type="submit" name="update_article" value="Modifier les articles"> -->
+                        </form>
+                       
+                    </article>    
+            </article>
          
 </main>
 <?php

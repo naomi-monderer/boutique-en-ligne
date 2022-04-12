@@ -22,11 +22,15 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
 ?>
 
 <main>
+    <article>
+        <form action="admin.php" method="post">
+            <input type="submit" name="back" value="Retourner au menu de gestion">
+        </form>
+    </article>
     <section>
-    
         <article>
-        <h1>Tous les livres</h1>
-        </article>
+            <h1>Tous les articles de ma boutique</h1>
+        </article> 
         <article>
             <table>
                 <thead>
@@ -43,77 +47,73 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
                     <th>Auteur.ice</th>
                 </thead>
                 <tbody>
-                    <?php
-                 
-                    foreach($innerDisplayArticles as $displayArticle)
-                        {          
-                        ?> 
-                            <tr>
-                                <form action="admin_update_article.php" method="post">
-                                    
-                                    <td>
-                                        <p><?=$displayArticle['id'];?></p>
+                        <?php
+                    
+                        foreach($innerDisplayArticles as $displayArticle)
+                            {          
+                            ?> 
+                                <tr>
+                                    <form action="admin_update_article.php" method="get">
+                                        
+                                        <td>
+                                            <p><?=$displayArticle['id'];?></p>
+                                        </td>
+                                        <td>
+                                            <img src="<?= $displayArticle['image'];?>" style="width:40px">
                                     </td>
-                                    <td>
-                                        <img src="<?= $displayArticle['image'];?>" style="width:40px">
-                                   </td>
-                                    <td>
-                                        <p><?=$displayArticle['titre'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['description'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['stock'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['prix'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['mise_en_avant'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['editeur'];?></p>
-                                    </td> 
-                                    <td>
-                                         <p><?=$displayArticle['nom_categorie'];?></p>
-                                    </td>
+                                        <td>
+                                            <p><?=$displayArticle['titre'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['description'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['stock'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['prix'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['mise_en_avant'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['editeur'];?></p>
+                                        </td> 
+                                        <td>
+                                            <p><?=$displayArticle['nom_categorie'];?></p>
+                                        </td>
 
-                                    <td>
-                                    <p><?=$displayArticle['nom_souscategorie'];?></p>
-                                    </td>
-                                    <td>
-                                        <p><?=$displayArticle['nom'].''. $displayArticle['prenom'];?></p>
-                                    </td>
-                                    <td>
-                                        <input type="submit" name="modify_article" value="modifier" >  
-                                        <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
-                                    </td>
-                                </form>
-                                <form action="" method="post">
-                                    <td>
-                                        <input type="submit" name="delete_article" value="supprimer" >  
-                                        <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
-                                    </td>
-                                </form>
-                            </tr>
-                    <?php } ?>
-                </tbody>    
-            </table>
+                                        <td>
+                                        <p><?=$displayArticle['nom_souscategorie'];?></p>
+                                        </td>
+                                        <td>
+                                            <p><?=$displayArticle['nom'].''. $displayArticle['prenom'];?></p>
+                                        </td>
+                                        <td>
+                                            <input type="submit" name="modify_article" value="modifier" >  
+                                            <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
+                                        </td>
+                                    </form>
+                                    <form action="" method="get">
+                                        <td>
+                                            <input type="submit" name="delete_article" value="supprimer" >  
+                                            <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
+                                        </td>
+                                    </form>
+                                </tr>
+                        <?php } ?>
+                    </tbody>    
+                </table>
         </article>
-
-        <article>
-            <form action="admin.php" method="post">
-                <input type="submit" name="back" value="Retourner au menu de gestion">
-            </form>
-        </article>
-    </section>
+    </section>       
 </main>
 <?php
-if(isset($_POST['delete_article']))
+
+
+if(isset($_GET['delete_article']))
 {  
     //  var_dump($id);
-    $id = $_POST['idHidden_article'];
+    $id = $_GET['idHidden_article'];
     $suppArticle = $controllerAdmin->suppArticle($id);
 
 }

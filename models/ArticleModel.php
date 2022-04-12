@@ -57,7 +57,7 @@ class ArticleModel extends Model{
         $requete->execute(array(
                             ":titre" => $titre,
                             ":description" => $description,
-                            ":stock" => $stock,
+                            ":stock" => intval($stock),
                             ":prix" => $prix,
                             ":mise_en_avant" => $mise_en_avant,
                             ":editeur" => $editeur,

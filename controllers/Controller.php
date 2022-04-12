@@ -22,6 +22,12 @@ class Controller
         return $value;
     }
 
+    public function secureWithoutTrim($value)
+    {
+        $value = htmlspecialchars(strip_tags($value));
+        return $value;
+    }
+
     public function secureEmail($email)
     {
         $email = htmlspecialchars(trim(strip_tags(filter_var($email,FILTER_VALIDATE_EMAIL)))); 

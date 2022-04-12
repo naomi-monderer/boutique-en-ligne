@@ -25,9 +25,9 @@ class CategorieModel extends Model {
         $requette->execute();
         $resultat = $requette->fetch();
         return $resultat;
-
     }
 
+    
    public function allCategorie(){
 
         $requette = $this->connect()->prepare("SELECT * FROM `categories`");

@@ -3,6 +3,33 @@
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+h2 {
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
 
 /* partie article ................... */
 .imgarticle {
@@ -43,20 +70,18 @@ p {
 .enstock {
   color: green;
 }
+/* partie articles */
 
 .mainArticles {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
 }
-.navArticle {
+.mainArticles nav {
   width: 15%;
   padding-top: 3%;
 }
 
-.navArticle a {
+.mainArticles nav a {
   display: block;
-  text-decoration: none;
 }
 
 .aSousCat {
@@ -99,6 +124,92 @@ hr {
   margin: auto;
   text-align: justify;
 }
+/* panier */
+
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+/* .divdescarticle {
+  width: 80%;
+} */
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}
+
+ 
+
 /******** HEADER *********/
 
 body {
@@ -178,6 +289,7 @@ header {
   justify-content: space-around;
 }
 
+
 /******** PAGE ACCUEIL *********/
 
 /******** SIDEBAR *********/
@@ -200,7 +312,12 @@ header {
   margin-bottom: 10px;
 }
 
-/******* SECTION / ARTICLE *********/
+.sidebar p:first-child {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/******* ARTICLE DE LA PAGE D'ACCUEIL *********/
 
 .page_accueil section h2 {
     margin: 30px 0 5px 0;
@@ -261,10 +378,6 @@ header {
     border-top: 1px solid #ADADAD;
 }
 
-.page_accueil .sidebar p:first-child {
-    font-weight: bold;
-}
-
 .page_accueil article a {
     /* width: 15%; */
     width: calc(100%/5 - 15px);
@@ -319,7 +432,6 @@ footer a {
   font-family: "Roboto", sans-serif;
 }
 
-/* panier */
 
 .panier {
   display: flex;
@@ -485,3 +597,4 @@ a:hover
 
 
 /********** /BACK OFFICE\ ********/
+

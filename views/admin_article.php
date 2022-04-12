@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
@@ -19,9 +20,17 @@ echo '<pre>';
 // echo '<pre>';
 // var_dump($showAllCategories); 
 // echo '</pre>';
-
-
-
+if(isset($_POST['new_article']))
+{
+$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
+                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
+                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
+                                                    $_POST['auteur'], $_POST['image']);
+}
+if(isset($_POST['back']))
+{
+    header('location:admin.php');
+}
 ?>
 <main class="main-bo">
     <section class="contener-bo">
@@ -91,7 +100,7 @@ echo '<pre>';
                                     <input type="number" name="stock" value=""><br/>
 
                                 <label for="prix">Prix:</label>
-                                    <input type="number"  name="prix" value="">€<br/>
+                                    <input type="number" step="0.01" name="prix" value="">€<br/>
                                 
                                 <label for="mise_en_avant">Mettre en avant cet article:</label>
                                     <select name='mise_en_avant'>  
@@ -151,22 +160,17 @@ echo '<pre>';
                             <!-- comment générer l'apparition d'un nouvelle catégorie?-->
                     </form>
             </article>
+                    <?php 
+                    if(isset($registerArticle))
+                    {
+                        echo $registerArticle;
+                    }
+                ?>
      </section>
 </main>
 <?php
-if(isset($_POST['new_article']))
-{
-// il manque la l'id_sous categorie
-$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
-                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
-                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
-                                                    $_POST['auteur'], $_POST['image']);
-
-}
 
 
-if(isset($_POST['back']))
-{
-    header('location:admin.php');
-}
+ob_end_flush();
+
 ?>  

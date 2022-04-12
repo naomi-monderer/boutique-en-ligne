@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
@@ -12,27 +13,34 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 // $auteurNom = $listAuteurs[]['nom'];
 // var_dump($auteurNom);
 
-if(isset($_POST['idHidden_article']))
+
+if(isset($_GET['idHidden_article']))
 {
-    $article = $controllerAdmin->Article($_POST['idHidden_article']);
+
+    $article = $controllerAdmin->Article($_GET['idHidden_article']);
     echo '<pre>';
     var_dump($article);
     echo '</pre>';
 }
-
-
-// echo '<pre>';
-// var_dump($showAllCategories); 
-// echo '</pre>';
+if(isset($_POST['modify_article']))
+{    
+    //Textes complets 	id	titre	description	stock	prix	mise_en_avant	editeur	id_categorie	id_souscategorie	id_auteur	image
+    $id = $_POST['idHidden_article'];
+    @$modifyArticle = $controllerAdmin->modifyArticle($id,$_POST['titre'],$_POST['description'],$_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],$_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],$_POST['auteur'],$_POST['image']);
+    // header('Location: admin_update_article.php');
+}
 ?>
 <main>
     <section>
         <article>
-            <h2>Ajouter un nouvel ouvrage:</h2>
+            <form action="admin_tab_articles.php" method="post">
+                <input type="submit" name="back" value="Retourner au tableau des articles">
+            </form>
         </article>
-
         <article>
-                <form action="" method="post">
+        <h1> Modification des articles</h1>
+     
+            <form action="" method="POST">
 
                 <label for="nom">Nom de l'ouvrage:</label>
                     <input type="text" name="titre" value="<?=$article['titre']?>"> <br/>
@@ -45,20 +53,14 @@ if(isset($_POST['idHidden_article']))
                                 foreach($listAuteurs as $listAuteur)
                                 { 
                                     
-                                    // if(count($listAuteur['nom']) && count($listAuteur['prenom']) == 1 )
-                                    // {
                             ?>
                                 <option value="<?= $listAuteur['id']?>" selected>
                                     <?php echo $listAuteur['nom'] .' '. $listAuteur['prenom']?>
                                 </option>
 
                         <?php 
-                                // } 
                             } ?>
                         </select>
-
-                        <!-- doit generer le formulaire pour enregistrer un nouvel auteur-->
-                        <p>Vous ne trouvez pas votre auteur dans la liste. Clikez ici</p><br/>
 
                         <label for="description">Description:</label>
                             <textarea name="description" value="<?=$article['description']?>">
@@ -128,23 +130,21 @@ if(isset($_POST['idHidden_article']))
                     
                     <input type="submit" name="modify_article" value="Modifier cet article">
                     <input type="hidden" name ="idHidden_article" value="<?=$article['id']?>">
-                    <?= $article['id']?>
+                    
                     <!-- comment générer l'apparition d'un nouvelle catégorie?-->
                 </form>
             </article>
-            <article>
-                <form action="admin_tab_articles.php" method="post">
-                    <input type="submit" name="back" value="Retourner au tableau des articles">
-                </form>
-            </article>
+                            <?php
+                                if(isset($modifyArticle))
+                                {
+                                    echo $modifyArticle;
+                                }   
+                            ?>
+           
     </section>
 </main>
 <?php
-//    $article = $controllerAdmin->Article($_POST['idHidden_article']);
-   if(isset($_POST['modify_article']))
-   {    
-       //Textes complets 	id	titre	description	stock	prix	mise_en_avant	editeur	id_categorie	id_souscategorie	id_auteur	image
-       $id = $_POST['idHidden_article'];
-       $modifyArticle= $controllerAdmin->modifyArticle($id,$_POST['titre'],$_POST['description'],$_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],$_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],$_POST['auteur'],$_POST['image']);
-   }
+
+ob_end_flush();
+  
 ?>
