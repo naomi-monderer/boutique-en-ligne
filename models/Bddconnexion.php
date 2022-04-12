@@ -5,7 +5,7 @@
     private $host = 'localhost';
     private $nom = 'boutique';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'root';
     protected $pdo;
 
 

@@ -401,3 +401,80 @@ fieldset {
   display: flex;
   justify-content: space-around;
 }
+
+/*********** BACK OFFICE **********/
+.main-bo 
+{
+    display: flex;
+    /* padding:0; */
+}
+
+.contener-bo
+{   
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    
+    width: 25%;
+    background-color:#F5B027;
+    /* padding:0px; */
+   
+}
+
+.nav-bo
+{   margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: baseline;
+    height: 40%;
+    background-color:#F5B027;
+    border: none;
+    
+}
+.contener-titre-bo
+{
+    width:70%;
+}
+
+.contener-liste-bo
+{
+    /* background-color:#9DBFAF; */
+    width: 90%;
+    display: flex;
+}
+
+.ul-nav-bo
+{
+    list-style-type: none;
+
+}
+.liste-bo
+{
+    margin:10px 0 10px 20px;
+}
+a {
+    text-decoration: none;
+   
+}
+
+a:hover
+{
+
+}
+
+/*******/
+.contener-principal 
+{
+    display: flex;
+    /* flex-direction: column; */
+}
+.principal
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+/********** /BACK OFFICE\ ********/

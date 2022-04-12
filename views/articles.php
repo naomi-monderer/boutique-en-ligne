@@ -25,6 +25,7 @@ require_once('../controllers/IndexController.php');
             <?php if (isset($titre['nom_categorie'])) :?>
                 <h1 class="titreArtices"><?php echo $titre['nom_categorie'] ?></h1>
             <?php else :?>
+                
                 <h1 class="titreArtices"><?php echo $titre['nom_souscategorie'] ?></h1>
             <?php endif ;?>
             <hr>
