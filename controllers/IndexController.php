@@ -7,6 +7,9 @@ require_once("../models/CategorieModel.php");
 $nomCategorie = new CategorieModel;
 $afficherNomCategories = $nomCategorie->allcategorie();
 
+$nomSousCategorie = new SousCategorieModel;
+$afficherNomSousCategories = $nomSousCategorie->allsouscategorie();
+
 $miseEnAvant = new ArticleModel;
 $afficherMiseEnAvant = $miseEnAvant->getProductsByMiseEnAvant();
 

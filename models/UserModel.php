@@ -61,7 +61,7 @@ class UserModel extends Model
      
     }
 
-    public function findUserById($id) :array 
+    public function findUserById($id) :array
     {   #$this->id = $id;
         $requete = "SELECT * FROM utilisateurs WHERE id = :id";
         $result = $this->connect()->prepare($requete);
@@ -82,9 +82,24 @@ class UserModel extends Model
     }
     public function deleteUser($id)
     {
-        $requete = "DELETE FROM utilisateurs where id=:id";
+        $requete = "DELETE FROM utilisateurs WHERE id=:id";
         $result= $this->connect()->prepare($requete);
         $result->execute(array(':id'=> $id));
+
+    }
+
+     public function updateUser($id,$nom, $prenom, $email, $login,$id_droits)
+    {   
+       $requete = "UPDATE `utilisateurs` SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`login`=:login, `id_droits`=:id_droits WHERE `id` = :id";
+       $result = $this->connect()->prepare($requete);
+       $result->execute(array(
+                                ':id' => intval($id), 
+                                ':nom'=> $nom,
+                                ':prenom'=> $prenom,
+                                ':email'=> $email,
+                                ':login'=> $login,
+                                ':id_droits'=> intval($id_droits)
+                            ));
     }
 
     public function updateLogin($id, $login)
