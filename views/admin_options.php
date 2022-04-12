@@ -10,16 +10,8 @@ $listCategories = $controllerAdmin->listCategories();
 $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
-// $Articles = $controllerAdmin->
 
-    // echo '<pre>';
-    // var_dump($listCategories); 
-    // var_dump($_POST);
-    // var_dump($_SESSION);
-    // echo '</pre>';
-
-
-    
+   
 if(isset($_POST['new_cat']))
 {   
     $registerCategorie = $controllerAdmin->registerCategorie($_POST['nom_cat']);
@@ -50,7 +42,7 @@ if(isset($_POST['new_auteur']))
                 </form>
             </article>
             <?php 
-                var_dump($registerCategorie);
+                // var_dump($registerCategorie);
                 if(isset($registerCategorie))
                 {
                     echo $registerCategorie;
@@ -97,6 +89,13 @@ if(isset($_POST['new_auteur']))
 
                         <label for="prenom_auteur">Prénom de l'auteur.ice</label>
                             <input type="text" name="prenom_auteur"> <br/> 
+                      <?php    
+                        if(isset($registerAuteur))
+                        {
+                        
+                            echo $registerAuteur;
+                        }
+                    ?>
 
                             <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
                     </form>

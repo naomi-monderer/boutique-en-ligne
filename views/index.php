@@ -27,4 +27,3 @@ $controller = new ConnexionController();
 require_once("include/footer.php");
 
 ?>
-<main>

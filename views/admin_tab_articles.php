@@ -51,7 +51,7 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
                         {          
                         ?> 
                             <tr>
-                                <form action="admin_update_article.php" method="post">
+                                <form action="admin_update_article.php" method="get">
                                     
                                     <td>
                                         <p><?=$displayArticle['id'];?></p>
@@ -92,7 +92,7 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
                                         <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
                                     </td>
                                 </form>
-                                <form action="" method="post">
+                                <form action="" method="get">
                                     <td>
                                         <input type="submit" name="delete_article" value="supprimer" >  
                                         <input type="hidden" name="idHidden_article" value="<?=$displayArticle['id'];?>" > 
@@ -121,10 +121,10 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
 //     header('Location: admin_update_article.php');
 // }
 
-if(isset($_POST['delete_article']))
+if(isset($_GET['delete_article']))
 {  
     //  var_dump($id);
-    $id = $_POST['idHidden_article'];
+    $id = $_GET['idHidden_article'];
     $suppArticle = $controllerAdmin->suppArticle($id);
 
 }

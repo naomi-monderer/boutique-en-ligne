@@ -6,7 +6,32 @@ require_once('../controllers/AdminController.php');
 
 $controller = new AdminController();
 $allUsers = $controller->displayUsers();
+if(isset($_POST['delete_user']))
+{   
+    $id = $_POST['idHidden_user'];
+    $supp = $controller->suppUser($id);
+  
 
+}
+       
+if(isset($_POST['modify_user']))
+{
+    $id = $_POST['idHidden_user'];
+    // $users = $this->model->findUserById($id);
+    
+    // var_dump($_POST);
+    $modify = $controller->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
+    // header('location: admin_user.php');
+}
+if(isset($_SESSION['error']))
+{
+    echo "<div>" . $_SESSION['error'] . "</div>";
+}
+
+if(isset($_GET['back']))
+{
+    header('location: admin.php');
+}
 
 ?>
 <main>
@@ -79,31 +104,6 @@ $allUsers = $controller->displayUsers();
 
 <?php
 
-if(isset($_POST['delete_user']))
-{   
-    $id = $_POST['idHidden_user'];
-    $supp = $controller->suppUser($id);
-  
 
-}
-       
-if(isset($_POST['modify_user']))
-{
-    $id = $_POST['idHidden_user'];
-    // $users = $this->model->findUserById($id);
-    
-    // var_dump($_POST);
-    $modify = $controller->modify($id,$_POST['nom'],$_POST['prenom'], $_POST['login'], $_POST['email'],intval($_POST['id_droits']));
-    // header('location: admin_user.php');
-}
-if(isset($_SESSION['error']))
-{
-    echo "<div>" . $_SESSION['error'] . "</div>";
-}
-
-if(isset($_GET['back']))
-{
-    header('location: admin.php');
-}
 ob_end_flush();
 ?>

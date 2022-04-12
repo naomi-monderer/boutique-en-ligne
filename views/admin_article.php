@@ -12,11 +12,9 @@ $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 
     echo '<pre>';
-    // var_dump($listCategories); 
-    var_dump($_POST);
-    // var_dump($_SESSION);
+    
     echo '</pre>';
-    if(isset($_POST['new_article']))
+if(isset($_POST['new_article']))
 {
 $registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
                                                     $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
@@ -62,7 +60,8 @@ if(isset($_POST['back']))
                         <input type="number" name="stock" value=""><br/>
 
                     <label for="prix">Prix:</label>
-                        <input type="number" step="0.01" name="prix" value="">€<br/>
+                        <input type="number" step="0.01" name="prix" placeholder="20.00" value="">€<br/>
+                      
                     
                     <label for="mise_en_avant">Mettre en avant cet article:</label>
                         <select name='mise_en_avant'>  

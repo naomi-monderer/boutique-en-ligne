@@ -9,15 +9,6 @@ $allCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 $lists= $controllerAdmin->listCategories();
 $listAuteurs= $controllerAdmin->listAuteurs();
 
-// echo '<pre>';
-// var_dump($allCategories);
-// echo '</pre>';
-
-/* GESTIONS DES ERREURS */
-if(isset($_SESSION['error'])) // il faut y reflechir    
-{
-    echo "<div>" . $_SESSION['error'] . "</div>";
-}
 /* Categories*/ 
 if(isset($_POST['delete_categorie']))
 {
@@ -28,12 +19,9 @@ if(isset($_POST['delete_categorie']))
 if(isset($_POST['modify_categorie']))
 {
     $id=$_POST['idHidden_categorie'];
-    // $nom_categorie = $_POST['nom_cat'];
     $modifyCategorie = $controllerAdmin->modifyCategorie($id,$_POST['nom_cat']);
-    // var_dump($nom_categorie);
-    // var_dump($id);
-}
 
+}
 
 /* Auteurs*/ 
 if(isset($_POST['delete_auteur']))
@@ -59,11 +47,8 @@ if(isset($_POST['modify_souscategorie']))
 { 
     $id = $_POST['idHidden_souscategorie'];
     $modifySousCategorie= $controllerAdmin->modifySousCategorie($id, $_POST['idHidden_cat'],$_POST['sous-cat']);
-// var_dump($modifySousCategorie);
+
 }
-
-
-
 ?>
 <main>
     <section>
@@ -73,9 +58,8 @@ if(isset($_POST['modify_souscategorie']))
             </form>
         </article>
         <article>
-                           
-            <h2>Gestion des Categories</h2>
             <table>
+                <h2>Gestion des Categories</h2>
                 <thead>
                     <th>ID</th>
                     <th>CATÉGORIES</th>
@@ -110,25 +94,20 @@ if(isset($_POST['modify_souscategorie']))
                                 </form>
                             </tr>
                     <?php  } ?>
-              
-            </table>
-        </article>
-        <article>
-            
-        </article>
-            <?php    
+                </tbody> 
+                <?php
+                    //Gestion des erreurs.    
                         if(isset($modifyCategorie))
                         {
                             
                                 echo $modifyCategorie;
                         }
-                        ?>
-                    
-                </tbody>
-
-                
-            <h2>Gestion des Sous-Categories</h2>
-            <table>
+                    ?>                 
+            </table>
+        </article>
+       
+        <table>
+                <h2>Gestion des Sous-Categories</h2>
                 <thead>
                     <th>ID</th>
                     <th>CATÉGORIES</th>
@@ -164,7 +143,7 @@ if(isset($_POST['modify_souscategorie']))
                                         <td>
                                             <input type="submit" name="delete_souscategorie" value="supprimer" >  
                                             <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
-                                            <?php #var_dump($_POST); ?>
+                                            
                                         </td>
                                     </form>
                                 </tr>
@@ -174,6 +153,7 @@ if(isset($_POST['modify_souscategorie']))
                 </tbody>
                 <?php  
                                     
+                                    //Gestion des erreurs. 
                                     if(isset($modifySousCategorie))
                                     {   
                                         echo $modifySousCategorie;
@@ -213,19 +193,20 @@ if(isset($_POST['modify_souscategorie']))
                                             <td>
                                                 <input type="submit" name="delete_auteur" value="supprimer" >  
                                                 <input type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
-                                                <?php var_dump($listAuteur['id']); ?>
+                                               
                                             </td>
                                         </form>
                                      </tr>
                          <?php  } ?>
                     </tbody>
+                    <?php 
+                        //Gestion des erreurs. 
+                        if(isset($modifyAuteur))
+                        {   
+                            echo $modifyAuteur;
+                        }
+                        ?>
                 </table>
-                <?php 
-                if(isset($modifyAuteur))
-                {   
-                    echo $modifyAuteur;
-                }
-                ?>
         </article>
     </section>
 </main>
