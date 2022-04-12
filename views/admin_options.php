@@ -24,11 +24,6 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 ?>
 <main>
     <section>
-    <?php if(isset($_SESSION['error']))
-{
-    echo "<div>" . $_SESSION['error'] . "</div>";
-}   
-?>
         <article>               
             <h2>Ajouter une nouvelle catégorie</h2>
                 <form action="" method="post">
@@ -67,7 +62,7 @@ $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
             </article>
 
             <article>
-                <h2>Auteur.ice</h2>
+                <h2>Ajouter un.e nouvel.le Auteur.ice</h2>
                     <form action="" method="post">
                         <label for="nom_auteur">Nom de l'auteur.ice</label>
                             <input type="text" name="nom_auteur"><br/>

@@ -16,12 +16,13 @@ echo '</pre>';
 <main>
     <section>
         <article>
-                           
             <h2>Gestion des Categories</h2>
+        </article>
+        <article>
             <table>
                 <thead>
-                    <th>ID</th>
-                    <th>CATÉGORIES</th>
+                    <th>Id</th>
+                    <th>Catégorie</th>
                    
                 </thead>
                 <tbody>
@@ -56,13 +57,20 @@ echo '</pre>';
                     
                 </tbody>
             </table>
+        </article>
+        </section>  
 
-            <h2>Gestion des Sous-Categories</h2>
+        <section>
+            <article>
+                <h2>Gestion des Sous-Categories</h2>                   
+            </article>
+            <article>
+                
             <table>
                 <thead>
-                    <th>ID</th>
-                    <th>CATÉGORIES</th>
-                    <th>SOUS-CATÉGORIES</th>
+                    <th>Id</th>
+                    <th>Catégorie</th>
+                    <th>Sous-catégorie</th>
                    
                 </thead>
                 <tbody>
@@ -103,14 +111,18 @@ echo '</pre>';
                     
                 </tbody>
             </table>
-
+            </article>
+        </section>
+        <section>
             <article>
                 <h2> Gestion des Auteur.ices</h2>
-                <table>
+            </article>
+            <article>
+            <table>
                     <thead>
-                        <th>ID</th>
-                        <th>NOM</th>
-                        <th>PRENOM</th>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
                     </thead>
                     <tbody>
                         <?php foreach($listAuteurs as $listAuteur)
@@ -142,13 +154,14 @@ echo '</pre>';
                          <?php  } ?>
                     </tbody>
                 </table>
-              
-
-
-        <form action="admin.php" method="post">
-            <input type="submit" name="back" value="Retourner au menu de gestion">
-        </form>
-    </article>
+            </article>
+        </section>
+                                    
+            <article>
+                <form action="admin.php" method="post">
+                    <input type="submit" name="back" value="Retourner au menu de gestion">
+                </form>
+            </article>
     </section>
 </main>
 <?php
