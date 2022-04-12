@@ -145,3 +145,32 @@ hr {
 .ppanier {
   height: 24vh;
 }
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}

@@ -2,6 +2,22 @@
 session_start();
 require_once("../models/ArticleModel.php");
 $bdd = new ArticleModel();
+// je stock les donner du formulaire adresse de livraison
+$adresse = htmlspecialchars(trim($_POST["adresse"]));
+$codepostal = htmlspecialchars(trim($_POST["codepostal"]));
+$pays = htmlspecialchars(trim($_POST["pays"]));
+$ville = htmlspecialchars(trim($_POST["ville"]));
+// je verifie si les donner du formulaire de adresse livraison sont pas vide
+if(!empty($adresse)&& !empty($codepostal)&&!empty($pays)&& !empty($ville)){
+    // on verifie que le code postal ces bien un chiffre
+    if(strlen($codepostal)==5){
+        //ON insert l'adresse de utilisateur
+
+    }else{
+        $_SESSION["erreur"]="le code postal n'est pas correct";
+    }
+}
+
 
 
 //  je stock les donner du formulaire
