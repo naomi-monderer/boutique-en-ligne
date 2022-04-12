@@ -11,66 +11,52 @@ $controller = new ConnexionController();
 
     <div class="sidebar">
 
-        <a href="articles.php">TOUS LES PRODUITS</a>
-        <a href="#">TOUTES LES NOUVEAUTES</a>
+    <p>LES CATEGORIES :</p>
+        <?php foreach($afficherNomCategories as $show) : ?>
+ 
+            <a href="articles.php?id=<?php echo $show['id'] ?>"><?php echo $show['nom_categorie'] ?></a>
+        <?php endforeach; ?>
 
-        <!-- <form id="form1">
-		    <label for="montrer">BD</label>
-		    <input type="checkbox" name="montrer" id="montrer"/>
-
-            <div class="contenu">
-
-                <a href=""></a>
-            </div>
-
-        </form> -->
-
-        <!-- <form id="form1">
-            <label for="montrer">ROMAN</label>
-            <input type="checkbox" name="montrer" id="montrer"/>
-
-            <div class="contenu"> -->
-
-            <?php foreach($afficherNomCategories as $afficher) : ?>
-
-                <a href="articles.php?id=<?php echo $afficher['id']; ?>"><?php echo $afficher['nom_categorie'] ?></a>
-
-                <?php foreach($afficherNomSousCategories as $afficher) : ?>
-
-                    <a class="sous" href="articles.php?id_souscategorie=<?php echo $afficher['id']; ?>"><?php echo $afficher['nom_souscategorie'] ?></a>
-
-                <?php endforeach; ?>
-            <?php endforeach; ?>
-
-            </div>
-<!-- 
-        </form> -->
     </div>
 
     <section>
 
-        <article> 
+        <h2>LES BONS PLANS</h2>
+
+        <article>
 
         <?php foreach($afficherMiseEnAvant as $show) : ?>
 
-            <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+            <a href="article.php?id=<?php echo $show['id_produit']; ?>">
+                    
+                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <p>Titre : <?php echo $show['titre']; ?></p>
+                <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
+                <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>
+            </a>
 
         <?php endforeach; ?>
 
         </article>
 
-        <h2>NOUVEAUTES</h2>
+        <h2>LES NOUVEAUTES</h2>
 
         
-        <article> 
+        <article>
 
         <?php foreach($afficherNouveautes as $show) : ?>
 
-            <img src="../picture/<?php echo $show['image'];  ?>" alt="">
 
+            <a href="article.php?id=<?php echo $show['id_produit']; ?>">
+                    
+                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <p>Titre : <?php echo $show['titre']; ?></p>
+                <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
+                <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>
+            </a>
+        
         <?php endforeach; ?>
 
-        
         </article> 
 
     </section>

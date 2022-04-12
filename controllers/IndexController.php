@@ -7,14 +7,11 @@ require_once("../models/CategorieModel.php");
 $nomCategorie = new CategorieModel;
 $afficherNomCategories = $nomCategorie->allcategorie();
 
-$nomSousCategorie = new SousCatgeorieModel;
-$afficherNomSousCategories = $nomSousCategorie->allsouscategorie();
-
 $miseEnAvant = new ArticleModel;
 $afficherMiseEnAvant = $miseEnAvant->getProductsByMiseEnAvant();
 
-$nouveaute = new ArticleModel;
-$afficherNouveautes = $nouveaute->getProductsByNouveautes();
+$nouveautes = new ArticleModel;
+$afficherNouveautes = $nouveautes->getProductsByNouveautes();
 
 $allProducts = new ArticleModel;
 $showAllProducts = $allProducts->getAllProducts();

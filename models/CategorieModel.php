@@ -32,6 +32,19 @@ class CategorieModel extends Model {
         $resultat->execute(array(":nom_categorie" => $nom_categorie));
         return $resultat;
     }
+
+    public function innerCategoriesWithSousCategories(){
+
+        $requette = $this->connect()->prepare(
+        "SELECT *
+        FROM `categories`
+        INNER JOIN souscategories ON categories.id = souscategories.id_categorie 
+        ORDER BY `categories`.`id` ASC ");
+        $requette->execute();
+        $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
+        return $resultat;
+        
+    }
     
         
     
