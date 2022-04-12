@@ -45,7 +45,7 @@ class ArticleModel extends Model{
 
     public  function uptadesotck($id_produit,$quantite)
     {
-          $requette = $this->connect()->prepare("UPDATE `produits` SET `stock`=:quantite WHERE `id`:id_produit");
+          $requette = $this->connect()->prepare("UPDATE `produits` SET `stock`=:quantite WHERE `id`=:id_produit");
           $requette->execute(["quantite"=>$quantite,"id_produit"=>$id_produit]);
           
     }
@@ -133,14 +133,14 @@ class ArticleModel extends Model{
     }
 
     public function getProductsByMiseEnAvant() {
-        $requete = $this->connect()->prepare("SELECT * FROM `produits` WHERE mise_en_avant = 1 ORDER BY id DESC LIMIT 5");
+        $requete = $this->connect()->prepare("SELECT * , produits.id as id_produit FROM `produits` INNER JOIN auteurs ON id_auteur = auteurs.id WHERE mise_en_avant = 1 ORDER BY id_produit DESC LIMIT 5");
         $requete->execute();
         $resultat = $requete->fetchAll();
         return $resultat;
     }
 
     public function getProductsByNouveautes() {
-        $requete = $this->connect()->prepare("SELECT * FROM `produits` ORDER BY id DESC LIMIT 5");
+        $requete = $this->connect()->prepare("SELECT * , produits.id AS id_produit FROM `produits` INNER JOIN auteurs ON id_auteur = auteurs.id ORDER BY id_produit DESC LIMIT 5");
         $requete->execute();
         $resultat = $requete->fetchAll();
         return $resultat;

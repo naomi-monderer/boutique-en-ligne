@@ -1,22 +1,10 @@
 <?php
+require('include/header.php');
 require_once("../controllers/PanierController.php");
 
 
-    ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style//fontello/css/fontello.css">
-    <title>panier</title>
-</head>
-<body class="bodypanier">
-    <header>
 
-    </header>
+    ?>
     <main class="panier">
         <div class='firstDiv'>
         <h2>Panier</h2>
@@ -44,7 +32,7 @@ require_once("../controllers/PanierController.php");
                         <div class="prixArticle">
                             <p><?= $resultat["prix"]?> €</p>
                             
-                            <a href="../controllers/PanierController.php?delete=<?php echo $resultat['id']; ?>">Supprimer</a>
+                            <a href="../controllers/PanierController.php?delete=<?php echo $resultat['id_produit']; ?>">Supprimer</a>
 
                         </div>
                     </div>
@@ -101,9 +89,3 @@ require_once("../controllers/PanierController.php");
         
 
     </main>
-    <footer>
-
-    </footer>
-    
-</body>
-</html>

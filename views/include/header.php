@@ -21,8 +21,8 @@ session_start();
 <body>
     <header>
 
-            <img id="logo" src="../picture/logo_boutique.png">
-
+         <a href="index.php">  <img id="logo" src="../picture/logo_boutique.png">
+</a> 
             
             <form action="../controllers/RechercheController.php" method="GET">
                 <div class="search">

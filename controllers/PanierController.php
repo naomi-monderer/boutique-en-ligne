@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once("../models/ArticleModel.php");
 require_once("../models/PanierModel.php");
 $articles = new ArticleModel();
@@ -9,6 +9,7 @@ $panier = new PanierModel();
 
 if(isset($_GET["produit"])){
   
+    session_start();
     // verification du stock
     $stock = $articles->getstock($_GET["produit"]);
    
@@ -56,7 +57,15 @@ if(isset($_GET["produit"])){
     }
     
 }
-// on fait une recuperation pour afficher le panier
+
+
+    if (!isset($_SESSION)){
+         session_start();
+    
+    }
+   
+
+    // on fait une recuperation pour afficher le panier
     $recuperation = $panier->recuperationpanier($_SESSION["user"][0]["id"]);
   
     
@@ -87,13 +96,19 @@ if(isset($_GET["produit"])){
             "quantite" => $recuperation[$i]['quantite']
         ];
     }
+
+
     //suppresion de article du panier de utilisateur
     if(isset($_GET["delete"])){
-        $deleteproduit = $panier->deleterarticlepanier($_GET["delete"]);
+        
+        $panier->deleterarticlepanier($_GET["delete"],$_SESSION["user"][0]['id'] );
         header("location: ../views/panier.php");
         
 
     }
+
+
+
     
 
 

@@ -36,9 +36,7 @@ if(isset($_POST['submit']))
     <title>Document</title>
 </head>
 <body>
-    <header>
-        
-    </header>
+ 
     <main>
     
     
