@@ -1,19 +1,9 @@
 <?php 
-session_start(); 
-var_dump($_SESSION);
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>payement</title>
-</head>
-<body>
-    <header>
 
-    </header>
+require('include/header.php');
+
+?>
+
     <main>
     <div class="container">
     <div class='row'>
@@ -27,9 +17,35 @@ var_dump($_SESSION);
             }
 
             ?>
-            <form action="../controllers/PayementController.php"  method="POST">
-                
-                <div >
+        
+
+   
+
+  
+            <form class="row"  action="../controllers/PayementController.php"  method="POST">
+            <fieldset>
+    <legend>Adresse de livraison</legend>
+      <ol>
+        <li>
+          <label for=adresse>Adresse</label>
+          <textarea id=adresse name="adresse" rows=5 required></textarea>
+        </li>
+        <li>
+          <label for=codepostal>Code postal</label>
+          <input id=codepostal name="codepostal" type=text required>
+        </li>
+          <li>
+          <label for=pays>Pays</label>
+          <input id=pays name="pays" type=text required>
+        </li>
+        <li>
+            <label for="ville">Votre ville</label>
+            <input type="text" name="ville" id="">
+        </li>
+      </ol>
+  
+    </fieldset>
+                <div class="formpayement" >
                     <div'>
                         <label>Nom sur la carte</label>
                         <input type='text' name="name">
@@ -56,7 +72,7 @@ var_dump($_SESSION);
                     </div>
                 </div>
 
-                <button  type='submit'>Payer »</button>
+                <button class="payementbutton" type='submit'>Payer »</button>
                     
                 </div>
             </form>
@@ -65,11 +81,6 @@ var_dump($_SESSION);
 </div>
 
     </main>
-    <footer>
 
-    </footer>
-    
-</body>
-</html>
 
 <?php unset($_SESSION['erreur'] ) ;?>
