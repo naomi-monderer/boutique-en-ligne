@@ -1,4 +1,4 @@
-* {
+*{
     margin: 0;
     padding: 0;
 }
@@ -31,6 +31,66 @@ a {
   text-decoration: none;
 }
 
+/******** PAGE PROFIL ***********/
+
+.page_inscription, .page_connexion, .page_profil {
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.page_inscription h1, .page_connexion h1, .page_profil h1 {
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.page_profil section {
+  display: flex;
+  flex-direction: row;
+}
+
+.page_inscription form, .page_connexion form, .page_profil form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background: #ffffff;
+  padding: 40px;
+  border: 1px solid #ADADAD;
+  border-radius: 10px;
+}
+
+.page_inscription form, .page_connexion form {
+  width: 300px;
+}
+
+.page_connexion form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.page_inscription input, .page_connexion input, .page_profil input {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #ADADAD;
+  color: #ADADAD;
+  border-radius: 5px;
+}
+
+.page_connexion .btn, .page_inscription .btn, .page_profil .btn {
+  background: #f5b027;
+  border-radius: 5px;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.page_inscription h1 {
+  margin: 30px 0;
+}
 /* partie article ................... */
 .imgarticle {
   width: 25%;
@@ -124,6 +184,39 @@ hr {
   margin: auto;
   text-align: justify;
 }
+
+/***** PAGE RECHERCHE **********/
+
+.page_recherche .titrearticle {
+  text-align: center;
+}
+
+.page_recherche .articles {
+  display: flex;
+  margin: 40px 100px 0px 100px;
+}
+
+.page_recherche .article {
+  width: 20%;
+}
+
+.page_recherche .article img {
+  width: 65%;
+  padding: 5%;
+  border: 1px solid black;
+}
+
+.page_recherche .articleDescription {
+  width: 80%;
+  padding-right: 3%;
+  text-align: justify;
+}
+
+.page_recherche .articleButton {
+  display: flex;
+  flex-direction: column;
+}
+
 /* panier */
 
 .panier {
@@ -249,6 +342,10 @@ header form button {
     font-size: 15px;
 }
 
+header button img {
+  width : 80%;
+}
+
 header form {
   width: 300px;
 }
@@ -274,9 +371,7 @@ nav a {
 }
 
 nav a:hover {
-    padding-bottom: 5px;
-    border-bottom: solid 2px black;
-    transition: transform 2s ease-in-out;
+  color: #f5b027;
 }
 
 
@@ -307,6 +402,11 @@ header {
   text-decoration: none;
   margin-top: 10px;
 }
+
+.sidebar a:hover {
+  color: #f5b027;
+}
+
 
 .sidebar h2 {
   margin-bottom: 10px;
@@ -340,7 +440,17 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     /* padding: 1vh 0; */
-}
+} */
+.page_accueil section article {
+    border-top: 1px solid #adadad;
+    border-bottom: 1px solid #adadad;
+    height: max-content;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding: 1vh 0; */
+} 
 
 
 /********* PAGE ACCUEIL ************/
@@ -377,6 +487,10 @@ header {
     background: #ffffff;
 }
 
+.page_accueil article a:hover {
+  opacity: 0.7;
+}
+
 .page_accueil article p {
     text-align: center;
 }
@@ -395,13 +509,13 @@ main {
 
 /****************************/
 
-section form {
+/* section form {
   display: flex;
   flex-direction: column;
   background: whitesmoke;
   border-radius: 10px;
   padding: 3%;
-}
+} */
 
 /********** FOOTER *********/
 
@@ -422,4 +536,157 @@ footer a {
   font-family: "Roboto", sans-serif;
 }
 
+
+.panier {
+  display: flex;
+  background-color: #ffffff;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.descriptionpanier {
+  display: flex;
+  justify-content: space-between;
+}
+.bodypanier,
+.panier {
+  background-color: #f0f0f0;
+}
+
+.sectionpanier {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  padding: 2%;
+  background-color: #ffffff;
+}
+.sectionpanier img {
+  width: 15%;
+}
+.descriptionpanier {
+  width: 83%;
+}
+.firstDiv {
+  width: 70%;
+}
+.prixArticle {
+  width: 7%;
+  text-align: center;
+  margin-right: 4%;
+}
+
+.divrecap {
+  width: 20%;
+}
+.divrecap section {
+  padding: 2% 5%;
+  background-color: #ffffff;
+}
+.bodypanier .panier div:nth-child(2) section {
+  height: 24vh;
+}
+.ppanier {
+  height: 24vh;
+}
+
+/* partie payement */
+.row {
+  display: block;
+  text-align: center;
+  padding: 1%;
+}
+.payementbutton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f5b027;
+  width: 7%;
+  height: 5vh;
+}
+.formpayement input {
+  width: 20%;
+  height: 3vh;
+}
+fieldset {
+  width: 20%;
+}
+.info {
+  text-align: center;
+  display: block;
+}
+.formu {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*********** BACK OFFICE **********/
+.main-bo 
+{
+    display: flex;
+    /* padding:0; */
+}
+
+.contener-bo
+{   
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    
+    width: 25%;
+    background-color:#F5B027;
+    /* padding:0px; */
+   
+}
+
+.nav-bo
+{   margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: baseline;
+    height: 40%;
+    background-color:#F5B027;
+    border: none;
+    
+}
+.contener-titre-bo
+{
+    width:70%;
+}
+
+.contener-liste-bo
+{
+    /* background-color:#9DBFAF; */
+    width: 90%;
+    display: flex;
+}
+
+.ul-nav-bo
+{
+    list-style-type: none;
+
+}
+.liste-bo
+{
+    margin:10px 0 10px 20px;
+}
+a {
+    text-decoration: none;
+   
+}
+
+/*******/
+.contener-principal 
+{
+    display: flex;
+    /* flex-direction: column; */
+}
+.principal
+{
+    display: flex;
+    justify-content: center;
+}
+
+
+/********** /BACK OFFICE\ ********/
 

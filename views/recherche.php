@@ -4,8 +4,8 @@ require('include/header.php');
 
 ?>
 
-<main>
-    <!-- condition si session n'existe pas -->
+<main class="page_recherche">
+
     <?php
     
     if(!isset($_SESSION)) {
@@ -14,26 +14,29 @@ require('include/header.php');
     }
     ?>
 
+    <h1 class="titrearticle">RECHERCHE</h1>
+    <hr>
+
     <?php foreach($_SESSION['search'] as $resultat) : ?>
 
         <div class="articles">
-            <div class="articleDiv">
+            <div class="article">
                 <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img class="imgarticle" src="../picture/<?php echo $resultat["image"]; ?>" alt=""></a>
                 
             </div>
-            <div class="articleDivDescription">
+            <div class="articleDescription">
                     <a href="article.php?id=<?php echo $resultat["id_produit"]?>"><p>Titre: <?php echo $resultat["titre"];  ?></p></a>
                     <p>Auteur: <?php  echo $resultat["nom"].' '. $resultat["prenom"];  ?></p>
                     <p>Description</p>
                     <p><?php echo $resultat["description"];?></p>
             </div>
-            <div class="articleDiv">
+            <div class="articleButton">
                 <?php if($resultat["stock"]>0):?>
                     <p>En stock</p>
-                    <a href="../controllers/PanierController.php?produit=<?= $resultat["id_produit"] ?>">Ajouter au panier</a>
+                    <a class="buttonarticle" href="../controllers/PanierController.php?produit=<?= $resultat["id_produit"] ?>">Ajouter au panier</a>
                 <?php else:?>
                     <p>Temporairement en rupture de stock.</p>
-                <?php endif;?>
+                <?php endif;?>  
             </div>
             
         </div>

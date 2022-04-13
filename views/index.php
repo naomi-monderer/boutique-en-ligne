@@ -29,7 +29,7 @@ $controller = new ConnexionController();
 
             <a href="article.php?id=<?php echo $show['id_produit']; ?>">
                     
-                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <img src="<?php echo $show['image'];  ?>" alt="">
                 <p>Titre : <?php echo $show['titre']; ?></p>
                 <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
                 <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>
@@ -49,7 +49,7 @@ $controller = new ConnexionController();
 
             <a href="article.php?id=<?php echo $show['id_produit']; ?>">
                     
-                <img src="../picture/<?php echo $show['image'];  ?>" alt="">
+                <img src="<?php echo $show['image'];  ?>" alt="">
                 <p>Titre : <?php echo $show['titre']; ?></p>
                 <p>Auteur : <?php echo $show['nom'] . " " . $show['prenom']; ?></p>
                 <p>Prix : <?php echo $show['prix'] . " "; ?>€</p>

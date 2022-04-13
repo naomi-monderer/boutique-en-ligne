@@ -27,11 +27,13 @@ session_start();
             <form action="../controllers/RechercheController.php" method="GET">
                 <div class="search">
                     <input type="search" name="search" placeholder="Rechercher un livre...">
-                    <button type="submit">OK</button>
+                    <button type="submit"><img src="../picture/3844432-magnifier-search-zoom_110300.svg"></button>
                 </div>
             </form>
 
             <nav>
+
+                <a href="index.php">Accueil</a>
 
                 <?php if(!isset($_SESSION['user']))
                 {?>
@@ -40,13 +42,13 @@ session_start();
                 <a href="inscription.php">Inscription</a>
              
                 
-        <?php }
+                <?php }
                 
                 if(isset($_SESSION['user']))
                         {?>
                         <a href="profil.php">Profil</a></br>
-                         <a href="deconnexion.php">déconnexion</a></br>
-                         <a href="panier.php">Panier</a>
+                        <a href="deconnexion.php">déconnexion</a></br>
+                        <a href="panier.php">Panier</a>
                           
                           
 

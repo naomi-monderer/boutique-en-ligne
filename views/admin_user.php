@@ -3,7 +3,6 @@ ob_start();
 require_once('include/header.php');
 require_once('../controllers/AdminController.php');
 
-
 $controller = new AdminController();
 $allUsers = $controller->displayUsers();
 
