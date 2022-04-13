@@ -18,9 +18,9 @@ if(isset($_GET['idHidden_article']))
 {
 
     $article = $controllerAdmin->Article($_GET['idHidden_article']);
-    echo '<pre>';
-    var_dump($article);
-    echo '</pre>';
+    // echo '<pre>';
+    // var_dump($article);
+    // echo '</pre>';
 }
 if(isset($_POST['modify_article']))
 {    
@@ -33,111 +33,120 @@ if(isset($_POST['modify_article']))
 <main class="main-bo">
 
     <?php require_once('include/sideBar.php')?>
-    <section>
-      <article>
-        <h1> Modification des articles</h1>
-        </article>
-        <article>
-            <form action="" method="POST">
-
-                <label for="nom">Nom de l'ouvrage:</label>
-                    <input type="text" name="titre" value="<?=$article['titre']?>"> <br/>
-
-                    <label for="auteur">Auteur.ice</label>
-                        <select name="auteur">
-                            
-                            <?php 
-                                
-                                foreach($listAuteurs as $listAuteur)
-                                { 
-                                    
-                            ?>
-                                <option value="<?= $listAuteur['id']?>" selected>
-                                    <?php echo $listAuteur['nom'] .' '. $listAuteur['prenom']?>
-                                </option>
-
-                        <?php 
-                            } ?>
-                        </select>
-
-                        <label for="description">Description:</label>
-                            <textarea name="description" value="<?=$article['description']?>">
-                                <?=$article['description']?>
-                            </textarea><br/>
-
-                        <label for="stock"></label>Nombre d'articles à ajouter au stock:</label>
-                            <input type="number" name="stock" value="<?=$article['stock']?>"><br/>
-
-                        <label for="prix">Prix:</label>
-                            <input type="number" step="0.01" name="prix" value="<?=$article['prix']?>">€<br/>
-                        
-                        <label for="mise_en_avant">Mettre en avant cet article:</label>
-                            <select name='mise_en_avant'>  
-                                <option value="1">oui</option>
-                                <option value="0">non</option>  
-                            </select><br/>
-                            
-                        <label for="editeur">Editeur:</label>
-                            <input type="text" name="editeur" value="<?=$article['editeur']?>"><br/>
-
-                        <label for="categorie">Catégorie:</label>
-                        <select name="categorie">
-                            <?php foreach($showAllCategories as $showAllCategory) 
-                            {?>   
-                                <option value="<?= $showAllCategory['id']?>">
-                                    <?php echo $showAllCategory['nom_categorie']?>
-                                </option>
-                            <?php }?>   
-                        </select>
-                            
-                        <label for="souscategorie">Sous-Catégorie:</label>
-                        <select name="souscategorie">
-                    
-                            <?php 
-                            $temp="";  
-                            $booleen = true;
-                            foreach($listCategories as $listCategory) 
-                            { ?>
-                                <?php   if($temp == $listCategory['nom_categorie'])
-                                        { ?>
-                                            <option value="<?= $listCategory['id']?>"> 
-                                                <?php  echo $listCategory['nom_souscategorie']?>
-                                            </option>
-                            <?php    
-                                            $booleen = true; // :)
-                                        }
-                                        else
-                                        {?>
-                                            
-                                            <optgroup  value="<?= $listCategory['id_categorie']?>" label="<?php echo $listCategory['nom_categorie']?>">
-                                            <option value="<?= $listCategory['id']?>"> 
-                                                <?php  echo $listCategory['nom_souscategorie']?>
-                                            </option>
-                                            <?php if($booleen == false) // :D
-                                            echo '</optgroup>'; ?>                                 
-                                <?php }?>
-                                    
-                            <?php 
-                                    $temp = $listCategory['nom_categorie'];
-                            }?>
-                        </select><br/>
-
-                    <label for="image">Choisir une image:</label>
-                        <input type="text" name='image' value="<?=$article['image']?>"placeholder="URL IMG"></br>
-                        <img src="<?=$article['image']?>" alt="" style="width:100px">
-                    
-                    <input type="submit" name="modify_article" value="Modifier cet article">
-                    <input type="hidden" name ="idHidden_article" value="<?=$article['id']?>">
-                </form>
+    <div class="contener">
+        <section class="contener-rest">
+            
+        <article class="contener-titre-principal">
+            <h1> Modification des articles</h1>
             </article>
-                            <?php
-                                if(isset($modifyArticle))
-                                {
-                                    echo $modifyArticle;
-                                }   
-                            ?>
-           
-    </section>
+            <article class="principal">
+                <form  class="form-bo" action="" method="POST">
+                    <div>
+                        <label class="label-bo" for="nom">Nom de l'ouvrage:</label>
+                            <input class="label-bo"  type="text" name="titre" value="<?=$article['titre']?>"> <br/>
+
+                            <label class="label-bo" for="auteur">Auteur.ice</label>
+                                <select name="auteur">
+                                    
+                                    <?php 
+                                        
+                                        foreach($listAuteurs as $listAuteur)
+                                        { 
+                                            
+                                    ?>
+                                        <option value="<?= $listAuteur['id']?>" selected>
+                                            <?php echo $listAuteur['nom'] .' '. $listAuteur['prenom']?>
+                                        </option>
+
+                                <?php 
+                                    } ?>
+                                </select>
+
+                                <label class="label-bo" for="description">Description:</label>
+                                    <textarea class="label-bo" style="height:20vh;" name="description" value="<?=$article['description']?>">
+                                        <?=$article['description']?>
+                                    </textarea><br/>
+
+                                <label class="label-bo" for="stock">Stock:</label>
+                                    <input class="label-bo"  type="number" name="stock" value="<?=$article['stock']?>"><br/>
+                                
+                                <label class="label-bo" for="prix">Prix:</label>
+                                <input class="label-bo"  type="number" step="0.01" name="prix" value="<?=$article['prix']?>"><br/>
+                        
+                        
+                    </div>
+                    <div>
+                        <label class="label-bo" for="mise_en_avant">Mettre en avant:</label>
+                                <select name='mise_en_avant'>  
+                                    <option value="1">oui</option>
+                                    <option value="0">non</option>  
+                                </select><br/>
+                                    
+                            <label class="label-bo" for="editeur">Editeur:</label>
+                                <input class="label-bo"  type="text" name="editeur" value="<?=$article['editeur']?>"><br/>
+
+                            <label class="label-bo" for="categorie">Catégorie:</label>
+                            <select name="categorie">
+                                <?php foreach($showAllCategories as $showAllCategory) 
+                                {?>   
+                                    <option value="<?= $showAllCategory['id']?>">
+                                        <?php echo $showAllCategory['nom_categorie']?>
+                                    </option>
+                                <?php }?>   
+                            </select>
+                                
+                            <label class="label-bo" for="souscategorie">Sous-Catégorie:</label>
+                            <select name="souscategorie">
+                        
+                                <?php 
+                                $temp="";  
+                                $booleen = true;
+                                foreach($listCategories as $listCategory) 
+                                { ?>
+                                    <?php   if($temp == $listCategory['nom_categorie'])
+                                            { ?>
+                                                <option value="<?= $listCategory['id']?>"> 
+                                                    <?php  echo $listCategory['nom_souscategorie']?>
+                                                </option>
+                                <?php    
+                                                $booleen = true; // :)
+                                            }
+                                            else
+                                            {?>
+                                                
+                                                <optgroup  value="<?= $listCategory['id_categorie']?>" label="<?php echo $listCategory['nom_categorie']?>">
+                                                <option value="<?= $listCategory['id']?>"> 
+                                                    <?php  echo $listCategory['nom_souscategorie']?>
+                                                </option>
+                                                <?php if($booleen == false) // :D
+                                                echo '</optgroup>'; ?>                                 
+                                    <?php }?>
+                                        
+                                <?php 
+                                        $temp = $listCategory['nom_categorie'];
+                                }?>
+                            </select><br/>
+
+                        <label class="label-bo" for="image">Choisir une image:</label>
+                            <div class="modif-image"> 
+                                <input class="label-bo"  type="text" name='image' value="<?=$article['image']?>"placeholder="url de l'image...">
+                                <img src="<?=$article['image']?>" alt="" style="width:100px">
+                            </div>
+                        
+                        <input type="submit" name="modify_article" value="Modifier cet article">
+                        <input type="hidden" name ="idHidden_article" value="<?=$article['id']?>">
+                    </div>
+                </form>
+                </article>
+                                <?php
+                                    if(isset($modifyArticle))
+                                    {
+                                        echo $modifyArticle;
+                                    }   
+                                ?>
+            
+        </section>
+    </div>
 </main>
 <?php
 require_once('include/footer.php');

@@ -104,11 +104,12 @@ class AdminController extends Controller
     public function registerCategorie($nom_categorie)
     {
         
-        $nom_categorie =$this->secure(ucwords($nom_categorie));
+        $nom_categorie =$this->secure(strtoupper($nom_categorie));
         if(!empty($nom_categorie))
         {   
             $nomCategorie = $this->modelCategorie->getCategorie($nom_categorie);
-        
+
+           
             if(count($nomCategorie) == 0)
             {
                 $insertCategorie = $this->modelCategorie->insertCategorie($nom_categorie);
@@ -377,7 +378,7 @@ class AdminController extends Controller
 
     public function modifyCategorie($id,$nom_categorie)
     {
-        $nom_categorie = ucwords($nom_categorie);
+        $nom_categorie = secureWithoutTrim(strtoupper($nom_categorie));
         if (!empty($nom_categorie))
         {   
             $result = $this->modelCategorie->getOneValue('categories','nom_categorie',$nom_categorie);

@@ -6,11 +6,11 @@ class CategorieModel extends Model {
     }
     public function getCategorie($nom_categorie)
     {
-        $requette = $this->connect()->prepare("SELECT * FROM `categories` WHERE `nom_categorie`=:nom_categorie");
+        $requette = $this->connect()->prepare("SELECT COUNT(*) FROM `categories` WHERE `nom_categorie`=:nom_categorie");
         $requette->execute(array(":nom_categorie" => $nom_categorie));
         $resultat = $requette->fetchAll(PDO :: FETCH_ASSOC);
         
-        var_dump($nom_categorie);
+        return $resultat;
     }
     
     public function recuperationNoncategorie($id){

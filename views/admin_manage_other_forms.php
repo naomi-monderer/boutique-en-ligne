@@ -63,6 +63,8 @@ if(isset($_POST['modify_souscategorie']))
                 <thead>
                     <th>ID</th>
                     <th>CATÉGORIES</th>
+                    <th>MODIFIER</th>
+                    <th>SUPPRIMER</th>
                    
                 </thead>
                 <tbody>
@@ -78,17 +80,17 @@ if(isset($_POST['modify_souscategorie']))
                                         <p><?= $category['id']?></p>
                                     </td>
                                     <td>
-                                        <input type="text" name="nom_cat" value="<?= $category['nom_categorie']?>">
+                                        <input class="input-large" type="text" name="nom_cat" value="<?= $category['nom_categorie']?>">
                                     </td>
-                                    <td>
-                                        <input type="submit" name="modify_categorie" value="modifier" >  
-                                        <input type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
+                                    <td class="butt-manage-modif">
+                                    <button class="butt-modif" type="submit" name="modify_categorie" ><i class="fa-solid fa-screwdriver-wrench"></i></button>
+                                    <input class="input-large" type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
                                     </td>
                                 </form>
                                 <form action="" method="post">
-                                    <td>
-                                        <input type="submit" name="delete_categorie" value="supprimer" >  
-                                        <input type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
+                                    <td class="butt-manage-supp"> 
+                                    <button class="butt-delete" name="delete_categorie" type='submit'><i class="fa-solid fa-xmark"></i></button>  
+                                    <input  type="hidden" name="idHidden_categorie" value="<?=$category['id'];?>" > 
                                         
                                     </td>
                                 </form>
@@ -117,6 +119,8 @@ if(isset($_POST['modify_souscategorie']))
                         <th>ID</th>
                         <th>CATÉGORIES</th>
                         <th>SOUS-CATÉGORIES</th>
+                        <th>MODIFIER</th>
+                        <th>SUPPRIMER</th>
                     
                     </thead>
                     <tbody>
@@ -135,19 +139,21 @@ if(isset($_POST['modify_souscategorie']))
                                                 <p><?= $list['nom_categorie'];?></p>
                                             </td>
                                             <td>
-                                                <input type="text" name="sous-cat" value="<?= $list['nom_souscategorie'];?>">
+                                                <input class="input-large" type="text" name="sous-cat" value="<?= $list['nom_souscategorie'];?>">
                                             </td>    
                                         
-                                            <td>
-                                                <input type="submit" name="modify_souscategorie" value="modifier" >  
+                                            <td class="butt-manage-modif">
+                                                
+                                                <button class="butt-modif" type="submit" name="modify_souscategorie" ><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
                                                 <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
                                                 <input type="hidden" name="idHidden_cat" value="<?=$list['id_categorie'];?>" > 
                                             </td>
                                         </form>
                                         <form action="" method="post">
-                                            <td>
-                                                <input type="submit" name="delete_souscategorie" value="supprimer" >  
-                                                <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
+                                            <td class="butt-manage-supp">
+                                            <button class="butt-delete" name="delete_souscategorie" type='submit'><i class="fa-solid fa-xmark"></i></button>  
+                                            <input type="hidden" name="idHidden_souscategorie" value="<?=$list['id'];?>" > 
                                                 
                                             </td>
                                         </form>
@@ -178,30 +184,35 @@ if(isset($_POST['modify_souscategorie']))
                         <th>ID</th>
                         <th>NOM</th>
                         <th>PRENOM</th>
+                        <th>MODIFIER</th>
+                        <th>SUPPRIMER</th>
                     </thead>
                     <tbody>
                         <?php foreach($listAuteurs as $listAuteur)
                                 { ?>
                                     <tr>
-                                        <form action="admin_manage_other_forms.php" method="post">
+                                        <form class="form-bo" action="admin_manage_other_forms.php" method="post">
                                             <td>
                                                 <p><?= $listAuteur['id']?></p>
                                             </td>
                                             <td>
-                                                <input type="text" name="nom_auteur" value="<?= $listAuteur['nom']?>">
+                                                <input class="input-large" type="text" name="nom_auteur" value="<?= $listAuteur['nom']?>">
                                             </td>
                                             <td>
-                                            <input type="text" name="prenom_auteur" value="<?= $listAuteur['prenom']?>">
+                                            <input class="input-large" type="text" name="prenom_auteur" value="<?= $listAuteur['prenom']?>">
                                             </td>
-                                            <td>
-                                                <input type="submit" name="modify_auteur" value="modifier" >  
-                                                <input type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
+                                            <td class="butt-manage-supp">
+                                               
+                                                <button class="butt-modif" type="submit" name="modify_auteur" ><i class="fa-solid fa-screwdriver-wrench"></i></button>
+
+                                                <input class="input-large" type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
                                             </td>
                                         </form>
                                         <form action="" method="post">
-                                            <td>
-                                                <input type="submit" name="delete_auteur" value="supprimer" >  
-                                                <input type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
+                                            <td class="butt-manage-supp">
+                                            <button class="butt-delete" name="delete_auteur" type='submit'><i class="fa-solid fa-xmark"></i></button>  
+                                                
+                                                <input  type="hidden" name="idHidden_auteur" value="<?=$listAuteur['id'];?>" > 
                                                 
                                             </td>
                                         </form>

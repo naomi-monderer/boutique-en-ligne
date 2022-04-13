@@ -18,7 +18,7 @@ require_once("../controllers/PanierController.php");
                 <?php  foreach($recuperation as $resultat):?>
                     <div class="sectionpanier">
                     <!-- boucle image -->
-                    <img class="imgarticlePanier" src="../picture/<?php echo $resultat['image']?>" alt="">
+                    <img class="imgarticlePanier" src="<?php echo $resultat['image']?>" alt="">
                     <div class="descriptionpanier">
                         <div class="divdescarticle">
                             <p>Titre : <?= $resultat["titre"]?></p>

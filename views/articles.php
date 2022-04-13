@@ -39,7 +39,7 @@ require_once('../controllers/IndexController.php');
     <?php foreach($productByCategory as $resultat) :?>
         <div class="articles">
             <div class="articleDiv">
-                <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img class="imgarticle" src="../picture/<?php echo $resultat["image"]; ?>" alt=""></a>
+                <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img class="imgarticle" src="<?php echo $resultat["image"]; ?>" alt=""></a>
                 
             </div>
             <div class="articleDivDescription">

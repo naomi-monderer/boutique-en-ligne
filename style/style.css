@@ -400,13 +400,6 @@ main {
 
 /****************************/
 
-section form {
-  display: flex;
-  flex-direction: column;
-  background: whitesmoke;
-  border-radius: 10px;
-  padding: 3%;
-}
 
 /********** FOOTER *********/
 
@@ -528,21 +521,74 @@ fieldset {
 .butt-form:hover
 {
   color: white;
-  background-color: rgba(121, 90, 90, 0.781);
+  background-color:  rgb(49, 0, 105);
   /* border-bottom:s  olid 6px #f5b027d2; */
 
 }
 /*********FORMULAIRES BACK OFFICE************/
+/* .butt-manage-modif
+{
+  display:flex;
+  justify-content: center;
+}
+.butt-manage-supp
+{
+  display:flex;
+  justify-content: center;
+} */
+/************ADMIN_ARTICLE*************/
+.form-bo
+{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.form-bo div
+{
+  display:flex;
+  flex-direction: column;
+
+}
+/* .form-bo div .modif-image
+{
+  display: flex;
+
+  width:100%;
+} */
 .form-bo input
 {
   border: none;
   height: 2rem;
 }
+.form-bo label
+{
+  padding: 10px 0 10px 0;
+}
+.form-bo-options
+{
+  display: flex;
+  align-items:center;
+  padding:20px;
+}
+.form-bo-options input
+{
+  border: none;
+  height: 2rem;
+  width: 80%;
+}
+.form-bo-options label
+{
+  padding:10px;
+}
 select
 {
   border: none;
    height: 2rem;
-   background-color: #e9d3a6e3;
+   background-color: #F8C96C;
+   width: 80%;
 
 }
 textarea
@@ -573,7 +619,6 @@ textarea
 {   margin-top:50px;
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
     align-items: baseline;
     height: 40%;
     background-color:#F5B027;
@@ -593,10 +638,14 @@ textarea
 }
 .contener-titre-bo
 {
-    width:100%;
-    margin:10px;
+    width:90%;
+    padding:10px;
+    margin:5px;
+    margin-bottom: 50px;
+    background-color: #ffffff52;
+    border-bottom: solid 2px rgb(49, 0, 105);
+  }
 
-}
 
 .contener-liste-bo
 {
@@ -633,14 +682,20 @@ a:hover
 .contener-principal 
 {
     display: flex;
+    width: 100%;
+    
     /* flex-direction: column; */
 }
 .principal
 {
     display: flex;
     justify-content: center;
+    
+    
+    flex-direction: column;
+    /* background: rgba(0, 0, 0, 0.651); */
 }
-/****ADMIN USER ****/
+/**** ADMIN USER ****/
   .input-medium 
 {
     width: 8em;
@@ -649,8 +704,10 @@ a:hover
 }
 .content-table tbody .id-user
 {
-  background-color: rgb(186, 189, 0);
+  /* background-color: rgb(110, 110, 110); */
   color: rgb(255, 255, 255);
+  font-size: 1em;
+  text-align: center;
 }
 .content-table tbody .id-user :nth-of-type(even)
 {
@@ -674,7 +731,7 @@ a:hover
     display: flex;
     justify-content:center;
     align-items: center;
-    /* background-color: red; */
+    
     width: 100%;
     flex-direction: column;
     margin-bottom:120px;
@@ -716,7 +773,7 @@ td
 }
 thead
 {
-    background-color:#F5B027;
+    background-color:#f5b02791;
     
     color: rgb(49, 0, 105);
 }
@@ -738,19 +795,21 @@ td
   justify-content: center;
   align-items: center;
   /* background-color: white; */
-  width: 100%;
-  padding: 40px;
+  width: 80%;
+  /* padding: 40px; */
 }
 .contener-titre-principal
 {
   /* font-weight: bold; */
   color:  rgb(49, 0, 105);
-  margin-bottom: 30px;
+  margin: 30px;
 }
+
 .label-bo
 { 
   /* background-color: rgb(124, 88, 88); */
   color: rgb(49, 0, 105);
+  width:80%;
 
 }
 /******** ADMIN AJOUTER OPTIONS ********/
@@ -767,6 +826,51 @@ td
   justify-content:center;
   /* align-items:center; */
 }  
+/******* ADMIN DISPLAY ARTICLES *****/
+.tab-articles
+{
+  border-collapse: collapse;
+  border:rgb(12, 9, 12) solid 1px;  
+}
+.tbody-articles
+{ 
+
+  border-bottom:rgb(12, 9, 12) solid 1px;
+}
+.tr-articles
+{
+  border:rgb(12, 9, 12) solid 1px;
+}
+.td-articles
+{
+  text-align: center;
+  border-right:rgb(12, 9, 12) solid 1px ;
+  font-size: 0.8em;
+}
+.th-articles
+{ border: rgb(12, 9, 12) solid 1px;
+  width: 100%;
+  font-size: 0.5em;
+}
+.th-description
+{
+  width: 20%;
+}
+.td-articles img
+{
+  width: 100%;
+}
+.thead-articles
+{
+  font-size: 0.9em;
+}
 
 /********** /BACK OFFICE\ ********/
 
+section form {
+  display: flex;
+  flex-direction: column;
+  background-color:  rgb(236, 236, 236);
+  border:solid 1px grey;
+
+}

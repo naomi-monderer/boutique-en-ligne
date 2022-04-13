@@ -43,7 +43,7 @@ if(isset($_POST['submit']))
         <h1 class="titrearticle"><?php echo $produit["titre"];?></h1>
         <div class="article">
             
-            <img class="imgarticle" src="../picture/<?php echo $produit['image'];  ?>" alt="">
+            <img class="imgarticle" src="<?php echo $produit['image'];?>" alt="">
             <div >
                 <p>Auteur: <?php echo  $produit["prenom"]; echo " ". $produit["nom"] ?> </p>
                 <p>Description</p>

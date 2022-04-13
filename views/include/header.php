@@ -29,7 +29,7 @@ session_start();
             <form action="../controllers/RechercheController.php" method="GET">
                 <div class="search">
                     <input type="search" name="search" placeholder="Rechercher un livre...">
-                    <button type="submit">OK</button>
+                    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
 
@@ -46,9 +46,10 @@ session_start();
                 
                 if(isset($_SESSION['user']))
                         {?>
-                        <a href="profil.php">Profil</a></br>
-                         <a href="deconnexion.php">déconnexion</a></br>
-                         <a href="panier.php">Panier</a>
+                        <a href="profil.php"><i style="font-size:1.3em;" class="fa-solid fa-circle-user"></i></a></br>
+                        <a href="panier.php"><i style="font-size:1.3em;" class="fa-solid fa-cart-shopping"></i></a></br>
+                         <a href="deconnexion.php"><i style="font-size:1.3em;" class="fa-solid fa-right-from-bracket"></i></a></br>
+                        
                           
                           
 
@@ -56,7 +57,7 @@ session_start();
                         //var_dump($_SESSION['user']);
                         if(isset($_SESSION['user']) && $_SESSION['user'][0]['id_droits'] == 1)
                         { ?>
-                            <a href="admin.php">Espace Administrateur</a></br>
+                            <a href="admin.php"><i style="font-size:1.3em;" class="fa-solid fa-gears"></i></a></br>
                           
                         
 

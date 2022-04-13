@@ -34,16 +34,17 @@ if(isset($_POST['back']))
 ?>
 <main class="main-bo">
 <?php require_once('include/sideBar.php')?>
-   <div class="contener">
+   <div class="contener ">
         <section class="contener-rest">
-        <article class="contener-titre-principal">
-                <h2>Enregistrer un nouvel ouvrage</h2>
-        </article>   
-        <article class="principal">
-                    <form class="form-bo" action="" method="post">
+            <article class="contener-titre-principal">
+                    <h2>ENREGISTRER UN NOUVEL OUVRAGE</h2>
+            </article>   
+            <article class="principal">
 
+                <form class="form-bo" action="" method="post">
+                    <div>
                         <label class="label-bo" for="nom">Nom de l'ouvrage:</label>
-                            <input class="" type="text" name="nom" value=""> <br/>
+                            <input class="label-bo" type="text" name="nom" value=""> <br/>
 
                             <label class="label-bo" for="auteur">Auteur.ice</label>
                                 <select class="label-bo" name="auteur">
@@ -60,23 +61,26 @@ if(isset($_POST['back']))
                                 <?php } ?>
                                 </select>
 
-                                <label class="label-bo" for="description">Description:</label>
-                                    <textarea name="description" value=""></textarea><br/>
+                                <label class="label-bo"  for="description">Description:</label>
+                                    <textarea class="label-bo" style="height:20vh;" name="description" value=""></textarea><br/>
 
                                 <label class="label-bo" for="stock">Nombre d'articles à ajouter au stock:</label>
-                                    <input class="" type="number" name="stock" value=""><br/>
+                                    <input class="label-bo" type="number" name="stock" value=""><br/>
 
                                 <label class="label-bo" for="prix">Prix:</label>
-                                    <input class="" type="number" step="0.01" name="prix" value=""><p class="label-bo">€</p><br/>
+                                    <input class="label-bo" type="number" step="0.01" name="prix" value=""><br/>
+                    </div>
+                    <div>
+              
                                 
                                 <label class="label-bo" for="mise_en_avant">Mettre en avant cet article:</label>
                                     <select class="label-bo" name='mise_en_avant'>  
                                         <option value="1">oui</option>
-                                        <option value="0    ">non</option>  
+                                        <option value="0">non</option>  
                                     </select><br/>
                                     
                                 <label class="label-bo" for="editeur">Editeur:</label>
-                                    <input class="" type="text" name="editeur" value=""><br/>
+                                    <input class="label-bo" type="text" name="editeur" value=""><br/>
 
                                 <label class="label-bo" for="categorie">Catégorie:</label>
                                 <select class="label-bo" name="categorie">
@@ -121,17 +125,20 @@ if(isset($_POST['back']))
                                 </select><br/>
 
                             <label class="label-bo" for="image">Choisir une image:</label>
-                                <input class="" type="text" name='image' placeholder="URL IMG">
+                                <input class="label-bo" name='image' placeholder="url de l'image...">
                             
                             <input class="butt-form" type="submit" name="new_article" value="AJOUTER UN LIVRE">
-                    </form>
+                    </div>
+        
+
+                </form>
             </article>
-                    <?php 
-                    if(isset($registerArticle))
-                    {
-                        echo $registerArticle;
-                    }
-                ?>
+        <?php 
+        if(isset($registerArticle))
+        {
+            echo $registerArticle;
+        }
+        ?>
      </section>
      </div> 
 </main>

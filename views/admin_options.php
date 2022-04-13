@@ -43,7 +43,7 @@ if(isset($_POST['new_auteur']))
             <h2>NOUVEAU GENRE</h2>
             </article>
             <article>
-                <form class="form-bo" action="" method="post">
+                <form class="form-bo-options" action="" method="post">
                     <label for="nom_cat">Genre:</label>
                     <input type="text" name="nom_cat"><br/>
 
@@ -60,10 +60,10 @@ if(isset($_POST['new_auteur']))
             ?>
     <section class="child-contener-rest">
         <article class="contener-titre-principal">
-            <h2>NOUVELLE SOUS-GENRE</h2>
+            <h2>NOUVEAU SOUS-GENRE</h2>
         </article>
         <article>
-            <form class="form-bo" action="" method="post">
+            <form class="form-bo-options" action="" method="post">
                 <label for="sous_categorie_select">Genre:</label>
                     <select name="sous_categorie_select">
                     <!-- foreach de option pour chaque ligne de categorie  -->
@@ -100,7 +100,7 @@ if(isset($_POST['new_auteur']))
             <h2>AUTEUR.ICE</h2>
         </article>
         <article>
-            <form class="form-bo" action="" method="post">
+            <form class="form-bo-options" action="" method="post">
                 <label for="nom_auteur">Nom:</label>
                     <input type="text" name="nom_auteur"><br/>
 
