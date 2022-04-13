@@ -60,6 +60,15 @@ require_once("../controllers/PanierController.php");
 
             </section>
 
+            <?php
+
+                if (isset($erreur)){
+                    echo '<p>'.$erreur.'</p>';
+                 
+                }
+
+            ?>
+
         </div>
    
         
@@ -89,3 +98,5 @@ require_once("../controllers/PanierController.php");
         
 
     </main>
+
+    <?php require('include/footer.php'); ?>

@@ -11,8 +11,8 @@ require_once('../controllers/IndexController.php');
 <main class="mainArticles"> 
     
     <div class="navArticle">
-        <a href="index.php">Retour a accueil</a>
-        <p>Sous catégories :</p>
+        <a class='index' href="index.php">Retour a accueil</a>
+        <p class="particle">Sous catégories :</p>
         <?php
         foreach($categories as $resultat){
         echo " <a class='aSousCat' href='articles.php?id_souscategorie=".$resultat["id"]."'>".$resultat["nom_souscategorie"]."</a>";
@@ -62,3 +62,5 @@ require_once('../controllers/IndexController.php');
     <?php endif;?>
 </section>
 </main>
+
+<?php require('include/footer.php');?>
