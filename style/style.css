@@ -3,15 +3,10 @@
     padding: 0;
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100vh;
-}
 
 body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 h2 {
@@ -416,6 +411,7 @@ section form {
 /********** FOOTER *********/
 
 footer {
+   
   height: 70px;
   background-color: black;
   display: flex;
@@ -515,6 +511,45 @@ fieldset {
 }
 
 /*********** BACK OFFICE **********/
+/******* BUTT-FROM *******/
+.butt-form
+{
+  width: 100%;
+  padding: 10px 0 10px 0;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(12, 9, 12);
+  color: white;
+  /* border-bottom:solid 6px #f5b027d2; */
+  transition: background-color 0.3s ease-out 100ms
+}
+
+.butt-form:hover
+{
+  color: white;
+  background-color: rgba(121, 90, 90, 0.781);
+  /* border-bottom:s  olid 6px #f5b027d2; */
+
+}
+/*********FORMULAIRES BACK OFFICE************/
+.form-bo input
+{
+  border: none;
+  height: 2rem;
+}
+select
+{
+  border: none;
+   height: 2rem;
+   background-color: #e9d3a6e3;
+
+}
+textarea
+{
+  border: none;
+}
+/*** SIDE BAR ****/
 .main-bo 
 {
     display: flex;
@@ -528,7 +563,7 @@ fieldset {
     flex-direction: column;
     /* justify-content: center; */
     
-    width: 25%;
+    width: 300px;
     background-color:#F5B027;
     /* padding:0px; */
    
@@ -545,6 +580,10 @@ fieldset {
     border: none;
     
 }
+.titre-bo
+{
+    font-size:2rem;
+}
 .contener-rest
 {
     display: flex;
@@ -554,7 +593,9 @@ fieldset {
 }
 .contener-titre-bo
 {
-    width:70%;
+    width:100%;
+    margin:10px;
+
 }
 
 .contener-liste-bo
@@ -573,14 +614,19 @@ fieldset {
 {
     margin:10px 0 10px 20px;
 }
-a {
+
+a 
+{
     text-decoration: none;
-   
+    color: rgb(49, 0, 105);
+    /* border-bottom: 1px dashed; */
 }
 
 a:hover
 {
 
+    color:rgba(121, 90, 90, 0.781);
+    /* font-weight: bold; */
 }
 
 /*******/
@@ -594,7 +640,133 @@ a:hover
     display: flex;
     justify-content: center;
 }
+/****ADMIN USER ****/
+  .input-medium 
+{
+    width: 8em;
+    border: none;
+    height:2rem;
+}
+.content-table tbody .id-user
+{
+  background-color: rgb(186, 189, 0);
+  color: rgb(255, 255, 255);
+}
+.content-table tbody .id-user :nth-of-type(even)
+{
+    background-color:rgb(255, 255, 255);
+}
+ 
+.input-large 
+{
+    width:14em;
+    border: none;
+    height:2rem;
+}
+.input-small 
+{
+    width: 3em;
+    border: none;
+    height:2rem;
+}
+.contener-principal
+{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /* background-color: red; */
+    width: 100%;
+    flex-direction: column;
+    margin-bottom:120px;
+    
+}
+.titre-principal
+{
+    margin: 40px;
+    color:  rgb(49, 0, 105);
+}
+td
+{
+    padding: 3px;
+}
+.butt-delete
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.butt-modif
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.fa-screwdriver-wrench
+{
+    font-size: 1.5em;
+    margin-right: 10px;
+    color:   rgb(107, 107, 107);
 
+}
+
+.fa-xmark
+{
+    font-size: 1.9em;
+    color: rgb(245, 16, 0)
+}
+thead
+{
+    background-color:#F5B027;
+    
+    color: rgb(49, 0, 105);
+}
+Thead th
+{
+    /* padding: 10px  0 10px 0; */
+    padding:10px;
+    border-collapse: collapse;
+}
+td
+{
+    
+}
+/******* ADMIN AJOUTER ARTICLE **********/
+.contener
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  width: 100%;
+  padding: 40px;
+}
+.contener-titre-principal
+{
+  /* font-weight: bold; */
+  color:  rgb(49, 0, 105);
+  margin-bottom: 30px;
+}
+.label-bo
+{ 
+  /* background-color: rgb(124, 88, 88); */
+  color: rgb(49, 0, 105);
+
+}
+/******** ADMIN AJOUTER OPTIONS ********/
+.child-contener-rest
+{
+ margin: 30px;
+
+}
+
+.contener-rest-options
+{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  /* align-items:center; */
+}  
 
 /********** /BACK OFFICE\ ********/
 

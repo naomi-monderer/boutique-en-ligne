@@ -2,30 +2,10 @@
 require_once('../controllers/AdminController.php');
 require_once('include/header.php');
 ?>
-<main>
+<main class="main-bo">
     <section>
-        <h1>Espace Administratif</h1>
-            <article>
-                    <article>
-                        <h2>Gestion des utilisateurs</h2>
-                        <form action="" method="get">
-                            <input type="submit" name="display_user" value="Afficher les utilisateurs">
-                        </form>
-
-                    </article>
-                    <article>
-                        <h2>Gestion des articles</h2>
-                        <form action="" method="get">
-                            <input type="submit" name="display_article" value="Ajouter des articles"></br>
-                            <input type="submit" name="display_select_list" value="Ajouter des options"></br>
-                            <input type="submit" name="tab_articles" value="Gérer les articles"></br>
-                            <input type="submit" name="manage_specificities" value="Gérer les options"></br>
-                            <!-- <input type="submit" name="update_article" value="Modifier les articles"> -->
-                        </form>
-                       
-                    </article>    
-            </article>
-         
+        <?php require_once('include/sideBar.php')?>
+    </section>
 </main>
 <?php
 /* This button allow the admin to display modify and delete these users*/
@@ -55,5 +35,5 @@ if(isset($_GET['update_article']))
 {
     header('location: admin_update_article.php');
 }
-
+require_once('include/footer.php');
 ?>

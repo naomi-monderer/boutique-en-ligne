@@ -50,14 +50,12 @@ if(isset($_POST['modify_souscategorie']))
 
 }
 ?>
-<main>
-    <article>
-        <form action="admin.php" method="post">
-            <input type="submit" name="back" value="Retourner au menu de gestion">
-        </form>
-    </article>
-    <section>
-        <article>
+<main class="main-bo">
+    <?php require_once('include/sideBar.php')?>
+    <div class="contener">
+      <section class="contener-rest-options">
+    <section class="child-contener-rest">
+        <article class="contener-titre-principal">
             <h2>Gestion des Categories</h2>
         </article>
         <article>
@@ -109,8 +107,8 @@ if(isset($_POST['modify_souscategorie']))
         </article>
         </section>
 
-       <section>
-           <article>
+       <section class="child-contener-rest">
+           <article class="contener-titre-principal"> 
                 <h2>Gestion des Sous-Categories</h2>
             </article>
             <article>   
@@ -170,8 +168,8 @@ if(isset($_POST['modify_souscategorie']))
            </article>
         </section>
 
-        <section>
-            <article>
+        <section class="child-contener-rest">
+            <article class="contener-titre-principal">
                 <h2> Gestion des Auteur.ices</h2>
             </article>
             <article>
@@ -219,8 +217,11 @@ if(isset($_POST['modify_souscategorie']))
                         ?>
                 </table>                            
             </article>
+            </section>  
         </section>
+        </div>
 </main>
 <?php
+require_once('include/footer.php');
 ob_end_flush();
 ?>

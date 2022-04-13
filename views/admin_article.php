@@ -33,50 +33,20 @@ if(isset($_POST['back']))
 }
 ?>
 <main class="main-bo">
-    <section class="contener-bo">
-        <article class="nav-bo">
-            <div class="contener-titre-bo">
-                <h1 class="titre-bo"><a href="admin.php">BACK OFFICE</a></h1>
-            </div>
-
-            <div class="contener-liste-bo">
-                <ul class="ul-nav-bo">
-                    <li class="liste-bo">
-                        <a href="admin_user.php">Gestions des utilisateurs</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                        <a href="admin_article.php">Nouvel Article</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                        <a href="admin_tab_articles.php">Gestion des Articles</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i> 
-                        <a href="admin_options.php">Nouvelles Options</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                    <a href="admin_manage_other_forms.php">Gestions des options</a>
-                    </li>
-                </ul>
-            </div>  
-        </article>
-    </section>
-
-    <section class="contener-rest">
+<?php require_once('include/sideBar.php')?>
+   <div class="contener">
+        <section class="contener-rest">
         <article class="contener-titre-principal">
                 <h2>Enregistrer un nouvel ouvrage</h2>
         </article>   
         <article class="principal">
-                    <form action="" method="post">
+                    <form class="form-bo" action="" method="post">
 
-                        <label for="nom">Nom de l'ouvrage:</label>
-                            <input type="text" name="nom" value=""> <br/>
+                        <label class="label-bo" for="nom">Nom de l'ouvrage:</label>
+                            <input class="" type="text" name="nom" value=""> <br/>
 
-                            <label for="auteur">Auteur.ice</label>
-                                <select name="auteur">
+                            <label class="label-bo" for="auteur">Auteur.ice</label>
+                                <select class="label-bo" name="auteur">
                                     
                                     <?php foreach($listAuteurs as $listAuteur)
                                     {  ?>
@@ -90,29 +60,26 @@ if(isset($_POST['back']))
                                 <?php } ?>
                                 </select>
 
-                                <!-- doit generer le formulaire pour enregistrer un nouvel auteur-->
-                                <p>Vous ne trouvez pas votre auteur dans la liste. Clikez ici</p><br/>
-
-                                <label for="description">Description:</label>
+                                <label class="label-bo" for="description">Description:</label>
                                     <textarea name="description" value=""></textarea><br/>
 
-                                <label for="stock"></label>Nombre d'articles à ajouter au stock:</label>
-                                    <input type="number" name="stock" value=""><br/>
+                                <label class="label-bo" for="stock">Nombre d'articles à ajouter au stock:</label>
+                                    <input class="" type="number" name="stock" value=""><br/>
 
-                                <label for="prix">Prix:</label>
-                                    <input type="number" step="0.01" name="prix" value="">€<br/>
+                                <label class="label-bo" for="prix">Prix:</label>
+                                    <input class="" type="number" step="0.01" name="prix" value=""><p class="label-bo">€</p><br/>
                                 
-                                <label for="mise_en_avant">Mettre en avant cet article:</label>
-                                    <select name='mise_en_avant'>  
+                                <label class="label-bo" for="mise_en_avant">Mettre en avant cet article:</label>
+                                    <select class="label-bo" name='mise_en_avant'>  
                                         <option value="1">oui</option>
                                         <option value="0    ">non</option>  
                                     </select><br/>
                                     
-                                <label for="editeur">Editeur:</label>
-                                    <input type="text" name="editeur" value=""><br/>
+                                <label class="label-bo" for="editeur">Editeur:</label>
+                                    <input class="" type="text" name="editeur" value=""><br/>
 
-                                <label for="categorie">Catégorie:</label>
-                                <select name="categorie">
+                                <label class="label-bo" for="categorie">Catégorie:</label>
+                                <select class="label-bo" name="categorie">
                                     <?php foreach($showAllCategories as $showAllCategory) 
                                     {?>   
                                         <option value="<?= $showAllCategory['id']?>">
@@ -121,8 +88,8 @@ if(isset($_POST['back']))
                                     <?php }?>   
                                 </select>
                                     
-                                <label for="souscategorie">Sous-Catégorie:</label>
-                                <select name="souscategorie">
+                                <label class="label-bo" for="souscategorie">Sous-Catégorie:</label>
+                                <select class="label-bo" name="souscategorie">
                             
                                     <?php 
                                     $temp="";  
@@ -153,11 +120,10 @@ if(isset($_POST['back']))
                                     }?>
                                 </select><br/>
 
-                            <label for="image">Choisir une image:</label>
-                                <input type="text" name='image' placeholder="URL IMG">
+                            <label class="label-bo" for="image">Choisir une image:</label>
+                                <input class="" type="text" name='image' placeholder="URL IMG">
                             
-                            <input type="submit" name="new_article" value="Ajouter un nouvel article">
-                            <!-- comment générer l'apparition d'un nouvelle catégorie?-->
+                            <input class="butt-form" type="submit" name="new_article" value="AJOUTER UN LIVRE">
                     </form>
             </article>
                     <?php 
@@ -167,10 +133,9 @@ if(isset($_POST['back']))
                     }
                 ?>
      </section>
+     </div> 
 </main>
 <?php
-
-
+require_once('include/footer.php');
 ob_end_flush();
-
 ?>  

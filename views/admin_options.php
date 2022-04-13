@@ -30,22 +30,24 @@ if(isset($_POST['new_auteur']))
     $registerAuteur = $controllerAdmin->registerAuteur($_POST['nom_auteur'],$_POST['prenom_auteur']);
 }  
 ?>
-<main>
-    <article>
-        <form action="admin.php" method="post">
-            <input type="submit" name="back" value="Retourner au menu de gestion">
-        </form>
-    </article>
-    <section>
-        <article>               
-            <h2>Ajouter une nouvelle catégorie</h2>
+<main class="main-bo">
+
+
+    <?php require_once('include/sideBar.php')?>
+    <div class="contener">
+        <section id="contener-rest" class="contener-rest-options">
+
+     
+    <section class="child-contener-rest">
+        <article class="contener-titre-principal">               
+            <h2>NOUVEAU GENRE</h2>
             </article>
             <article>
-                <form action="" method="post">
-                    <label for="nom_cat">Nouveau type de catégorie</label>
+                <form class="form-bo" action="" method="post">
+                    <label for="nom_cat">Genre:</label>
                     <input type="text" name="nom_cat"><br/>
 
-                    <input type="submit" name="new_cat" value="Ajouter un nouvelle catégorie">
+                    <input class="butt-form" type="submit" name="new_cat" value="AJOUTER UN GENRE">
                 </form>
             </article>
     </section>        
@@ -56,13 +58,13 @@ if(isset($_POST['new_auteur']))
                     echo $registerCategorie;
                 }
             ?>
-    <section>
-        <article>
-            <h2>Ajouter une nouvelle sous-catégorie</h2>
+    <section class="child-contener-rest">
+        <article class="contener-titre-principal">
+            <h2>NOUVELLE SOUS-GENRE</h2>
         </article>
         <article>
-            <form action="" method="post">
-                <label for="sous_categorie_select">Catégorie</label>
+            <form class="form-bo" action="" method="post">
+                <label for="sous_categorie_select">Genre:</label>
                     <select name="sous_categorie_select">
                     <!-- foreach de option pour chaque ligne de categorie  -->
                         <?php  
@@ -79,9 +81,9 @@ if(isset($_POST['new_auteur']))
                         ?>
                 
                     </select><br/>
-                <label for="nom_sous_cat">Nouveau genre de sous-catégorie</label>
+                <label for="nom_sous_cat">Sous-Genre:</label>
                     <input type="text" name="nom_sous_cat"><br/>
-                    <input type="submit" name="new_sous_cat" value="Ajouter une nouvelle sous-catégorie">
+                    <input class="butt-form" type="submit" name="new_sous_cat" value="AJOUTER UN SOUS-GENRE">
             </form>
         </article>
     </section>                  
@@ -93,16 +95,16 @@ if(isset($_POST['new_auteur']))
                     }
                 ?>
 
-    <section>
-        <article>
-            <h2>Auteur.ice</h2>
+    <section class="child-contener-rest">
+        <article class="contener-titre-principal">
+            <h2>AUTEUR.ICE</h2>
         </article>
         <article>
-            <form action="" method="post">
-                <label for="nom_auteur">Nom de l'auteur.ice</label>
+            <form class="form-bo" action="" method="post">
+                <label for="nom_auteur">Nom:</label>
                     <input type="text" name="nom_auteur"><br/>
 
-                <label for="prenom_auteur">Prénom de l'auteur.ice</label>
+                <label for="prenom_auteur">Prénom:</label>
                     <input type="text" name="prenom_auteur"> <br/> 
                 <?php    
                     if(isset($registerAuteur))
@@ -112,11 +114,15 @@ if(isset($_POST['new_auteur']))
                     }
                 ?>
 
-                <input type="submit" name="new_auteur" value="Ajouter l'auteur.ice">   
+                <input class="butt-form" type="submit" name="new_auteur" value="AJOUTER UN.E AUTEUR.ICE">   
             </form>
         </article>
-    </section>         
+        </section>
+        
+    </section> 
+    </div>        
 </main>
 <?php
+require_once('include/footer.php');
 
 ?>

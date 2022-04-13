@@ -30,16 +30,14 @@ if(isset($_POST['modify_article']))
     // header('Location: admin_update_article.php');
 }
 ?>
-<main>
+<main class="main-bo">
+
+    <?php require_once('include/sideBar.php')?>
     <section>
-        <article>
-            <form action="admin_tab_articles.php" method="post">
-                <input type="submit" name="back" value="Retourner au tableau des articles">
-            </form>
+      <article>
+        <h1> Modification des articles</h1>
         </article>
         <article>
-        <h1> Modification des articles</h1>
-     
             <form action="" method="POST">
 
                 <label for="nom">Nom de l'ouvrage:</label>
@@ -130,8 +128,6 @@ if(isset($_POST['modify_article']))
                     
                     <input type="submit" name="modify_article" value="Modifier cet article">
                     <input type="hidden" name ="idHidden_article" value="<?=$article['id']?>">
-                    
-                    <!-- comment générer l'apparition d'un nouvelle catégorie?-->
                 </form>
             </article>
                             <?php
@@ -144,7 +140,7 @@ if(isset($_POST['modify_article']))
     </section>
 </main>
 <?php
-
+require_once('include/footer.php');
 ob_end_flush();
   
 ?>

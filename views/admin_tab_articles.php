@@ -21,12 +21,14 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
 
 ?>
 
-<main>
-    <article>
+<main class="main-bo">
+
+    <!-- <article>
         <form action="admin.php" method="post">
             <input type="submit" name="back" value="Retourner au menu de gestion">
         </form>
-    </article>
+    </article> -->
+    <?php require_once('include/sideBar.php')?>
     <section>
         <article>
             <h1>Tous les articles de ma boutique</h1>
@@ -117,7 +119,7 @@ if(isset($_GET['delete_article']))
     $suppArticle = $controllerAdmin->suppArticle($id);
 
 }
-
+require_once('include/footer.php');
 
 // ob_end_flush();
 ?>

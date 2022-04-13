@@ -34,11 +34,14 @@ if(isset($_GET['back']))
 }
 
 ?>
-<main>
-    <section>
+<main class="main-bo">
+<?php require_once('include/sideBar.php')?>
+    <section class="contener-principal">
+        <article class="titre-principal">
+            <h1>AFFICHAGE DES UTILISATEURS</h1>
+        </article>
         <article>
-            <h1>Affichage des utilisateurs</h1>
-            <table>
+            <table class="content-table">
                 <thead>
                 <th>ID</th>
                 <th>Nom</th>
@@ -46,9 +49,7 @@ if(isset($_GET['back']))
                 <th>Email</th>
                 <th>Login</th>
                 <th>Id_droits</th>
-                
-                <th>MODIFIER</th>
-                <th>SUPPRIMER</th>
+            
                 </thead>
                 <tbody>
                     <?php
@@ -57,34 +58,36 @@ if(isset($_GET['back']))
                         {          
                         ?> 
                             <tr>
-                                <form action="" method="POST">
-                                    <td>
+                                <form class="form-bo" action="" method="POST">
+                                    <td class="id-user">
                                         <p><?=$allUser['id'];?></p>
                                     </td>
                                     <td>
-                                        <input type="text" name="nom" value="<?=$allUser['nom'];?>">
+                                        <input class="input-medium" type="text" name="nom" value="<?=$allUser['nom'];?>">
                                     </td>
                                     <td>
-                                        <input type="text" name="prenom" value="<?=$allUser['prenom'];?>">      
+                                        <input class="input-medium" type="text" name="prenom" value="<?=$allUser['prenom'];?>">      
                                     </td>
                                     <td>
-                                        <input type="text" name="email" value="<?=$allUser['email'];?>">      
+                                        <input class="input-large" type="text" name="email" value="<?=$allUser['email'];?>">      
                                     </td>
                                     <td>
-                                        <input type="text" name="login" value="<?=$allUser['login'];?>">
+                                        <input class="input-medium" type="text" name="login" value="<?=$allUser['login'];?>">
                                     </td> 
                                     <td>
                                         
-                                        <input type="text" name="id_droits" value="<?=$allUser['id_droits'];?>">
+                                        <input class="input-small" type="text" name="id_droits" value="<?=$allUser['id_droits'];?>">
                                     </td>
                                     <td>
-                                        <input type="submit" name="modify_user" value="modifier" >  
+                                   
+                                        <button class="butt-modif" type="submit" name="modify_user" ><i class="fa-solid fa-screwdriver-wrench"></i></button>
                                         <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
                                     </td>
                                 </form>
                                 <form action="" method="post">
                                     <td>
-                                        <input type="submit" name="delete_user" value="supprimer" >  
+                                     
+                                        <button class="butt-delete" name="delete_user" type='submit'><i class="fa-solid fa-xmark"></i></button>  
                                         <input type="hidden" name="idHidden_user" value="<?=$allUser['id'];?>" > 
                                     </td>
                                 </form>
@@ -94,16 +97,11 @@ if(isset($_GET['back']))
             </table>
         </article>
 
-        <article>
-            <form action="" method="get">
-                <input type="submit" name="back" value="retourner au menu de gestion">
-            </form>
-        </article>
     </section>
 </main>
 
 <?php
-
+require_once('include/footer.php');
 
 ob_end_flush();
 ?>
