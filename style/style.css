@@ -26,6 +26,66 @@ a {
   text-decoration: none;
 }
 
+/******** PAGE PROFIL ***********/
+
+.page_inscription, .page_connexion, .page_profil {
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.page_inscription h1, .page_connexion h1, .page_profil h1 {
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.page_profil section {
+  display: flex;
+  flex-direction: row;
+}
+
+.page_inscription form, .page_connexion form, .page_profil form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  background: #ffffff;
+  padding: 40px;
+  border: 1px solid #ADADAD;
+  border-radius: 10px;
+}
+
+.page_inscription form, .page_connexion form {
+  width: 300px;
+}
+
+.page_connexion form div {
+  display: flex;
+  flex-direction: column;
+}
+
+.page_inscription input, .page_connexion input, .page_profil input {
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid #ADADAD;
+  color: #ADADAD;
+  border-radius: 5px;
+}
+
+.page_connexion .btn, .page_inscription .btn, .page_profil .btn {
+  background: #f5b027;
+  border-radius: 5px;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.page_inscription h1 {
+  margin: 30px 0;
+}
 /* partie article ................... */
 .imgarticle {
   width: 25%;
@@ -119,6 +179,39 @@ hr {
   margin: auto;
   text-align: justify;
 }
+
+/***** PAGE RECHERCHE **********/
+
+.page_recherche .titrearticle {
+  text-align: center;
+}
+
+.page_recherche .articles {
+  display: flex;
+  margin: 40px 100px 0px 100px;
+}
+
+.page_recherche .article {
+  width: 20%;
+}
+
+.page_recherche .article img {
+  width: 65%;
+  padding: 5%;
+  border: 1px solid black;
+}
+
+.page_recherche .articleDescription {
+  width: 80%;
+  padding-right: 3%;
+  text-align: justify;
+}
+
+.page_recherche .articleButton {
+  display: flex;
+  flex-direction: column;
+}
+
 /* panier */
 
 .panier {
@@ -244,6 +337,10 @@ header form button {
     font-size: 15px;
 }
 
+header button img {
+  width : 80%;
+}
+
 header form {
   width: 300px;
 }
@@ -269,9 +366,7 @@ nav a {
 }
 
 nav a:hover {
-    padding-bottom: 5px;
-    border-bottom: solid 2px black;
-    transition: transform 2s ease-in-out;
+  color: #f5b027;
 }
 
 
@@ -302,6 +397,11 @@ header {
   text-decoration: none;
   margin-top: 10px;
 }
+
+.sidebar a:hover {
+  color: #f5b027;
+}
+
 
 .sidebar h2 {
   margin-bottom: 10px;
@@ -380,6 +480,10 @@ header {
     margin: 5px;
     border: 1px solid #ADADAD;
     background: #ffffff;
+}
+
+.page_accueil article a:hover {
+  opacity: 0.7;
 }
 
 .page_accueil article p {

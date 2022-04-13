@@ -9,7 +9,7 @@ if(isset($_POST['submit']))
     $check = $controller->connexion($_POST['login'], $_POST['password']);
 }
 ?>
-<main>
+<main class="page_connexion">
     <section>
         <h1>Connexion</h1>
         <form action="" method="post">
@@ -22,7 +22,7 @@ if(isset($_POST['submit']))
                 <input type="password" name="password" id="password">
             </div>
 
-            <input type="submit" name="submit" value="valider">
+            <input class="btn" type="submit" name="submit" value="valider">
         </form>
     </section>     
 </main>

@@ -1,7 +1,14 @@
 <?php
+    $title = 'Profil';
     require_once('include/header.php');
     require_once('../controllers/ProfilController.php');
 
+
+    if (!isset($_SESSION['user'][0]['login'])) {
+
+        header("location: connexion.php");
+        exit;
+    }
 
     $controller = new ProfilController();
 
@@ -28,7 +35,7 @@
    
 ?>
 
-<main>
+<main class="page_profil">
 
     <h1>Mon profil</h1>
 
@@ -39,7 +46,7 @@
             <label for="login">Login</label>
             <input type="text" name='login'  value="<?= $dataUser[0]['login']?>">
 
-            <input type="submit" name="submitLogin" value="Modifier">
+            <input class="btn" type="submit" name="submitLogin" value="Modifier">
         </form>
 
         <form action="" method="post">
@@ -47,7 +54,7 @@
             <label for="email">Email</label>
             <input type="email" name='email'  value="<?= $dataUser[0]['email']?>">
 
-            <input type="submit" name="submitEmail" value="Modifier">
+            <input class="btn" type="submit" name="submitEmail" value="Modifier">
         </form>
 
         <form action="" method="post">
@@ -58,7 +65,7 @@
         <label for="password">Confirmez le mot de passe</label>
         <input type="password" name='passwordConfirm'  placeholder="********">
         
-        <input type="submit" name="submitPass" value="Modifier">
+        <input class="btn" type="submit" name="submitPass" value="Modifier">
     </form>
     </section>
 
@@ -70,4 +77,5 @@ if(isset($_POST['submitLogin']) || isset($_POST['submitEmail']) || isset($_POST[
     echo "<div>" . $_SESSION['error'] . "</div>";
 }
 
+require_once('include/footer.php');
 ?>  

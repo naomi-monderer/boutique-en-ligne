@@ -9,8 +9,8 @@
        
     }   
 ?>
-<main>
-<section>
+<main class="page_inscription">
+
 
     
     <section>
@@ -31,14 +31,14 @@
             <input type="email" name='email' placeholder="mcgowan@protonmail.com" required>
 
             <label for="password">Mot de passe</label>
-            <input type="text" name='password' placeholder="...........">
+            <input type="password" name='password' placeholder="**********">
 
             <label for="passwordConfirm">Confirmez le mote de passe</label>
-            <input type="text" name='passwordConfirm' placeholder="..........">
+            <input type="password" name='passwordConfirm' placeholder="**********">
             
            <input type="hidden" name="id_droits">
 
-            <input type="submit" name="submit" value="valider">
+            <input class="btn" type="submit" name="submit" value="valider">
         </form>
     </section>
 </main>
@@ -47,4 +47,5 @@ if(isset($_POST['submit']))
 {
     echo "<div>" . $_SESSION['error'] . "</div>";
 }
-?>    
+require_once('include/header.php');
+?>

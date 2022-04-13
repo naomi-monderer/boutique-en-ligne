@@ -35,6 +35,8 @@ session_start();
 
             <nav>
 
+                <a href="index.php">Accueil</a>
+
                 <?php if(!isset($_SESSION['user']))
                 {?>
                  
@@ -42,7 +44,7 @@ session_start();
                 <a href="inscription.php">Inscription</a>
              
                 
-        <?php }
+                <?php }
                 
                 if(isset($_SESSION['user']))
                         {?>
