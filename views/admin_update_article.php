@@ -55,7 +55,7 @@ if(isset($_POST['modify_article']))
                                             
                                     ?>
                                         <option value="<?= $listAuteur['id']?>" selected>
-                                            <?php echo $listAuteur['nom'] .' '. $listAuteur['prenom']?>
+                                            <?= $listAuteur['nom'] .' '. $listAuteur['prenom']?>
                                         </option>
 
                                 <?php 
