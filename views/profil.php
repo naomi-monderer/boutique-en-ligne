@@ -1,4 +1,5 @@
 <?php
+    $title = 'Profil';
     require_once('include/header.php');
     require_once('../controllers/ProfilController.php');
 

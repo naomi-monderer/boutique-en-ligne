@@ -16,7 +16,7 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Roboto:ital,wght@1,100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style//fontello/css/fontello.css">
-    <title><?=$title?></title>
+    <title><?=isset($title) ? $title : 'Boutique en ligne' ?></title>
 </head>
 <body>
     <header>
