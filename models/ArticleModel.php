@@ -27,6 +27,8 @@ class ArticleModel extends Model{
         return  $resultat;
     }
 
+    
+
     public function getartiarticleid($id)
     {
         $requette = $this->connect()->prepare("SELECT *, produits.id AS id_produit FROM `produits` INNER JOIN auteurs ON id_auteur = auteurs.id WHERE produits.id=:id");
