@@ -20,9 +20,9 @@ class ArticleModel extends Model{
          return $resultat;
     }
 
-    public function getsouscategorie(){
-        $requette= $this->connect()->prepare("SELECT * FROM `souscategories` ");
-        $requette->execute();
+    public function getsouscategorie($id){
+        $requette= $this->connect()->prepare("SELECT * FROM `souscategories`where id_categorie =:id ");
+        $requette->execute(["id"=>$id]);
         $resultat= $requette->fetchAll();
         return  $resultat;
     }
