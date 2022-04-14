@@ -24,6 +24,7 @@ p {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 /******** PAGE PROFIL ***********/
@@ -125,6 +126,52 @@ p {
 .enstock {
   color: green;
 }
+
+/***** COMMENTAIRES ******/
+
+.page_article section {
+  width: 70%;
+  margin: auto;
+  margin: 50px;
+}
+
+.page_article section div {
+  background: #ffffff;
+  border: 1px solid #ADADAD;
+  padding: 1%;
+  margin-bottom: 1%;
+}
+
+.page_article input:first-child {
+  border: 0;
+  cursor: pointer;
+}
+
+.page_article input:first-child:hover {
+  color: #f5b027;
+}
+
+.page_article section div p {
+  margin: 5px;
+}
+
+.page_article section .btn {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #f5b027;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer
+}
+
+.page_article section h1 {
+  margin: 40px 0px;
+}
+
+.page_article textarea {
+  width: 100%;
+}
+
 /* partie articles */
 
 .mainArticles {
@@ -304,6 +351,8 @@ body {
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
 }
+
+nav span {font-weight: bold;}
 
 .search {
   width: 100%;

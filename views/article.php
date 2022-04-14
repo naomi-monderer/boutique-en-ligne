@@ -37,7 +37,7 @@ if(isset($_POST['submit']))
 </head>
 <body>
  
-    <main>
+    <main class="page_article">
     
     
         <h1 class="titrearticle"><?php echo $produit["titre"];?></h1>
@@ -65,16 +65,16 @@ if(isset($_POST['submit']))
         
     
 
-<section>
+    <section>
 
-    <h1>Commentaire</h1>
-    
-    <?php foreach($commentByIdProduit as $commentaire) : ?>
+        <h1>Commentaires :</h1>
+        
+        <?php foreach($commentByIdProduit as $commentaire) : ?>
 
-        <?php var_dump($commentaire['id_produit']); ?>
+        <div>
 
-        <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
-        <p><?= $commentaire['commentaire'] ?></p>
+            <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
+            <p><?= $commentaire['commentaire'] ?></p>
 
             <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
             
@@ -86,17 +86,18 @@ if(isset($_POST['submit']))
                 </form>
 
             <?php endif; ?>
+            
+        </div>
 
         <?php endforeach; ?>
 
         <form action="" method="post">
-            <div>
-                <label for="textarea">Ecrivez votre commentaire :</label>
-                <input type="textarea" name="comment" id="comment">
-            </div>
+            
+            <textarea type="text" name="comment" placeholder="Ecrivez votre commentaire..."></textarea>
 
-            <input type="submit" name="submit" value="valider">
+            <input class="btn" type="submit" name="submit" value="valider">
         </form>
+
     </section> 
 
 
