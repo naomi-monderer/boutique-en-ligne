@@ -47,5 +47,5 @@ if(isset($_POST['submit']))
 {
     echo "<div>" . $_SESSION['error'] . "</div>";
 }
-require_once('include/header.php');
+require_once('include/footer.php');
 ?>
