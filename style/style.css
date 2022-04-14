@@ -140,30 +140,41 @@ p {
   margin: 50px;
 }
 
-.page_article section div:first-of-type {
-  background-color: red;
+.page_article section div {
+  background: #ffffff;
+  border: 1px solid #ADADAD;
+  padding: 1%;
+  margin-bottom: 1%;
 }
 
-.page_article section div:nth-child(1) {
-  background-color: blue;
+.page_article input:first-child {
+  border: 0;
+  cursor: pointer;
 }
 
-.page_article section div:nth-of-type(2) {
-  background-color: green;
+.page_article input:first-child:hover {
+  color: #f5b027;
+}
+
+.page_article section div p {
+  margin: 5px;
 }
 
 .page_article section .btn {
-  background: #f5b027;
+  padding: 5px;
   border-radius: 5px;
-  border: 0;
-  height: 25px;
-  cursor: pointer;
-  color: #ffffff;
-  padding: 10px;
+  background-color: #f5b027;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer
 }
 
 .page_article section h1 {
   margin: 40px 0px;
+}
+
+.page_article textarea {
+  width: 100%;
 }
 
 /* partie articles */

@@ -64,36 +64,36 @@ if(isset($_POST['submit']))
 
     <section>
 
-        <h1>Commentaires</h1>
+        <h1>Commentaires :</h1>
         
         <?php foreach($commentByIdProduit as $commentaire) : ?>
 
         <div>
+
             <p>par <?= $commentaire['login'] ?> le <?=  date("d-m-Y à H:i", strtotime($commentaire['date'])) ?></p>
             <p><?= $commentaire['commentaire'] ?></p>
-        <div>
-                <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
+
+            <?php if((!empty($_SESSION)) && ($_SESSION['user'][0]['id'] == $commentaire['id_utilisateur'])) : ?>
+            
+                <form action="../views/article.php?id=<?= $_GET['id'] ?>" method="get">
                 
-                    <form action="../views/article.php?id=<?= $_GET['id'] ?>" method="get">
-                    
-                        <input type="submit" name="delete" value="supprimer">
-                        <input type="hidden" name="idHidden" value="<?=$commentaire['id'];?>">
-                        <input type="hidden" name="id" value="<?=$_GET['id'];?>">
-                    </form>
+                    <input type="submit" name="delete" value="supprimer">
+                    <input type="hidden" name="idHidden" value="<?=$commentaire['id'];?>">
+                    <input type="hidden" name="id" value="<?=$_GET['id'];?>">
+                </form>
 
-                <?php endif; ?>
+            <?php endif; ?>
+            
+        </div>
 
-            <?php endforeach; ?>
+        <?php endforeach; ?>
 
-            <form action="" method="post">
-                <div>
-                    <label for="textarea">Ecrivez votre commentaire :</label>
-                    <input type="textarea" name="comment" id="comment">
-                </div>
+        <form action="/action_page.php">
 
-                <input class="btn" type="submit" name="submit" value="valider">
-            </form>
-        </section> 
+            <textarea>Entrez votre commentaire...</textarea>
+            <input class="btn" type="submit" value="Valider">
+        </form>
+    </section> 
 
 
 
