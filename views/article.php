@@ -88,7 +88,7 @@ if(isset($_POST['submit']))
 
         <?php endforeach; ?>
 
-        <form action="/action_page.php">
+        <form action="" method="post">
 
             <textarea>Entrez votre commentaire...</textarea>
             <input class="btn" type="submit" value="Valider">
