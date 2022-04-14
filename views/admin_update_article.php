@@ -9,25 +9,23 @@ $listCategories = $controllerAdmin->listCategories();
 $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
-// var_dump($listAuteurs);
-// $auteurNom = $listAuteurs[]['nom'];
-// var_dump($auteurNom);
+
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
 
 
 if(isset($_GET['idHidden_article']))
 {
 
     $article = $controllerAdmin->Article($_GET['idHidden_article']);
-    // echo '<pre>';
-    // var_dump($article);
-    // echo '</pre>';
+
 }
 if(isset($_POST['modify_article']))
 {    
     //Textes complets 	id	titre	description	stock	prix	mise_en_avant	editeur	id_categorie	id_souscategorie	id_auteur	image
     $id = $_POST['idHidden_article'];
     @$modifyArticle = $controllerAdmin->modifyArticle($id,$_POST['titre'],$_POST['description'],$_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],$_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],$_POST['auteur'],$_POST['image']);
-    // header('Location: admin_update_article.php');
+
 }
 ?>
 <main class="main-bo">

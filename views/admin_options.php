@@ -11,6 +11,8 @@ $listAuteurs = $controllerAdmin->listAuteurs();
 $miseEnAvant = $controllerAdmin->miseEnAvant();
 $showAllCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
    
 if(isset($_POST['new_cat']))
 {   

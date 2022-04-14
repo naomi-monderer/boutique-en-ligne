@@ -67,7 +67,8 @@ class ArticleModel extends Model{
                             ":id_souscategorie" => $id_souscategorie,
                             ":id_auteur" => $id_auteur,
                             ":image" => $image
-                           ));         
+                           )); 
+                           var_dump($mise_en_avant);        
     //     if($requete)
     //     var_dump($requete , ':))))');
     //     else

@@ -5,15 +5,24 @@ require_once('include/header.php');
 $controllerAdmin = new AdminController();
 $innerDisplayArticles = $controllerAdmin->tabArticles();
 
-
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
 
 ?>
 
 <main class="main-bo">
-    <?php require_once('include/sideBar.php')?>
+    <?php #require_once('include/sideBar.php')?>
+    <article>
+        <form  action="admin.php" method="post">
+        <i class="fa-solid fa-arrow-left-from-line"></i>
+            <input class="butt-tab" type="submit" name="back" value="">
+        </form>
+    </article>
     <section class="tab-contener">
-        <article>
-            <h1>Tous les articles de ma boutique 📚 </h1>
+ 
+
+        <article class="contener-titre-principal" >
+            <h1> Consulter les livres enregistrés dans ma boutique</h1>
         </article> 
         <article>
             <table class="tab-articles">
@@ -42,7 +51,7 @@ $innerDisplayArticles = $controllerAdmin->tabArticles();
                                     <p><?=$displayArticle['id'];?></p>
                                 </td>
                                 <td class="td-articles">
-                                    <img src="<?= $displayArticle['image'];?>">
+                                    <img style="width: 100px"src="<?= $displayArticle['image'];?>">
                                 </td>
                                 <td class="td-articles">
                                     <p><?=$displayArticle['titre'];?></p>

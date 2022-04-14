@@ -1,6 +1,9 @@
 <?php
 require_once('../controllers/AdminController.php');
 require_once('include/header.php');
+$controllerAdmin= new AdminController();
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
 ?>
 <main class="main-bo">
     <section>
@@ -8,6 +11,7 @@ require_once('include/header.php');
     </section>
 </main>
 <?php
+
 /* This button allow the admin to display modify and delete these users*/
 if(isset($_GET['display_user']))
 { 

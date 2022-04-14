@@ -11,7 +11,7 @@ $controller = new ConnexionController();
 
     <div class="sidebar">
 
-    <p>LES CATEGORIES :</p>
+    <p>Type de Livre:</p>
         <?php foreach($afficherNomCategories as $show) : ?>
  
             <a href="articles.php?id=<?php echo $show['id'] ?>"><?php echo $show['nom_categorie'] ?></a>

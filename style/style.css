@@ -612,7 +612,7 @@ fieldset {
 .butt-form
 {
   width: 100%;
-  padding: 10px 0 10px 0;
+  padding: 10px 5px 10px 5px;
   margin-top: 20px;
   border: none;
   cursor: pointer;
@@ -621,7 +621,18 @@ fieldset {
   /* border-bottom:solid 6px #f5b027d2; */
   transition: background-color 0.3s ease-out 100ms
 }
-
+.butt-tab
+{
+  width: 100%;
+  padding: 10px 5px 10px 5px;
+  margin: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(95, 91, 95);
+  color: white;
+  /* border-bottom:solid 6px #f5b027d2; */
+  transition: background-color 0.3s ease-out 100ms
+}
 .butt-form:hover
 {
   color: white;
@@ -806,16 +817,20 @@ a:hover
     border: none;
     height:2rem;
 }
-.content-table tbody .id-user
+.tab-contener
+{
+  margin:40px;
+}
+.content-table tbody 
 {
   /* background-color: rgb(110, 110, 110); */
-  color: rgb(255, 255, 255);
+  color: rgb(124, 63, 63);
   font-size: 1em;
   text-align: center;
 }
-.content-table tbody .id-user :nth-of-type(even)
+.content-table tbody:nth-of-type(even)
 {
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(128, 49, 49);
 }
  
 .input-large 

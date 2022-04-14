@@ -1,9 +1,15 @@
 <?php
 ob_start();
+
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
 $controllerAdmin = new AdminController();
+
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
+// if($_SESSION['user'][0]['nom'] != 'admin')
+//     header("Location: index.php");
 
 $showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
 $listCategories = $controllerAdmin->listCategories();

@@ -35,7 +35,7 @@ session_start();
 
             <nav>
 
-                <a href="index.php">Accueil</a>
+                <a href="index.php"><i class="fa-solid fa-house" style="font-size:1.3em;"></i></a>
 
                 <?php if(!isset($_SESSION['user']))
                 {?>

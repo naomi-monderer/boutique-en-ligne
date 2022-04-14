@@ -49,33 +49,34 @@ class InscriptionController extends Controller
                             if($password == $passwordConfirm)
                         {
                             $password = password_hash($password,PASSWORD_BCRYPT);
-                            $_SESSION['error'] = null;
+                            // $_SESSION['error'] = null;
                             $this->model->insertUser($nom,$prenom,$email,$password,$login,$id_droits);
                             header('location: ../views/connexion.php');  
                         }
                         else
                         {
-                            $_SESSION['error'] = 'Les mots de passe doivent être identiques.';
+                            return '<p style="color:red; font-size:0.5em";> Les mots de passe doivent être identiques.</p>';
                         }
                         
                     }
                     else
                     {
-                        $_SESSION['error'] = 'Ce email est déjà utilisé.';
+                        return '<p style="color:red";> Ce email est déjà utilisé.</p>';
                     }
-                }else{
-                    $_SESSION['error'] = 'Ce login est déjà utilisé.';
+                }else
+                {
+                    return '<p style="color:red";> Ce login est déjà utilisé.</p>';
                 }
 
             }
             else
             {
-                $_SESSION['error'] = 'Ce login ou ce mot de passe est trop court.';
+                return '<p style="color:red";> Ce login ou ce mot de passe est trop court.</p>';
             }
         }     
         else
         {
-            $_SESSION['error'] = 'Tous les champs doivent être remplis.';
+            return '<p style="color:red";> Tous les champs doivent être remplis.</p>';
         }        
     }
 

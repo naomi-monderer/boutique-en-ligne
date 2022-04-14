@@ -5,6 +5,10 @@ require_once('../controllers/AdminController.php');
 
 $controller = new AdminController();
 $allUsers = $controller->displayUsers();
+
+//redirection la page index
+$secureBackOffice = $controller->secureBackOffice();
+
 if(isset($_POST['delete_user']))
 {   
     $id = $_POST['idHidden_user'];

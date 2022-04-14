@@ -210,6 +210,10 @@ class AdminController extends Controller
         {
             $_POST['mise_en_avant'] == true;       
         }
+        // else
+        // {
+        //     $_POST['mise_en_avant'] == false;
+        // }
     }
         
     public function registerArticle($titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image)
@@ -218,14 +222,14 @@ class AdminController extends Controller
         $description= $this->secureWithoutTrim($description);
         $stock = $this->secure($stock);
         $prix = $this->secure($prix);
-        $mise_en_avant = $this->secure(intval($mise_en_avant));
+        // $mise_en_avant = $this->secure(intval($mise_en_avant));
         $editeur = $this->secureWithoutTrim($editeur);
         $id_categorie = $this->secure(intval($id_categorie));
         $id_souscategorie = $this->secure(intval($id_souscategorie));
         $id_auteur = $this->secure(intval($id_auteur));
         $image = $this->secure($image);
     
-        if(!empty($titre) && !empty($description) && !empty($prix) && !empty($mise_en_avant) && !empty($editeur) && !empty($id_categorie) && !empty($id_souscategorie) && !empty($id_auteur) && !empty($image))
+        if(!empty($titre) && !empty($description) && !empty($prix) && !empty($editeur) && !empty($id_categorie) && !empty($id_souscategorie) && !empty($id_auteur) && !empty($image))
         {   
             $description_len = strlen($description);
             if($description_len <= 500)
@@ -282,7 +286,7 @@ class AdminController extends Controller
         $id_auteur = $this->secure(intval($id_auteur));
         // $image = $this->secure($image);
         echo '<pre>';
-        var_dump($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
+        // var_dump($id,$titre,$description,$stock,$prix,$mise_en_avant,$editeur,$id_categorie,$id_souscategorie,$id_auteur,$image);
         echo '</pre>';
         if(!empty($titre) && !empty($description) && !empty($prix) && !empty($mise_en_avant) && !empty($editeur) && !empty($id_categorie) && !empty($id_souscategorie) && !empty($id_auteur) && !empty($image))
         {   

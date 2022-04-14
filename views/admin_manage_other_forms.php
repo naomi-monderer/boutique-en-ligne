@@ -9,6 +9,9 @@ $allCategories = $controllerAdmin->showAllCategoriesInNewCategory();
 $lists= $controllerAdmin->listCategories();
 $listAuteurs= $controllerAdmin->listAuteurs();
 
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
+
 /* Categories*/ 
 if(isset($_POST['delete_categorie']))
 {
