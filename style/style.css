@@ -313,6 +313,7 @@ hr {
   text-align: center;
   padding: 1%;
 }
+
 .payementbutton {
   display: block;
   margin-left: auto;
@@ -324,6 +325,7 @@ hr {
 .formpayement input {
   width: 20%;
   height: 3vh;
+  margin-top: 3%;
 }
 fieldset {
   width: 20%;
@@ -635,8 +637,42 @@ footer a {
   width: 20%;
   height: 3vh;
 }
-fieldset {
+.row div div input {
+  width: 25%;
+  height: 4vh;
+  margin-bottom: 2%;
+}
+.row fieldset label,
+.labelpayement {
+  display: block;
+}
+.divpayement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 20%;
+  margin: auto;
+}
+.divpayement div {
+  width: 50%;
+}
+.divpayement div input {
+  width: 50%;
+}
+#inputepayement {
+  width: 50%;
+}
+.row fieldset input,
+.row fieldset textarea {
+  display: block;
+  width: 60%;
+  margin: 2% auto;
+  height: 4vh;
+}
+fieldset {
+  width: 40%;
+  margin: 0 auto 3%;
+  padding: 2%;
 }
 .info {
   text-align: center;

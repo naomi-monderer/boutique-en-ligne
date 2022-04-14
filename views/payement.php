@@ -1,5 +1,7 @@
 <?php 
 
+
+
 require('include/header.php');
 
 ?>
@@ -25,51 +27,49 @@ require('include/header.php');
             <form class="row"  action="../controllers/PayementController.php"  method="POST">
             <fieldset>
     <legend>Adresse de livraison</legend>
-      <ol>
-        <li>
-          <label for=adresse>Adresse</label>
+      
+          <label class="labelpayement" for=adresse>Adresse</label>
           <textarea id=adresse name="adresse" rows=5 required></textarea>
-        </li>
-        <li>
-          <label for=codepostal>Code postal</label>
+       
+          <label class="labelpayement"   for=codepostal>Code postal</label>
           <input id=codepostal name="codepostal" type=text required>
-        </li>
-          <li>
-          <label for=pays>Pays</label>
+        
+          <label class="labelpayement"  for=pays>Pays</label>
           <input id=pays name="pays" type=text required>
-        </li>
-        <li>
-            <label for="ville">Votre ville</label>
+        
+            <label class="labelpayement"  for="ville">Votre ville</label>
             <input type="text" name="ville" id="">
-        </li>
-      </ol>
+       
   
     </fieldset>
-                <div class="formpayement" >
-                    <div'>
-                        <label>Nom sur la carte</label>
+                <div  >
+                    <div>
+                        <label class="labelpayement">Nom sur la carte</label>
                         <input type='text' name="name">
                     </div>
                 </div>
                 <div>
                     <div class='card'>
-                        <label>Numéro de carte</label>
+                        <label  class="labelpayement">Numéro de carte</label>
                         <input type='text' name="carte">
                     </div>
                 </div>
                
                     <div>
-                        <label>CVC</label>
+                        <label class="labelpayement" >CVC</label>
                         <input placeholder='ex. 311' size='4' type='text' name="cvc">
                     </div>
-                    <div >
-                        <label>Expiration</label>
-                        <input  placeholder='MM' size='2' type='text' name="expiration">
+                    <div class="divpayement">
+                          <div >
+                        <label  class="labelpayement">Mois</label>
+                        <input id="inputepayement" placeholder='MM' size='2' type='text' name="expiration">
                     </div>
                     <div>
-                        <label> </label>
-                        <input placeholder='AA' size='4' type='text' name="expiration_year">
+                        <label  class="labelpayement"> Année  </label>
+                        <input id="inputepayement" placeholder='AA' size='4' type='text' name="expiration_year">
                     </div>
+                    </div>
+                  
                 </div>
 
                 <button class="payementbutton" type='submit'>Payer »</button>
@@ -81,6 +81,9 @@ require('include/header.php');
 </div>
 
     </main>
+    <footer>
+    <?php require_once('include/footer.php'); ?>
+    </footer>
 
 
 <?php unset($_SESSION['erreur'] ) ;?>
