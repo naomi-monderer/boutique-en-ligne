@@ -1,33 +1,42 @@
 <?php
-
 // Verif categorie
+require_once("../models/ArticleModel.php"); 
+require_once("../models/CategorieModel.php");
+
+$categorie = new CategorieModel();
+$articlesmodel = new ArticleModel();
+
+// $titrecategorie = $categorie->getsouscategorie($_GET["id"]);
+ //header
+ if (isset($_GET['id'])){
+      $categories = $articlesmodel->getsouscategorie($_GET["id"]);
+
+ }else {
+    $categories = $articlesmodel->getsouscategorie($_GET["id_souscategorie"]);
+ }
+
+// Id == categorie
 if(!empty($_GET["id"])){
-    require_once("../models/ArticleModel.php"); 
-    // ça buggait pcq y'avait deux fois le meme require dans la meme page
-    // favorisez les require_once 
-    // $route =  str_replace('views/articles.php','',$_SERVER['SCRIPT_FILENAME']);
-    var_dump($route);
-  
-    // require($route."models/Article.php");
-    $articlesmodel = new ArticleModel();
-    $productByCategory =$articlesmodel->getProductsByCategory($id_categorie($_GET["id"]));
-
-    // verif si c est pas vide sion erreur
-    var_dump($productByCategory);
-
-}else{
+    $titre = $categorie->recuperationNoncategorie($_GET["id"]);
+   
+   
     
+
+    $productByCategory =$articlesmodel->getProductsByCategory($_GET["id"]);
+    if (empty($productByCategory)) {
+        $erreur = "aucun article dans cette categorie";
+    }
+    
+  
+
+
+}else
+{
+
 }
-if(!empty($_GET["id"])){
-    $route =  str_replace('views/articles.php','',$_SERVER['SCRIPT_FILENAME']);
-    require_once($route."models/Article.php");
-    $productByCategory = $articlesmodel->getProductsByCategory($_GET["id"]);
+
+// If id_souscategorie == articles des sous categories
+if (!empty($_GET['id_souscategorie'])){
+    $titre = $categorie->recuperationNonSouscategorie($_GET['id_souscategorie']);
+    $productByCategory =$articlesmodel->getProductsBySousCategory($_GET['id_souscategorie']);
 }
-
-
-// verif sous categorie
-
-
-
-
-// recuperation cataegorie et sous categorie
