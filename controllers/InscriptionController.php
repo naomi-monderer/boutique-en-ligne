@@ -1,9 +1,8 @@
 <?php
-require ('../models/UserModel.php');
+require_once('../models/UserModel.php');
+require_once('Controller.php');
 
-
-class UserController 
-
+class InscriptionController extends Controller
 {   
     public $prenom;
     public $nom;
@@ -11,62 +10,74 @@ class UserController
     public $email;
     public $password;
     private $model;
-    private $bdd;
+    protected $bdd;
 
     public function __construct()
     {
-        // instencie un objet et on appelle l'une de ses méthodes
-       $model = $this->model =  new UserModel();
-        $this->bdd = $this->model->connect();
+      
+       $this->model =  new UserModel();
     
-        // var_dump($this->connect);
-
-            
     }
 
-    public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm)
+    public function registers($prenom,$nom,$login,$email,$password,$passwordConfirm,$id_droits)
     {   
-        
+        $id_droits = 3;
        
-        $login = htmlspecialchars(trim($login)); 
-        $nom = htmlspecialchars(trim($nom)); 
-        $prenom = htmlspecialchars(trim($prenom)); 
-        $email = htmlspecialchars(trim($email)); 
-        $password = htmlspecialchars(trim($password)); 
-        $passwordConfirm = htmlspecialchars(trim($passwordConfirm)); 
+    
+        $login = $this->secure($login);
+        $nom =$this->secure(strtolower($nom)); 
+        $prenom =$this-> secure(strtolower($prenom)); 
+        $email =$this-> secure(strtolower($email)); 
+        $password =$this-> secure($password); 
+        $passwordConfirm =$this-> secure($passwordConfirm); 
 
-  //      $login_len = strlen($login);
 
-//        if($login_len < 4 && $nom_len ...)
-             
         if(!empty($prenom) && !empty($nom) && !empty($login) && !empty($email) && !empty($password) && !empty($passwordConfirm))
         {   
-            $loginResult = $this->model->checkLogin($login);
-            if(count($loginResult) == 0)
+            $login_len = strlen($login);
+            $password_len = strlen($password);
+
+            if($login_len >= 3  && $password_len >= 3)
             {
-                if($password == $passwordConfirm)
-                {
-                    $password = password_hash($password,PASSWORD_BCRYPT);
-                    // a
-                    $this->model->insertUser($prenom,$nom,$login,$email,$password);
+                $sameLoginUsers = $this->model->getUserByLogin($login); //users qui portent le meme login
+                $sameEmailUsers = $this->model->getUserByEmail($email); //users qui portent le meme email
+
+                if(empty($sameLoginUsers[0])) // "s'il n'existe aucun user portant le meme login"
+                {   
+                    if(empty($sameEmailUsers[0])) // "s'il n'existe aucun user portant le meme email"
+                        {
+                            if($password == $passwordConfirm)
+                        {
+                            $password = password_hash($password,PASSWORD_BCRYPT);
+                            $_SESSION['error'] = null;
+                            $this->model->insertUser($nom,$prenom,$email,$password,$login,$id_droits);
+                            header('location: ../views/connexion.php');  
+                        }
+                        else
+                        {
+                            $_SESSION['error'] = 'Les mots de passe doivent être identiques.';
+                        }
+                        
+                    }
+                    else
+                    {
+                        $_SESSION['error'] = 'Ce email est déjà utilisé.';
+                    }
+                }else{
+                    $_SESSION['error'] = 'Ce login est déjà utilisé.';
                 }
-                else
-                {
-                    return 'mot de passe pas égal';
-                }
+
             }
             else
             {
-                return 'Ce login est déjà utilisé';
+                $_SESSION['error'] = 'Ce login ou ce mot de passe est trop court.';
             }
-        }
+        }     
         else
         {
-            return 'Les champs sont vides';
+            $_SESSION['error'] = 'Tous les champs doivent être remplis.';
         }        
     }
 
 }
-
-
 
