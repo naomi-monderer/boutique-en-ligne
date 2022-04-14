@@ -29,6 +29,7 @@ p {
 
 a {
   text-decoration: none;
+  color: black;
 }
 
 /******** PAGE PROFIL ***********/
@@ -130,6 +131,41 @@ p {
 .enstock {
   color: green;
 }
+
+/***** COMMENTAIRES ******/
+
+.page_article section {
+  width: 70%;
+  margin: auto;
+  margin: 50px;
+}
+
+.page_article section div:first-of-type {
+  background-color: red;
+}
+
+.page_article section div:nth-child(1) {
+  background-color: blue;
+}
+
+.page_article section div:nth-of-type(2) {
+  background-color: green;
+}
+
+.page_article section .btn {
+  background: #f5b027;
+  border-radius: 5px;
+  border: 0;
+  height: 25px;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.page_article section h1 {
+  margin: 40px 0px;
+}
+
 /* partie articles */
 
 .mainArticles {
@@ -309,6 +345,8 @@ body {
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
 }
+
+nav span {font-weight: bold;}
 
 .search {
   width: 100%;

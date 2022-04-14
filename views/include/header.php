@@ -47,6 +47,7 @@ session_start();
                 if(isset($_SESSION['user']))
                         {?>
                         <a href="profil.php">Profil</a></br>
+                        <p>Bonjour  <span><?php echo $_SESSION['user'][0]['prenom'] . " " . $_SESSION['user'][0]['nom'] ?></span></p>
                         <a href="deconnexion.php">déconnexion</a></br>
                         <a href="panier.php">Panier</a>
                           
