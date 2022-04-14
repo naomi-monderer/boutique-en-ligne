@@ -89,10 +89,12 @@ if(isset($_POST['submit']))
         <?php endforeach; ?>
 
         <form action="" method="post">
+            
+            <textarea type="text" name="comment" placeholder="Ecrivez votre commentaire..."></textarea>
 
-            <textarea>Entrez votre commentaire...</textarea>
-            <input class="btn" type="submit" value="Valider">
+            <input class="btn" type="submit" name="submit" value="valider">
         </form>
+
     </section> 
 
 
