@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 require_once('include/header.php');
 require_once('../controllers/ConnexionController.php');
 
@@ -24,12 +24,14 @@ if(isset($_POST['submit']))
 
             <input class="btn" type="submit" name="submit" value="valider">
         </form>
+        <?php if(isset($check))
+            {
+                echo $check;
+            }
+        ?>
     </section>     
 </main>
-<?php
-if(isset($_POST['submit']))
-{
-    echo "<div> $check </div>";
-}   
+<?php 
 require_once("include/footer.php");
+ob_end_flush();
 ?>    

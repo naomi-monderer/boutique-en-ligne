@@ -35,17 +35,22 @@ class  ConnexionController extends Controller
                     $_SESSION['user']= $AllUserInfos;
                     // var_dump($_SESSION['user']);
                       header('location: index.php');
+            
+                }
+                else
+                {
+                    return '<p style="color:red";> Ce mot de passe est incorrect.</p>';
                 }
             }
             else
             {
-                return 'Ce login n\'est pas correct.';
+                return '<p style="color:red";> Ce login est incorrect.</p>';
             }
         }
         else
         {
 
-            echo  "Tous les champs doivent etre remplis";
+            return  '<p style="color:red";>Tous les champs doivent etre remplis.</p>';
         }
     }
 }
