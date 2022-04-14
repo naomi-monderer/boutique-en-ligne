@@ -1,8 +1,15 @@
 <?php
+ob_start();
+
 require_once('../controllers/AdminController.php');
 // require_once('../controllers/CategorieController.php');
 require_once('include/header.php');
 $controllerAdmin = new AdminController();
+
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
+// if($_SESSION['user'][0]['nom'] != 'admin')
+//     header("Location: index.php");
 
 $showAllCategoriesInNewCategory = $controllerAdmin->showAllCategoriesInNewCategory();
 $listCategories = $controllerAdmin->listCategories();
@@ -19,55 +26,34 @@ echo '<pre>';
 // echo '<pre>';
 // var_dump($showAllCategories); 
 // echo '</pre>';
-
-
-
+if(isset($_POST['new_article']))
+{
+$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
+                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
+                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
+                                                    $_POST['auteur'], $_POST['image']);
+}
+if(isset($_POST['back']))
+{
+    header('location:admin.php');
+}
 ?>
 <main class="main-bo">
-    <section class="contener-bo">
-        <article class="nav-bo">
-            <div class="contener-titre-bo">
-                <h1 class="titre-bo"><a href="admin.php">BACK OFFICE</a></h1>
-            </div>
+<?php require_once('include/sideBar.php')?>
+   <div class="contener ">
+        <section class="contener-rest">
+            <article class="contener-titre-principal">
+                    <h2>ENREGISTRER UN NOUVEL OUVRAGE</h2>
+            </article>   
+            <article class="principal">
 
-            <div class="contener-liste-bo">
-                <ul class="ul-nav-bo">
-                    <li class="liste-bo">
-                        <a href="admin_user.php">Gestions des utilisateurs</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                        <a href="admin_article.php">Nouvel Article</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                        <a href="admin_tab_articles.php">Gestion des Articles</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i> 
-                        <a href="admin_options.php">Nouvelles Options</a>
-                    </li>
-                    <li class="liste-bo">
-                        <i></i>
-                    <a href="admin_manage_other_forms.php">Gestions des options</a>
-                    </li>
-                </ul>
-            </div>  
-        </article>
-    </section>
+                <form class="form-bo" action="" method="post">
+                    <div>
+                        <label class="label-bo" for="nom">Nom de l'ouvrage:</label>
+                            <input class="label-bo" type="text" name="nom" value=""> <br/>
 
-    <section class="contener-rest">
-        <article class="contener-titre-principal">
-                <h2>Enregistrer un nouvel ouvrage</h2>
-        </article>   
-        <article class="principal">
-                    <form action="" method="post">
-
-                        <label for="nom">Nom de l'ouvrage:</label>
-                            <input type="text" name="nom" value=""> <br/>
-
-                            <label for="auteur">Auteur.ice</label>
-                                <select name="auteur">
+                            <label class="label-bo" for="auteur">Auteur.ice</label>
+                                <select class="label-bo" name="auteur">
                                     
                                     <?php foreach($listAuteurs as $listAuteur)
                                     {  ?>
@@ -81,29 +67,29 @@ echo '<pre>';
                                 <?php } ?>
                                 </select>
 
-                                <!-- doit generer le formulaire pour enregistrer un nouvel auteur-->
-                                <p>Vous ne trouvez pas votre auteur dans la liste. Clikez ici</p><br/>
+                                <label class="label-bo"  for="description">Description:</label>
+                                    <textarea class="label-bo" style="height:20vh;" name="description" value=""></textarea><br/>
 
-                                <label for="description">Description:</label>
-                                    <textarea name="description" value=""></textarea><br/>
+                                <label class="label-bo" for="stock">Nombre d'articles à ajouter au stock:</label>
+                                    <input class="label-bo" type="number" name="stock" value=""><br/>
 
-                                <label for="stock"></label>Nombre d'articles à ajouter au stock:</label>
-                                    <input type="number" name="stock" value=""><br/>
-
-                                <label for="prix">Prix:</label>
-                                    <input type="number"  name="prix" value="">€<br/>
+                                <label class="label-bo" for="prix">Prix:</label>
+                                    <input class="label-bo" type="number" step="0.01" name="prix" value=""><br/>
+                    </div>
+                    <div>
+              
                                 
-                                <label for="mise_en_avant">Mettre en avant cet article:</label>
-                                    <select name='mise_en_avant'>  
+                                <label class="label-bo" for="mise_en_avant">Mettre en avant cet article:</label>
+                                    <select class="label-bo" name='mise_en_avant'>  
                                         <option value="1">oui</option>
-                                        <option value="0    ">non</option>  
+                                        <option value="0">non</option>  
                                     </select><br/>
                                     
-                                <label for="editeur">Editeur:</label>
-                                    <input type="text" name="editeur" value=""><br/>
+                                <label class="label-bo" for="editeur">Editeur:</label>
+                                    <input class="label-bo" type="text" name="editeur" value=""><br/>
 
-                                <label for="categorie">Catégorie:</label>
-                                <select name="categorie">
+                                <label class="label-bo" for="categorie">Catégorie:</label>
+                                <select class="label-bo" name="categorie">
                                     <?php foreach($showAllCategories as $showAllCategory) 
                                     {?>   
                                         <option value="<?= $showAllCategory['id']?>">
@@ -112,8 +98,8 @@ echo '<pre>';
                                     <?php }?>   
                                 </select>
                                     
-                                <label for="souscategorie">Sous-Catégorie:</label>
-                                <select name="souscategorie">
+                                <label class="label-bo" for="souscategorie">Sous-Catégorie:</label>
+                                <select class="label-bo" name="souscategorie">
                             
                                     <?php 
                                     $temp="";  
@@ -144,52 +130,25 @@ echo '<pre>';
                                     }?>
                                 </select><br/>
 
-                            <label for="image">Choisir une image:</label>
-                                <input type="text" name='image' placeholder="URL IMG">
+                            <label class="label-bo" for="image">Choisir une image:</label>
+                                <input class="label-bo" name='image' placeholder="url de l'image...">
                             
-                            <input type="submit" name="new_article" value="Ajouter un nouvel article">
-                            <!-- comment générer l'apparition d'un nouvelle catégorie?-->
-                    </form>
+                            <input class="butt-form" type="submit" name="new_article" value="AJOUTER UN LIVRE">
+                    </div>
+        
+
+                </form>
             </article>
-        <!-- <article>
-            <form action="admin.php" method="post">
-                <input type="submit" name="back" value="Retourner au menu de gestion">
-            </form>
-        </article> -->
-    </section>
+        <?php 
+        if(isset($registerArticle))
+        {
+            echo $registerArticle;
+        }
+        ?>
+     </section>
+     </div> 
 </main>
 <?php
-if(isset($_POST['new_article']))
-{
-// il manque la l'id_sous categorie
-$registerArticle = $controllerAdmin->registerArticle($_POST['nom'],$_POST['description'],
-                                                    $_POST['stock'],$_POST['prix'],$_POST['mise_en_avant'],
-                                                    $_POST['editeur'],$_POST['categorie'],$_POST['souscategorie'],
-                                                    $_POST['auteur'], $_POST['image']);
-
-}
-
-
-if(isset($_POST['back']))
-{
-    header('location:admin.php');
-}
-
-
-
+require_once('include/footer.php');
+ob_end_flush();
 ?>  
-
-
-
-<!-- utiliser optgroup pour créer le décalage escompter dans les categories>
-    
-<select name="couleur" multiple>
-  <optgroup label="Couleur">
-    <option value="orange">Orange</option>
-    <option value="bleu" selected>Bleu</option>
-    <option value="rouge">Rouge</option>
-  </optgroup>
-  <optgroup label="Taille">
-   <option value="un">Un</un>
- </optgroup>
-</select>  -->

@@ -20,8 +20,8 @@ require('include/header.php');
     <?php foreach($_SESSION['search'] as $resultat) : ?>
 
         <div class="articles">
-            <div class="article">
-                <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img class="imgarticle" src="../picture/<?php echo $resultat["image"]; ?>" alt=""></a>
+            <div class="articleDiv">
+                <a href="article.php?id=<?php echo $resultat['id_produit']?>"><img class="imgarticle" src="<?php echo $resultat["image"]; ?>" alt=""></a>
                 
             </div>
             <div class="articleDescription">

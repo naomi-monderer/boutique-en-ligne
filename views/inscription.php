@@ -1,11 +1,12 @@
 <?php
+ob_start();
     require_once('include/header.php');
     require_once('../controllers/InscriptionController.php');
     
     if(isset($_POST['submit']))
     {
         $controller = new InscriptionController();
-        $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
+        $check = $controller->registers($_POST['prenom'],$_POST['nom'],$_POST['login'],$_POST['email'],$_POST['password'],$_POST['passwordConfirm'],$_POST['id_droits']); 
        
     }   
 ?>
@@ -35,17 +36,24 @@
 
             <label for="passwordConfirm">Confirmez le mote de passe</label>
             <input type="password" name='passwordConfirm' placeholder="**********">
-            
+            <?php if(isset($check))
+                {
+                    echo $check;
+                }
+        
+        ?>
            <input type="hidden" name="id_droits">
 
             <input class="btn" type="submit" name="submit" value="valider">
         </form>
+       
     </section>
 </main>
 <?php
-if(isset($_POST['submit']))
-{
-    echo "<div>" . $_SESSION['error'] . "</div>";
-}
+// if(isset($_POST['submit']))
+// {
+//     echo "<div>" . $_SESSION['error'] . "</div>";
+// }
 require_once('include/footer.php');
+ob_end_flush();
 ?>

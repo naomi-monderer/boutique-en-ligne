@@ -1,36 +1,17 @@
 <?php
 require_once('../controllers/AdminController.php');
 require_once('include/header.php');
+$controllerAdmin= new AdminController();
+//redirection la page index
+$secureBackOffice = $controllerAdmin->secureBackOffice();
 ?>
-<main>
+<main class="main-bo">
     <section>
-     <div class="nav-back-office">
-        <ul>
-            <li>
-                <a href="admin_user.php">Gestions des utilisateurs</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_article.php">Nouvel Article</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_tab_articles.php">Gestion des Articles</a>
-            </li>
-            <li>
-                <i></i> 
-                <a href="admin_options.php">Nouvelles Options</a>
-            </li>
-            <li>
-                <i></i>
-                <a href="admin_manage_other_forms.php">Gestions des options</a>
-            </li>
-        </ul>
-     </div>
+        <?php require_once('include/sideBar.php')?>
     </section>
-         
 </main>
 <?php
+
 /* This button allow the admin to display modify and delete these users*/
 if(isset($_GET['display_user']))
 { 
@@ -58,5 +39,5 @@ if(isset($_GET['update_article']))
 {
     header('location: admin_update_article.php');
 }
-
+require_once('include/footer.php');
 ?>

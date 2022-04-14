@@ -11,7 +11,7 @@ body {
 
 body {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 
 h2 {
@@ -590,17 +590,11 @@ main {
 
 /****************************/
 
-/* section form {
-  display: flex;
-  flex-direction: column;
-  background: whitesmoke;
-  border-radius: 10px;
-  padding: 3%;
-} */
 
 /********** FOOTER *********/
 
 footer {
+   
   height: 70px;
   background-color: black;
   display: flex;
@@ -733,35 +727,159 @@ fieldset {
 }
 
 /*********** BACK OFFICE **********/
-.main-bo {
-  display: flex;
-  /* padding:0; */
+/******* BUTT-FROM *******/
+.butt-form
+{
+  width: 100%;
+  padding: 10px 5px 10px 5px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(12, 9, 12);
+  color: white;
+  /* border-bottom:solid 6px #f5b027d2; */
+  transition: background-color 0.3s ease-out 100ms
+}
+.butt-tab
+{
+  width: 100%;
+  padding: 10px 5px 10px 5px;
+  margin: 20px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(95, 91, 95);
+  color: white;
+  /* border-bottom:solid 6px #f5b027d2; */
+  transition: background-color 0.3s ease-out 100ms
+}
+.butt-form:hover
+{
+  color: white;
+  background-color:  rgb(49, 0, 105);
+  /* border-bottom:s  olid 6px #f5b027d2; */
+
+}
+/*********FORMULAIRES BACK OFFICE************/
+/* .butt-manage-modif
+{
+  display:flex;
+  justify-content: center;
+}
+.butt-manage-supp
+{
+  display:flex;
+  justify-content: center;
+} */
+/************ADMIN_ARTICLE*************/
+.form-bo
+{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
 }
 
-.contener-bo {
-  min-height: 100%;
-  display: flex;
+.form-bo div
+{
+  display:flex;
   flex-direction: column;
-  /* justify-content: center; */
 
-  width: 25%;
-  background-color: #f5b027;
-  /* padding:0px; */
 }
-
-.nav-bo {
-  margin-top: 50px;
+/* .form-bo div .modif-image
+{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: baseline;
-  height: 40%;
-  background-color: #f5b027;
+
+  width:100%;
+} */
+.form-bo input
+{
+  border: none;
+  height: 2rem;
+}
+.form-bo label
+{
+  padding: 10px 0 10px 0;
+}
+.form-bo-options
+{
+  display: flex;
+  align-items:center;
+  padding:20px;
+}
+.form-bo-options input
+{
+  border: none;
+  height: 2rem;
+  width: 80%;
+}
+.form-bo-options label
+{
+  padding:10px;
+}
+select
+{
+  border: none;
+   height: 2rem;
+   background-color: #F8C96C;
+   width: 80%;
+
+}
+textarea
+{
   border: none;
 }
-.contener-titre-bo {
-  width: 70%;
+/*** SIDE BAR ****/
+.main-bo 
+{
+    display: flex;
+    /* padding:0; */
 }
+
+.contener-bo
+{   
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    
+    width: 300px;
+    background-color:#F5B027;
+    /* padding:0px; */
+   
+}
+
+.nav-bo
+{   margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    height: 40%;
+    background-color:#F5B027;
+    border: none;
+    
+}
+.titre-bo
+{
+    font-size:2rem;
+}
+.contener-rest
+{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+.contener-titre-bo
+{
+    width:90%;
+    padding:10px;
+    margin:5px;
+    margin-bottom: 50px;
+    background-color: #ffffff52;
+    border-bottom: solid 2px rgb(49, 0, 105);
+  }
+
 
 .contener-liste-bo {
   /* background-color:#9DBFAF; */
@@ -775,18 +893,218 @@ fieldset {
 .liste-bo {
   margin: 10px 0 10px 20px;
 }
-a {
-  text-decoration: none;
+
+a 
+{
+    text-decoration: none;
+    color: rgb(49, 0, 105);
+    /* border-bottom: 1px dashed; */
+}
+
+a:hover
+{
+
+    color:rgba(121, 90, 90, 0.781);
+    /* font-weight: bold; */
 }
 
 /*******/
-.contener-principal {
-  display: flex;
-  /* flex-direction: column; */
+.contener-principal 
+{
+    display: flex;
+    width: 100%;
+    
+    /* flex-direction: column; */
 }
-.principal {
+.principal
+{
+    display: flex;
+    justify-content: center;
+    
+    
+    flex-direction: column;
+    /* background: rgba(0, 0, 0, 0.651); */
+}
+/**** ADMIN USER ****/
+  .input-medium 
+{
+    width: 8em;
+    border: none;
+    height:2rem;
+}
+.tab-contener
+{
+  margin:40px;
+}
+.content-table tbody 
+{
+  /* background-color: rgb(110, 110, 110); */
+  color: rgb(124, 63, 63);
+  font-size: 1em;
+  text-align: center;
+}
+.content-table tbody:nth-of-type(even)
+{
+    background-color:rgb(128, 49, 49);
+}
+ 
+.input-large 
+{
+    width:14em;
+    border: none;
+    height:2rem;
+}
+.input-small 
+{
+    width: 3em;
+    border: none;
+    height:2rem;
+}
+.contener-principal
+{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+    width: 100%;
+    flex-direction: column;
+    margin-bottom:120px;
+    
+}
+.titre-principal
+{
+    margin: 40px;
+    color:  rgb(49, 0, 105);
+}
+td
+{
+    padding: 3px;
+}
+.butt-delete
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.butt-modif
+{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.fa-screwdriver-wrench
+{
+    font-size: 1.5em;
+    margin-right: 10px;
+    color:   rgb(107, 107, 107);
+
+}
+
+.fa-xmark
+{
+    font-size: 1.9em;
+    color: rgb(245, 16, 0)
+}
+thead
+{
+    background-color:#f5b02791;
+    
+    color: rgb(49, 0, 105);
+}
+Thead th
+{
+    /* padding: 10px  0 10px 0; */
+    padding:10px;
+    border-collapse: collapse;
+}
+td
+{
+    
+}
+/******* ADMIN AJOUTER ARTICLE **********/
+.contener
+{
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+  width: 80%;
+  /* padding: 40px; */
+}
+.contener-titre-principal
+{
+  /* font-weight: bold; */
+  color:  rgb(49, 0, 105);
+  margin: 30px;
+}
+
+.label-bo
+{ 
+  /* background-color: rgb(124, 88, 88); */
+  color: rgb(49, 0, 105);
+  width:80%;
+
+}
+/******** ADMIN AJOUTER OPTIONS ********/
+.child-contener-rest
+{
+ margin: 30px;
+
+}
+
+.contener-rest-options
+{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  /* align-items:center; */
+}  
+/******* ADMIN DISPLAY ARTICLES *****/
+.tab-articles
+{
+  border-collapse: collapse;
+  border:rgb(12, 9, 12) solid 1px;  
+}
+.tbody-articles
+{ 
+
+  border-bottom:rgb(12, 9, 12) solid 1px;
+}
+.tr-articles
+{
+  border:rgb(12, 9, 12) solid 1px;
+}
+.td-articles
+{
+  text-align: center;
+  border-right:rgb(12, 9, 12) solid 1px ;
+  font-size: 0.8em;
+}
+.th-articles
+{ border: rgb(12, 9, 12) solid 1px;
+  width: 100%;
+  font-size: 0.5em;
+}
+.th-description
+{
+  width: 20%;
+}
+.td-articles img
+{
+  width: 100%;
+}
+.thead-articles
+{
+  font-size: 0.9em;
 }
 
 /********** /BACK OFFICE\ ********/
+
+section form {
+  display: flex;
+  flex-direction: column;
+  background-color:  rgb(236, 236, 236);
+  border:solid 1px grey;
+
+}

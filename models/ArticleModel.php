@@ -59,7 +59,7 @@ class ArticleModel extends Model{
         $requete->execute(array(
                             ":titre" => $titre,
                             ":description" => $description,
-                            ":stock" => $stock,
+                            ":stock" => intval($stock),
                             ":prix" => $prix,
                             ":mise_en_avant" => $mise_en_avant,
                             ":editeur" => $editeur,
@@ -67,7 +67,8 @@ class ArticleModel extends Model{
                             ":id_souscategorie" => $id_souscategorie,
                             ":id_auteur" => $id_auteur,
                             ":image" => $image
-                           ));         
+                           )); 
+                           var_dump($mise_en_avant);        
     //     if($requete)
     //     var_dump($requete , ':))))');
     //     else

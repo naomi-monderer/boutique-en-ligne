@@ -78,7 +78,7 @@ class  ProfilController extends Controller
 
 
            $_SESSION['user'] = $AllUserInfos;
-           var_dump($_SESSION);
+        //    var_dump($_SESSION);
 
             
            header('Location: ../views/profil');
